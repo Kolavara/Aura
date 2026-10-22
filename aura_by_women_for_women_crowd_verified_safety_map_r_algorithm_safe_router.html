@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <title>AURA — Hand-Drawn Women's Safety Map & Safe Router</title>
@@ -64,22 +64,22 @@
       margin: 0; padding: 0;
     }
     
-    html {
-      height: 100%;
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      overflow-x: hidden;
       -webkit-text-size-adjust: 100%;
     }
     
     body {
       font-family: var(--font-body);
-      font-size: 19px;
+      font-size: 18px;
       line-height: 1.45;
       background-color: var(--bg-paper);
       /* Authentic notebook paper dot grid texture */
       background-image: radial-gradient(var(--color-erased) 1.5px, transparent 1.5px);
       background-size: 24px 24px;
       color: var(--color-lead);
-      min-height: 100%;
-      overflow-x: hidden;
       touch-action: manipulation;
       -webkit-tap-highlight-color: transparent;
     }
@@ -98,10 +98,10 @@
       font-weight: 700;
       line-height: 1.2;
     }
-    .large-title { font-size: 32px; letter-spacing: -0.01em; }
-    .title-1 { font-size: 26px; }
-    .title-2 { font-size: 22px; }
-    .title-3 { font-size: 19px; }
+    .large-title { font-size: 28px; letter-spacing: -0.01em; }
+    .title-1 { font-size: 24px; }
+    .title-2 { font-size: 21px; }
+    .title-3 { font-size: 18px; }
     .headline { font-size: 18px; font-weight: 700; }
     .subhead { font-size: 17px; font-weight: 600; }
     .caption-1 { font-size: 15px; color: var(--color-lead-soft); }
@@ -117,26 +117,29 @@
       position: relative;
       overflow: visible;
       transition: transform 0.15s ease, box-shadow 0.15s ease;
+      width: 100%;
     }
     .card-postit {
       background: var(--color-postit);
       border: 2.5px solid var(--color-lead);
       border-radius: var(--wobbly-md);
       box-shadow: var(--shadow-sketch);
-      transform: rotate(-1deg);
+      transform: rotate(-0.5deg);
     }
-    .card-postit:hover {
-      transform: rotate(0deg) scale(1.01);
+    @media (min-width: 641px) {
+      .card-postit:hover {
+        transform: rotate(0deg) scale(1.01);
+      }
     }
 
     /* Decorative Tape & Thumbtack */
     .tape-strip {
       position: absolute;
-      top: -10px;
+      top: -9px;
       left: 50%;
       transform: translateX(-50%) rotate(-1.5deg);
-      width: 80px;
-      height: 22px;
+      width: 70px;
+      height: 20px;
       background: var(--color-tape);
       border: 1px dashed rgba(45, 45, 45, 0.4);
       box-shadow: 1px 1px 2px rgba(0,0,0,0.06);
@@ -147,21 +150,21 @@
       position: absolute;
       top: -8px;
       right: 14px;
-      width: 60px;
+      width: 55px;
       height: 18px;
       background: var(--color-tape);
       border: 1px dashed rgba(45, 45, 45, 0.35);
-      transform: rotate(12deg);
+      transform: rotate(10deg);
       z-index: 5;
       pointer-events: none;
     }
     .thumbtack {
       position: absolute;
-      top: -10px;
+      top: -9px;
       left: 50%;
       transform: translateX(-50%);
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
       background: var(--color-marker-red);
       border: 2px solid var(--color-lead);
       border-radius: 50%;
@@ -178,16 +181,16 @@
       border-radius: 50%;
     }
 
-    /* ── Section Headers (Note style) ── */
+    /* ── Section Headers ── */
     .section-header {
       font-family: var(--font-heading);
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
       color: var(--color-lead);
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      padding: 6px 14px 4px;
-      margin-top: 18px;
+      padding: 6px 10px 4px;
+      margin-top: 14px;
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -196,126 +199,79 @@
     .section-header::after {
       content: '';
       position: absolute;
-      left: 14px; right: 14px; bottom: 2px;
+      left: 10px; right: 10px; bottom: 2px;
       height: 2px;
       background: var(--color-lead);
       border-radius: 2px;
-      opacity: 0.3;
+      opacity: 0.25;
       transform: rotate(-0.5deg);
     }
     .section-header:first-child { margin-top: 0; }
 
-    /* ── Buttons (Hand-Drawn Cutout aesthetic) ── */
+    /* ── Buttons ── */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 5px;
       font-family: var(--font-heading);
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
       cursor: pointer;
-      padding: 8px 16px;
-      min-height: 44px;
+      padding: 7px 14px;
+      min-height: 40px;
       background: #ffffff;
       color: var(--color-lead);
-      border: 2.5px solid var(--color-lead);
+      border: 2px solid var(--color-lead);
       border-radius: var(--wobbly-oval);
       box-shadow: var(--shadow-sketch);
       transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.15s ease, color 0.15s ease;
       -webkit-tap-highlight-color: transparent;
       user-select: none;
       text-decoration: none;
+      white-space: nowrap;
     }
     .btn:hover {
       background: var(--color-marker-red);
       color: #ffffff;
-      transform: translate(2px, 2px);
+      transform: translate(1.5px, 1.5px);
       box-shadow: var(--shadow-sketch-sm);
     }
     .btn:active {
-      transform: translate(4px, 4px);
+      transform: translate(3px, 3px);
       box-shadow: 0px 0px 0px 0px var(--color-lead);
     }
-    .btn-primary {
-      background: var(--color-marker-red);
-      color: #ffffff;
-    }
-    .btn-primary:hover {
-      background: #e02f2f;
-      color: #ffffff;
-    }
-    .btn-secondary {
-      background: var(--color-erased-light);
-      color: var(--color-lead);
-    }
-    .btn-secondary:hover {
-      background: var(--color-pen-blue);
-      color: #ffffff;
-    }
-    .btn-tinted {
-      background: var(--color-postit);
-      color: var(--color-lead);
-    }
-    .btn-tinted:hover {
-      background: var(--color-pen-blue);
-      color: #ffffff;
-    }
-    .btn-green {
-      background: var(--color-safe-green);
-      color: #ffffff;
-    }
-    .btn-green:hover {
-      background: #1b5e20;
-      color: #ffffff;
-    }
-    .btn-green-tint {
-      background: var(--color-safe-wash);
-      color: var(--color-safe-green);
-    }
-    .btn-green-tint:hover {
-      background: var(--color-safe-green);
-      color: #ffffff;
-    }
-    .btn-danger {
-      background: var(--color-marker-red);
-      color: #ffffff;
-    }
-    .btn-danger:hover {
-      background: #d32f2f;
-      color: #ffffff;
-    }
+    .btn-primary { background: var(--color-marker-red); color: #ffffff; }
+    .btn-primary:hover { background: #e02f2f; color: #ffffff; }
+    .btn-secondary { background: var(--color-erased-light); color: var(--color-lead); }
+    .btn-secondary:hover { background: var(--color-pen-blue); color: #ffffff; }
+    .btn-tinted { background: var(--color-postit); color: var(--color-lead); }
+    .btn-tinted:hover { background: var(--color-pen-blue); color: #ffffff; }
+    .btn-green { background: var(--color-safe-green); color: #ffffff; }
+    .btn-green:hover { background: #1b5e20; color: #ffffff; }
+    .btn-green-tint { background: var(--color-safe-wash); color: var(--color-safe-green); }
+    .btn-green-tint:hover { background: var(--color-safe-green); color: #ffffff; }
+    .btn-danger { background: var(--color-marker-red); color: #ffffff; }
+    .btn-danger:hover { background: #d32f2f; color: #ffffff; }
     .btn-ghost {
       background: transparent;
-      border: 2px dashed var(--color-lead);
+      border: 1.5px dashed var(--color-lead);
       color: var(--color-lead);
-      box-shadow: 2px 2px 0px var(--color-lead);
+      box-shadow: 1.5px 1.5px 0px var(--color-lead);
     }
-    .btn-ghost:hover {
-      background: var(--color-postit);
-      color: var(--color-lead);
-    }
-    .btn-sm {
-      font-size: 14px;
-      padding: 4px 10px;
-      min-height: 34px;
-    }
-    .btn-pill {
-      border-radius: var(--wobbly-oval);
-    }
+    .btn-ghost:hover { background: var(--color-postit); color: var(--color-lead); }
+    .btn-sm { font-size: 13px; padding: 4px 8px; min-height: 32px; }
+    .btn-pill { border-radius: var(--wobbly-oval); }
     .btn-sos {
       background: var(--color-marker-red);
       color: #ffffff;
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 700;
-      border: 3px solid var(--color-lead);
-      box-shadow: 4px 4px 0px var(--color-lead);
+      border: 2.5px solid var(--color-lead);
+      box-shadow: 3px 3px 0px var(--color-lead);
       animation: sketchJiggle 3s infinite;
     }
-    .btn-sos:hover {
-      background: #b91c1c;
-      color: #ffffff;
-    }
+    .btn-sos:hover { background: #b91c1c; color: #ffffff; }
     @keyframes sketchJiggle {
       0%, 90%, 100% { transform: rotate(0deg); }
       92% { transform: rotate(-2deg); }
@@ -323,7 +279,7 @@
     }
     .opacity-50 { opacity: 0.5; }
 
-    /* ── Segmented Control (Tabs & Filters) ── */
+    /* ── Segmented Control ── */
     .segmented-control {
       display: flex;
       background: var(--color-erased);
@@ -332,10 +288,11 @@
       padding: 3px;
       gap: 3px;
       box-shadow: 2px 2px 0px rgba(45,45,45,0.15);
+      width: 100%;
     }
     .segmented-control .left-tab-btn {
       flex: 1;
-      padding: 6px 6px;
+      padding: 6px 4px;
       border: 1.5px solid transparent;
       background: transparent;
       font-family: var(--font-heading);
@@ -349,14 +306,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 4px;
+      gap: 3px;
+      white-space: nowrap;
       -webkit-tap-highlight-color: transparent;
     }
     .segmented-control .left-tab-btn.seg-active {
       background: #ffffff;
       border: 2px solid var(--color-lead);
       box-shadow: 2px 2px 0px var(--color-lead);
-      transform: rotate(-0.5deg);
       color: var(--color-marker-red);
     }
 
@@ -365,13 +322,14 @@
       background: #ffffff;
       border: 2px solid var(--color-lead);
       border-radius: var(--wobbly-sm);
-      box-shadow: 3px 3px 0px rgba(45,45,45,0.12);
+      box-shadow: 2.5px 2.5px 0px rgba(45,45,45,0.12);
       font-family: var(--font-body);
-      font-size: 18px;
+      font-size: 17px;
       color: var(--color-lead);
       padding: 8px 12px;
-      min-height: 44px;
+      min-height: 42px;
       width: 100%;
+      box-sizing: border-box;
       transition: border-color 0.15s ease, box-shadow 0.15s ease;
     }
     .ios-input:focus, .ios-select:focus, .ios-textarea:focus {
@@ -382,15 +340,15 @@
     .ios-select {
       appearance: none;
       -webkit-appearance: none;
-      padding-right: 32px;
+      padding-right: 30px;
       cursor: pointer;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='10' viewBox='0 0 14 10'%3E%3Cpath d='M2 2l5 5 5-5' stroke='%232d2d2d' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
-      background-position: right 12px center;
+      background-position: right 10px center;
     }
     .ios-textarea {
       resize: vertical;
-      min-height: 80px;
+      min-height: 75px;
     }
     .ios-checkbox {
       width: 22px; height: 22px;
@@ -398,6 +356,7 @@
       border: 2px solid var(--color-lead);
       border-radius: 4px;
       cursor: pointer;
+      flex-shrink: 0;
     }
     .ios-range {
       accent-color: var(--color-marker-red);
@@ -405,47 +364,38 @@
       cursor: pointer;
     }
 
-    /* ── Hand-Drawn Chips / Hazard Badges ── */
+    /* ── Hand-Drawn Chips ── */
     .chip {
       display: inline-flex;
       align-items: center;
       gap: 4px;
       font-family: var(--font-heading);
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
-      padding: 5px 12px;
+      padding: 4px 10px;
       border-radius: var(--wobbly-oval);
       background: #ffffff;
       color: var(--color-lead);
-      border: 2px solid var(--color-lead);
-      box-shadow: 2px 2px 0px var(--color-lead);
+      border: 1.5px solid var(--color-lead);
+      box-shadow: 1.5px 1.5px 0px var(--color-lead);
       cursor: pointer;
       transition: transform 0.1s ease, background 0.15s ease;
       -webkit-tap-highlight-color: transparent;
       user-select: none;
+      white-space: nowrap;
     }
-    .chip:hover {
+    .chip:active {
       transform: translate(1px, 1px);
-      box-shadow: 1px 1px 0px var(--color-lead);
+      box-shadow: 0px 0px 0px var(--color-lead);
     }
     .chip.chip-active {
       background: var(--color-postit);
       border-color: var(--color-lead);
       color: var(--color-lead);
-      transform: rotate(-1deg);
     }
-    .chip-danger {
-      background: var(--color-marker-red);
-      color: #ffffff;
-    }
-    .chip-safe {
-      background: var(--color-safe-wash);
-      color: var(--color-safe-green);
-    }
-    .chip-warn {
-      background: var(--color-caution-wash);
-      color: var(--color-caution-orange);
-    }
+    .chip-danger { background: var(--color-marker-red); color: #ffffff; }
+    .chip-safe { background: var(--color-safe-wash); color: var(--color-safe-green); }
+    .chip-warn { background: var(--color-caution-wash); color: var(--color-caution-orange); }
 
     /* ── Grouped Rows ── */
     .grouped-row {
@@ -454,97 +404,167 @@
       justify-content: space-between;
       padding: 10px 14px;
       min-height: 44px;
-      gap: 12px;
+      gap: 10px;
       border-bottom: 1.5px dashed var(--color-erased);
     }
     .grouped-row:last-child {
       border-bottom: none;
     }
     .row-label {
-      font-size: 18px;
+      font-size: 17px;
       color: var(--color-lead);
       font-weight: 600;
     }
-    .row-detail {
-      font-size: 17px;
-      color: var(--color-lead-soft);
-      text-align: right;
+
+    /* Mobile Responsive Optimizations (< 768px) */
+    @media (max-width: 768px) {
+      .grouped-row {
+        padding: 8px 10px;
+        min-height: 40px;
+      }
+      .grouped-row.select-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 5px;
+      }
+      .grouped-row.select-row .row-label {
+        font-size: 15px;
+      }
+      .ios-input, .ios-select, .ios-textarea {
+        font-size: 16px !important; /* Prevents iOS auto-zoom on focus */
+        min-height: 42px;
+        padding: 7px 10px;
+      }
+      .card {
+        border-radius: 14px !important;
+        transform: none !important;
+        box-shadow: 2px 2px 0px var(--color-lead) !important;
+      }
+      .card-postit {
+        transform: none !important;
+        border-radius: 14px !important;
+        box-shadow: 2px 2px 0px var(--color-lead) !important;
+      }
+      .card:hover, .card-postit:hover {
+        transform: none !important;
+      }
+      .tape-strip {
+        width: 48px;
+        height: 15px;
+        top: -7px;
+      }
+      .tape-strip-corner {
+        width: 42px;
+        height: 14px;
+        top: -6px;
+        right: 8px;
+      }
+      .section-header {
+        font-size: 14px;
+        margin-top: 10px;
+        padding: 4px 6px;
+      }
+      .app-header {
+        padding: env(safe-area-inset-top, 6px) 10px 6px 10px;
+      }
+      .brand-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+      }
+      .brand-text h1 {
+        font-size: 18px;
+      }
+      .header-actions {
+        gap: 5px;
+      }
+      .header-actions .btn {
+        font-size: 13px;
+        min-height: 34px;
+        padding: 4px 9px;
+        border-radius: 12px;
+      }
     }
 
     /* ── App Shell & Layout ── */
     .app-shell {
+      width: 100%;
       max-width: 1400px;
       margin: 0 auto;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       position: relative;
+      overflow-x: hidden;
     }
 
-    /* ── Header (Sketched Clipboard Banner) ── */
+    /* ── Header ── */
     .app-header {
       position: sticky;
       top: 0;
       z-index: 30;
       background: var(--bg-paper);
       border-bottom: 2.5px solid var(--color-lead);
-      box-shadow: 0 4px 0px 0px rgba(45,45,45,0.06);
-      padding: env(safe-area-inset-top, 0) 16px 0 16px;
+      box-shadow: 0 3px 0px 0px rgba(45,45,45,0.06);
+      padding: env(safe-area-inset-top, 0) 12px 0 12px;
     }
     .header-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      padding: 10px 0;
-      min-height: 52px;
+      gap: 8px;
+      padding: 8px 0;
+      min-height: 48px;
     }
     .brand {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       flex-shrink: 0;
     }
     .brand-icon {
-      width: 40px; height: 40px;
+      width: 36px; height: 36px;
       border-radius: var(--wobbly-sm);
       background: var(--color-marker-red);
-      border: 2.5px solid var(--color-lead);
-      box-shadow: 3px 3px 0px var(--color-lead);
+      border: 2px solid var(--color-lead);
+      box-shadow: 2px 2px 0px var(--color-lead);
       display: flex; align-items: center; justify-content: center;
       font-family: var(--font-heading);
-      font-size: 20px; font-weight: 700; color: #fff;
-      transform: rotate(-2deg);
+      font-size: 19px; font-weight: 700; color: #fff;
     }
     .brand-text h1 {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 700;
       color: var(--color-lead);
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
+      line-height: 1;
     }
     .brand-text p {
-      font-size: 14px;
+      font-size: 13px;
       color: var(--color-lead-soft);
       font-family: var(--font-body);
-      margin-top: -2px;
+      margin-top: -1px;
     }
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
+      flex-shrink: 0;
     }
 
     /* ── Content Grid ── */
     .content-grid {
-      display: grid;
-      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: column;
       gap: 0;
       padding: 0;
+      width: 100%;
     }
     @media (min-width: 1024px) {
       .content-grid {
+        display: grid;
         grid-template-columns: 410px 1fr;
         gap: 0;
         padding: 0 16px;
@@ -561,8 +581,24 @@
       }
     }
 
+    /* On mobile, map is placed first, tabs below */
+    @media (max-width: 1023px) {
+      .main-col {
+        order: 1;
+        width: 100%;
+      }
+      .sidebar {
+        order: 2;
+        width: 100%;
+        padding-bottom: 20px;
+      }
+      .desktop-bottom-grid {
+        display: none !important;
+      }
+    }
+
     .tab-content-area {
-      padding: 0 16px 16px;
+      padding: 0 12px 16px;
     }
     @media (min-width: 1024px) {
       .tab-content-area { padding: 0; }
@@ -571,16 +607,16 @@
       animation: sketchFade 0.2s ease-out;
     }
     @keyframes sketchFade {
-      from { opacity: 0; transform: translateY(4px); }
+      from { opacity: 0; transform: translateY(3px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     /* ── Route Cards ── */
     .route-card {
-      padding: 14px 16px;
+      padding: 12px 14px;
       cursor: pointer;
-      border-bottom: 2px dashed var(--color-erased);
-      transition: background 0.15s ease, transform 0.1s ease;
+      border-bottom: 1.5px dashed var(--color-erased);
+      transition: background 0.15s ease;
       -webkit-tap-highlight-color: transparent;
     }
     .route-card:last-child {
@@ -597,31 +633,32 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 8px;
+      gap: 6px;
     }
     .route-name {
       font-family: var(--font-heading);
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 700;
       color: var(--color-lead);
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
     .route-dot {
-      width: 12px; height: 12px;
+      width: 11px; height: 11px;
       border-radius: 50%;
       border: 1.5px solid var(--color-lead);
       flex-shrink: 0;
     }
     .safety-badge {
       font-family: var(--font-heading);
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 700;
-      padding: 2px 8px;
+      padding: 2px 7px;
       border: 1.5px solid var(--color-lead);
       border-radius: var(--wobbly-oval);
-      box-shadow: 1.5px 1.5px 0px var(--color-lead);
+      box-shadow: 1px 1px 0px var(--color-lead);
+      white-space: nowrap;
     }
     .badge-safe { background: var(--color-safe-wash); color: var(--color-safe-green); }
     .badge-warn { background: var(--color-caution-wash); color: var(--color-caution-orange); }
@@ -629,7 +666,7 @@
 
     /* ── Feed & Haven Items ── */
     .feed-item {
-      padding: 12px 14px;
+      padding: 11px 14px;
       cursor: pointer;
       border-bottom: 1.5px dashed var(--color-erased);
       transition: background 0.15s ease;
@@ -638,7 +675,7 @@
     .feed-item:hover { background: var(--color-erased-light); }
     
     .haven-item {
-      padding: 14px 16px;
+      padding: 12px 14px;
       border-bottom: 1.5px dashed var(--color-erased);
       transition: background 0.15s ease;
     }
@@ -648,48 +685,73 @@
       border-left: 4px solid var(--color-safe-green);
     }
 
-    /* ── Map Section & Hand-Drawn Leaflet ── */
+    /* ── Map Section ── */
     .map-section {
-      padding: 0 16px;
-      margin: 12px 0;
+      padding: 0 12px;
+      margin: 10px 0;
+      width: 100%;
+      box-sizing: border-box;
     }
     @media (min-width: 1024px) {
       .map-section { padding: 0; margin: 0 0 16px 0; }
     }
     .map-card {
       background: #ffffff;
-      border: 3px solid var(--color-lead);
+      border: 2.5px solid var(--color-lead);
       border-radius: var(--wobbly-card);
-      box-shadow: var(--shadow-sketch-lg);
+      box-shadow: var(--shadow-sketch);
       overflow: hidden;
       position: relative;
+      width: 100%;
     }
-    .map-toolbar {
+    .map-top-bar {
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 6px;
-      padding: 10px 14px;
+      padding: 8px 10px;
+      border-bottom: 2px solid var(--color-lead);
+      background: #fffdfa;
+    }
+    .map-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 6px;
+      padding: 6px 10px;
       background: var(--color-erased-light);
       border-bottom: 2px solid var(--color-lead);
+      overflow-x: auto;
+      scrollbar-width: none;
     }
+    .map-toolbar::-webkit-scrollbar { display: none; }
     .map-toolbar-group {
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
       gap: 6px;
+      flex-shrink: 0;
     }
+    
     #leafletMap {
       width: 100%;
-      height: 440px;
-      min-height: 380px;
+      height: 420px;
+      min-height: 280px;
       background: #e5e0d8;
       position: relative;
       z-index: 1;
+      transition: height 0.25s ease;
+    }
+    @media (max-width: 768px) {
+      #leafletMap {
+        height: 235px;
+        min-height: 190px;
+      }
+      #leafletMap.map-expanded {
+        height: 420px !important;
+      }
     }
 
-    /* Warm Paper Map Filter: Crisp OpenStreetMap with light warm tint */
+    /* Warm Paper Map Filter */
     .leaflet-tile {
       filter: sepia(0.18) saturate(1.1) brightness(0.98) contrast(1.02);
     }
@@ -698,7 +760,7 @@
     .leaflet-control-zoom {
       border: 2px solid var(--color-lead) !important;
       border-radius: var(--wobbly-sm) !important;
-      box-shadow: 3px 3px 0px var(--color-lead) !important;
+      box-shadow: 2.5px 2.5px 0px var(--color-lead) !important;
       overflow: hidden;
     }
     .leaflet-control-zoom a {
@@ -712,31 +774,24 @@
       background: var(--color-postit) !important;
     }
 
-    /* Hand-Drawn Leaflet Popups (Cut-paper Post-It Note) */
+    /* Hand-Drawn Leaflet Popups */
     .leaflet-popup-content-wrapper {
       background: var(--color-postit) !important;
       color: var(--color-lead) !important;
       border: 2.5px solid var(--color-lead) !important;
       border-radius: var(--wobbly-sm) !important;
-      box-shadow: 4px 4px 0px var(--color-lead) !important;
-      padding: 4px !important;
+      box-shadow: 3px 3px 0px var(--color-lead) !important;
+      padding: 2px !important;
       font-family: var(--font-body) !important;
-      transform: rotate(-1deg);
     }
     .leaflet-popup-tip {
       background: var(--color-postit) !important;
       border: 2px solid var(--color-lead) !important;
     }
     .leaflet-popup-content {
-      margin: 10px 12px !important;
-      font-size: 16px !important;
-      line-height: 1.4 !important;
-    }
-    .leaflet-popup-close-button {
-      color: var(--color-lead) !important;
-      font-family: var(--font-heading) !important;
-      font-size: 18px !important;
-      font-weight: 700 !important;
+      margin: 8px 10px !important;
+      font-size: 15px !important;
+      line-height: 1.35 !important;
     }
 
     /* Custom Hand-Drawn Markers */
@@ -756,49 +811,49 @@
       font-weight: 700;
       color: #fff;
       border: 2px solid var(--color-lead);
-      box-shadow: 2.5px 2.5px 0px var(--color-lead);
+      box-shadow: 2px 2px 0px var(--color-lead);
       border-radius: var(--wobbly-circle);
       transition: transform 0.2s ease;
     }
     .marker-pin:hover {
-      transform: scale(1.15) rotate(4deg);
+      transform: scale(1.15);
     }
     .marker-pin.risk-high {
-      width: 30px; height: 30px;
+      width: 28px; height: 28px;
       background: var(--color-marker-red);
-      font-size: 16px;
+      font-size: 15px;
       animation: markerPulse 2s infinite;
     }
     .marker-pin.risk-medium {
-      width: 28px; height: 28px;
+      width: 26px; height: 26px;
       background: var(--color-caution-orange);
-      font-size: 15px;
+      font-size: 14px;
     }
     .marker-pin.haven {
-      width: 32px; height: 32px;
+      width: 30px; height: 30px;
       background: var(--color-safe-green);
-      font-size: 16px;
+      font-size: 15px;
     }
     .marker-pin.sister {
-      width: 24px; height: 24px;
+      width: 22px; height: 22px;
       background: var(--color-sister-pink);
-      font-size: 12px;
+      font-size: 11px;
     }
     .marker-pin.traveler {
-      width: 36px; height: 36px;
+      width: 34px; height: 34px;
       background: var(--color-pen-blue);
-      border: 2.5px solid var(--color-lead);
-      box-shadow: 3px 3px 0px var(--color-lead);
-      font-size: 13px;
+      border: 2px solid var(--color-lead);
+      box-shadow: 2.5px 2.5px 0px var(--color-lead);
+      font-size: 12px;
     }
     @keyframes markerPulse {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.12); }
     }
 
-    /* ── Walk Progress (Sketched bar) ── */
+    /* ── Walk Progress ── */
     .progress-bar-track {
-      height: 8px;
+      height: 7px;
       background: var(--color-erased);
       border: 1.5px solid var(--color-lead);
       border-radius: var(--wobbly-oval);
@@ -812,12 +867,12 @@
       width: 0;
     }
 
-    /* ── Modals (Clipboard / Paper Sheet Style) ── */
+    /* ── Modals ── */
     .modal-overlay {
       position: fixed;
       inset: 0;
       z-index: 50;
-      background: rgba(45, 45, 45, 0.55);
+      background: rgba(45, 45, 45, 0.6);
       display: flex;
       align-items: flex-end;
       justify-content: center;
@@ -838,11 +893,11 @@
       background: var(--bg-paper);
       background-image: radial-gradient(var(--color-erased) 1.5px, transparent 1.5px);
       background-size: 20px 20px;
-      border: 3px solid var(--color-lead);
+      border: 2.5px solid var(--color-lead);
       border-radius: 20px 20px 0 0;
       width: 100%;
       max-width: 520px;
-      max-height: 90vh;
+      max-height: 88vh;
       overflow-y: auto;
       box-shadow: var(--shadow-sketch-modal);
       position: relative;
@@ -859,22 +914,22 @@
       to { transform: translateY(0); }
     }
     .modal-grabber {
-      width: 44px;
-      height: 6px;
+      width: 40px;
+      height: 5px;
       border-radius: var(--wobbly-oval);
       background: var(--color-lead);
-      margin: 10px auto 6px;
+      margin: 8px auto 4px;
       opacity: 0.3;
     }
     .modal-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 20px 10px;
+      padding: 10px 16px 8px;
       border-bottom: 2px solid var(--color-lead);
     }
     .modal-body {
-      padding: 16px 20px;
+      padding: 14px 16px;
     }
     .modal-fullscreen {
       position: fixed;
@@ -890,32 +945,32 @@
     /* ── Toast Sticky Note ── */
     .toast-banner {
       position: fixed;
-      top: calc(env(safe-area-inset-top, 12px) + 8px);
+      top: calc(env(safe-area-inset-top, 10px) + 6px);
       left: 50%;
       transform: translateX(-50%);
       z-index: 45;
       background: var(--color-postit);
-      border: 2.5px solid var(--color-lead);
+      border: 2px solid var(--color-lead);
       border-radius: var(--wobbly-sm);
-      padding: 10px 16px;
+      padding: 8px 14px;
       box-shadow: var(--shadow-sketch);
       display: flex;
       align-items: center;
-      gap: 12px;
-      max-width: 400px;
-      width: calc(100% - 32px);
+      gap: 10px;
+      max-width: 380px;
+      width: calc(100% - 24px);
       animation: toastIn 0.3s ease-out;
     }
     @keyframes toastIn {
       from { opacity: 0; transform: translateX(-50%) translateY(-20px); }
       to { opacity: 1; transform: translateX(-50%) translateY(0); }
     }
-    .toast-icon { font-size: 24px; flex-shrink: 0; }
+    .toast-icon { font-size: 22px; flex-shrink: 0; }
     .toast-content { flex: 1; }
-    .toast-title { font-family: var(--font-heading); font-size: 16px; font-weight: 700; color: var(--color-lead); }
-    .toast-message { font-size: 15px; color: var(--color-lead-soft); margin-top: 1px; }
+    .toast-title { font-family: var(--font-heading); font-size: 15px; font-weight: 700; color: var(--color-lead); }
+    .toast-message { font-size: 14px; color: var(--color-lead-soft); margin-top: 1px; }
 
-    /* ── Bottom Mobile Tab Bar (Paper strip) ── */
+    /* ── Mobile Tab Bar (5-tab App Nav) ── */
     .tab-bar {
       display: none;
       position: fixed;
@@ -923,14 +978,15 @@
       z-index: 40;
       background: var(--bg-paper);
       border-top: 2.5px solid var(--color-lead);
-      box-shadow: 0 -4px 0px rgba(45,45,45,0.06);
-      padding: 6px 0 env(safe-area-inset-bottom, 8px) 0;
+      box-shadow: 0 -3px 0px rgba(45,45,45,0.06);
+      padding: 3px 0 env(safe-area-inset-bottom, 8px) 0;
     }
     .tab-bar-inner {
       display: flex;
-      max-width: 600px;
+      max-width: 520px;
       margin: 0 auto;
       padding: 0 4px;
+      width: 100%;
     }
     .mobile-nav-btn {
       flex: 1;
@@ -939,10 +995,10 @@
       align-items: center;
       justify-content: center;
       gap: 2px;
-      padding: 4px 2px;
-      min-height: 48px;
+      padding: 4px 1px;
+      min-height: 50px;
       font-family: var(--font-heading);
-      font-size: 13px;
+      font-size: 11px;
       font-weight: 700;
       color: var(--color-lead-soft);
       background: none;
@@ -950,32 +1006,26 @@
       cursor: pointer;
       transition: all 0.15s ease;
       -webkit-tap-highlight-color: transparent;
+      position: relative;
     }
-    .mobile-nav-btn .nav-icon { font-size: 20px; line-height: 1; }
+    .mobile-nav-btn .nav-icon { font-size: 21px; line-height: 1; }
     .mobile-nav-btn.active {
       color: var(--color-marker-red);
-      transform: translateY(-2px);
+      transform: translateY(-1px);
     }
-    .mobile-nav-btn.sos-nav {
-      color: #fff;
-      background: var(--color-marker-red);
-      border: 2px solid var(--color-lead);
-      box-shadow: 2px 2px 0px var(--color-lead);
-      border-radius: var(--wobbly-sm);
-      margin: 2px 4px;
-      min-height: 42px;
-      font-weight: 700;
+    .mobile-nav-btn.active span:last-child {
+      border-bottom: 2px solid var(--color-marker-red);
     }
     @media (max-width: 1023px) {
       .tab-bar { display: block; }
-      body { padding-bottom: 84px; }
+      body { padding-bottom: calc(72px + env(safe-area-inset-bottom, 8px)) !important; }
       .desktop-only { display: none !important; }
     }
     @media (min-width: 1024px) {
       .mobile-only { display: none !important; }
     }
 
-    /* ── Stealth Decoy Notebook Page ── */
+    /* ── Stealth Decoy ── */
     .stealth-overlay {
       background: #fffdf5;
       background-image: repeating-linear-gradient(#fffdf5, #fffdf5 31px, #d1d5db 32px);
@@ -986,8 +1036,8 @@
     .bottom-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 16px;
-      padding: 0 16px 24px;
+      gap: 14px;
+      padding: 0 12px 20px;
     }
     @media (min-width: 768px) {
       .bottom-grid {
@@ -1000,19 +1050,17 @@
     .flex-col { flex-direction: column; }
     .items-center { align-items: center; }
     .justify-between { justify-content: space-between; }
-    .gap-4 { gap: 4px; } .gap-6 { gap: 6px; } .gap-8 { gap: 8px; } .gap-12 { gap: 12px; } .gap-16 { gap: 16px; }
+    .gap-4 { gap: 4px; } .gap-6 { gap: 6px; } .gap-8 { gap: 8px; } .gap-12 { gap: 12px; }
     .flex-1 { flex: 1; }
     .shrink-0 { flex-shrink: 0; }
     .truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .text-center { text-align: center; }
-    .mt-4 { margin-top: 4px; } .mt-8 { margin-top: 8px; } .mt-12 { margin-top: 12px; } .mt-16 { margin-top: 16px; }
+    .mt-4 { margin-top: 4px; } .mt-8 { margin-top: 8px; } .mt-12 { margin-top: 12px; }
     .mb-8 { margin-bottom: 8px; } .mb-12 { margin-bottom: 12px; }
-    .p-12 { padding: 12px; } .p-16 { padding: 16px; }
-    .px-16 { padding-left: 16px; padding-right: 16px; }
     .w-full { width: 100%; }
 
     /* Custom Sketch Scrollbars */
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
     ::-webkit-scrollbar-track { background: var(--color-erased); }
     ::-webkit-scrollbar-thumb { background: var(--color-lead); border-radius: 4px; }
 
@@ -1029,7 +1077,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: env(safe-area-inset-top, 40px) 24px env(safe-area-inset-bottom, 36px);
+      padding: env(safe-area-inset-top, 36px) 20px env(safe-area-inset-bottom, 32px);
       box-sizing: border-box;
       -webkit-font-smoothing: antialiased;
       user-select: none;
@@ -1037,7 +1085,7 @@
     
     .native-call-top {
       text-align: center;
-      margin-top: 24px;
+      margin-top: 20px;
     }
     .native-caller-tag {
       font-size: 13px;
@@ -1048,7 +1096,7 @@
       margin-bottom: 6px;
     }
     .native-caller-name {
-      font-size: 34px;
+      font-size: 32px;
       font-weight: 600;
       letter-spacing: -0.02em;
       color: #ffffff;
@@ -1056,16 +1104,16 @@
       line-height: 1.2;
     }
     .native-caller-sub {
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 400;
       color: rgba(255, 255, 255, 0.7);
       margin-top: 4px;
     }
     .native-call-status {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 500;
       color: rgba(255, 255, 255, 0.9);
-      margin-top: 10px;
+      margin-top: 8px;
     }
     .native-call-status.connected {
       color: #34c759;
@@ -1077,7 +1125,7 @@
       display: flex;
       justify-content: center;
       gap: 8px;
-      margin: 16px auto 0;
+      margin: 14px auto 0;
       max-width: 320px;
     }
     .native-preset-btn {
@@ -1097,12 +1145,12 @@
       font-weight: 600;
     }
 
-    /* In-Call Keypad / Controls Grid (Realistic 6-button matrix) */
+    /* In-Call Keypad / Controls Grid */
     .native-incall-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px 16px;
-      max-width: 330px;
+      gap: 16px 12px;
+      max-width: 320px;
       margin: 0 auto;
       width: 100%;
     }
@@ -1110,7 +1158,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       background: none;
       border: none;
       color: #ffffff;
@@ -1118,15 +1166,15 @@
       -webkit-tap-highlight-color: transparent;
     }
     .native-circle-btn {
-      width: 72px;
-      height: 72px;
+      width: 66px;
+      height: 66px;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.15);
       backdrop-filter: blur(20px);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 26px;
+      font-size: 24px;
       color: #ffffff;
       transition: background 0.15s, transform 0.1s;
     }
@@ -1139,29 +1187,29 @@
       color: #000000;
     }
     .native-control-label {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 400;
       color: rgba(255, 255, 255, 0.85);
     }
 
-    /* Bottom Action Area (Accept / Decline / End Call) */
+    /* Bottom Action Area */
     .native-call-actions {
       display: flex;
       align-items: center;
       justify-content: space-around;
-      max-width: 320px;
-      margin: 0 auto 16px;
+      max-width: 300px;
+      margin: 0 auto 12px;
       width: 100%;
     }
     .native-call-action-btn {
-      width: 76px;
-      height: 76px;
+      width: 72px;
+      height: 72px;
       border-radius: 50%;
       border: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 32px;
+      font-size: 30px;
       color: #ffffff;
       cursor: pointer;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
@@ -1190,42 +1238,42 @@
       text-align: center;
     }
 
-    /* In-Call Audio Dialogue Prompter (Helps woman speak naturally) */
+    /* Dialogue Prompter */
     .native-voice-card {
       background: rgba(255, 255, 255, 0.12);
       backdrop-filter: blur(25px);
-      border-radius: 16px;
-      padding: 14px 18px;
-      max-width: 340px;
+      border-radius: 14px;
+      padding: 12px 16px;
+      max-width: 320px;
       margin: 12px auto 0;
       text-align: left;
       border: 0.5px solid rgba(255, 255, 255, 0.2);
     }
     .native-voice-title {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
       color: #34c759;
       letter-spacing: 0.02em;
       text-transform: uppercase;
     }
     .native-voice-text {
-      font-size: 15px;
+      font-size: 14px;
       color: #ffffff;
       line-height: 1.45;
-      margin-top: 6px;
+      margin-top: 5px;
       font-style: italic;
     }
     .native-voice-hint {
       font-size: 12px;
       color: rgba(255, 255, 255, 0.55);
-      margin-top: 6px;
+      margin-top: 5px;
     }
   </style>
 </head>
 <body>
 <div class="app-shell">
 
-<!-- ========== CITY PICKER MODAL (Notebook Index) ========== -->
+<!-- ========== CITY PICKER MODAL ========== -->
 <div id="cityPickerModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-label="Choose your region">
   <div class="modal-sheet">
     <div class="tape-strip"></div>
@@ -1237,12 +1285,12 @@
       </div>
       <button id="closeCityPickerBtn" class="btn btn-ghost btn-sm" aria-label="Close">Done ✕</button>
     </div>
-    <div class="modal-body" style="padding-top: 12px;">
-      <div style="position:relative; margin-bottom: 12px;">
+    <div class="modal-body" style="padding-top: 10px;">
+      <div style="position:relative; margin-bottom: 10px;">
         <input id="citySearchInput" type="text" placeholder="Search city, area, or country…" class="ios-input" style="padding-right: 65px;" />
-        <button id="citySearchBtn" class="btn btn-primary btn-sm" style="position:absolute; right:4px; top:4px; min-height:36px;">Go</button>
+        <button id="citySearchBtn" class="btn btn-primary btn-sm" style="position:absolute; right:4px; top:4px; min-height:34px;">Go</button>
       </div>
-      <div class="flex gap-6 mb-8">
+      <div class="flex gap-4 mb-8">
         <button id="filterAllCitiesBtn" class="chip chip-active">All</button>
         <button id="filterIndiaCitiesBtn" class="chip">🇮🇳 India</button>
         <button id="filterWorldCitiesBtn" class="chip">🌐 Global</button>
@@ -1250,7 +1298,7 @@
       <div class="card" style="border-radius: var(--wobbly-sm); overflow:hidden;">
         <div id="cityOptionsList" style="max-height: 250px; overflow-y: auto;"></div>
       </div>
-      <div class="flex gap-8 mt-12">
+      <div class="flex gap-6 mt-12">
         <button id="retryGeoBtn" class="btn btn-primary flex-1">📍 Auto-Detect GPS</button>
         <button id="closeCityPickerAltBtn" class="btn btn-secondary">Dismiss</button>
       </div>
@@ -1258,50 +1306,47 @@
   </div>
 </div>
 
-<!-- ========== STEALTH DECOY (Authentic Grocery & Recipe Notes) ========== -->
+<!-- ========== STEALTH DECOY ========== -->
 <div id="stealthDecoyModal" class="hidden modal-fullscreen stealth-overlay" role="dialog" aria-modal="true">
-  <div style="padding: 24px 20px; max-width: 620px; width: 100%; flex: 1; display: flex; flex-direction: column;">
-    <div class="card" style="background:#fff9c4; padding: 14px 18px; margin-bottom: 20px; display:flex; align-items:center; justify-content:space-between; transform:rotate(-0.8deg);">
-      <div class="flex items-center gap-8">
-        <span style="font-size:24px">📒</span>
+  <div style="padding: 20px 16px; max-width: 600px; width: 100%; flex: 1; display: flex; flex-direction: column;">
+    <div class="card" style="background:#fff9c4; padding: 12px 16px; margin-bottom: 16px; display:flex; align-items:center; justify-content:space-between;">
+      <div class="flex items-center gap-6">
+        <span style="font-size:22px">📒</span>
         <div>
-          <span style="font-family:var(--font-heading);font-weight:700;font-size:17px;color:#78350f">Kitchen & Grocery Notes</span>
-          <div style="font-size:13px;color:#92400e">Auto-saved to cloud notepad</div>
+          <span style="font-family:var(--font-heading);font-weight:700;font-size:16px;color:#78350f">Kitchen & Grocery Notes</span>
+          <div style="font-size:12px;color:#92400e">Auto-saved to cloud notepad</div>
         </div>
       </div>
-      <button id="exitStealthBtn" class="btn btn-sm" style="background:#d97706;color:#fff;min-height:32px;">Unlock AURA 🔓</button>
+      <button id="exitStealthBtn" class="btn btn-sm" style="background:#d97706;color:#fff;min-height:30px;">Unlock AURA 🔓</button>
     </div>
     
-    <div class="card" style="background:var(--color-safe-wash); border:2px dashed var(--color-safe-green); padding:12px 16px; margin-bottom:16px; display:flex; align-items:center; justify-content:space-between; gap:8px;">
-      <span style="font-size:15px;color:#065f46;">🔒 <strong>Silent Escort Active:</strong> GPS beacon running in background.</span>
-      <button id="stealthSilentSOSBtn" class="btn btn-sm btn-green" style="min-height:34px;">Silent SOS</button>
+    <div class="card" style="background:var(--color-safe-wash); border:2px dashed var(--color-safe-green); padding:10px 14px; margin-bottom:14px; display:flex; align-items:center; justify-content:space-between; gap:6px;">
+      <span style="font-size:14px;color:#065f46;">🔒 <strong>Silent Escort Active:</strong> GPS beacon running in background.</span>
+      <button id="stealthSilentSOSBtn" class="btn btn-sm btn-green" style="min-height:32px;">Silent SOS</button>
     </div>
     
-    <h2 style="font-size:24px;font-weight:700;color:var(--color-lead);margin-bottom:12px;">Paneer Butter Masala & Dal Tadka</h2>
-    <ul style="padding-left:24px;font-size:19px;color:var(--color-lead);line-height:2.1;">
+    <h2 style="font-size:22px;font-weight:700;color:var(--color-lead);margin-bottom:10px;">Paneer Butter Masala & Dal Tadka</h2>
+    <ul style="padding-left:20px;font-size:18px;color:var(--color-lead);line-height:2;">
       <li>☐ 400g fresh malai paneer (cubed, soaked in warm salted water)</li>
       <li>☐ 5 ripe Roma tomatoes + 2 Kashmiri dry chilies + 12 soaked cashews</li>
       <li>☐ 1 tbsp ginger-garlic paste, 1 tsp kasuri methi (crushed)</li>
       <li>☐ Collect laundry from 12th Main dry cleaners before 7:30 PM</li>
     </ul>
     
-    <textarea class="ios-textarea" style="margin-top:20px;flex:1;min-height:120px;background:#ffffff;font-size:19px;border:2.5px solid var(--color-lead);" placeholder="Write notes or grocery list here…">Remember to pick up filter coffee powder, roasted almonds, and oat milk from Nilgiris supermarket.</textarea>
+    <textarea class="ios-textarea" style="margin-top:16px;flex:1;min-height:100px;background:#ffffff;font-size:18px;" placeholder="Write notes or grocery list here…">Remember to pick up filter coffee powder, roasted almonds, and oat milk.</textarea>
   </div>
 </div>
 
-<!-- ================================================================
-     REALISTIC SMARTPHONE PHONE CALL UI (Normal Phone App Interface)
-     ================================================================ -->
+<!-- ========== REALISTIC NATIVE SMARTPHONE CALL UI ========== -->
 <div id="fakeCallModal" class="hidden native-phone-wrapper" role="dialog" aria-modal="true" aria-label="Incoming Phone Call">
-  
-  <!-- Top: Caller Identity & State -->
+  <!-- Top: Caller Info -->
   <div class="native-call-top">
     <div class="native-caller-tag">AURA Secure Escort Call</div>
     <h2 id="fakeCallerTitle" class="native-caller-name">Dad (Waiting at Gate)</h2>
     <p id="fakeCallerSubtitle" class="native-caller-sub">+91 98450 ••••21</p>
     <div id="fakeCallTimerText" class="native-call-status">Ringing…</div>
 
-    <!-- Caller Preset Switcher (allows choosing Dad / Priya / Police) -->
+    <!-- Caller Presets -->
     <div class="native-preset-bar">
       <button data-caller="Dad (Waiting at Gate)" class="caller-preset-btn native-preset-btn active">Dad</button>
       <button data-caller="Priya (Roommate)" class="caller-preset-btn native-preset-btn">Priya</button>
@@ -1309,8 +1354,8 @@
     </div>
   </div>
 
-  <!-- Middle: In-Call Matrix (Shown when call is active/answered) -->
-  <div id="nativeInCallControls" class="hidden" style="margin: 20px 0;">
+  <!-- Middle: In-Call Controls Grid -->
+  <div id="nativeInCallControls" class="hidden" style="margin: 16px 0;">
     <div class="native-incall-grid">
       <div class="native-control-item">
         <div class="native-circle-btn">🎤</div>
@@ -1338,7 +1383,7 @@
       </div>
     </div>
 
-    <!-- Discreet spoken script for the woman to read out loud -->
+    <!-- Live Audio Prompter -->
     <div class="native-voice-card">
       <div class="native-voice-title">● LIVE AUDIO PROMPT (ON SPEAKER)</div>
       <p id="fakeCallVoicePrompt" class="native-voice-text">"Hey beta, I can see your live GPS dot right now on AURA. I'm standing outside the main gate with security. Just stay on the phone."</p>
@@ -1346,16 +1391,16 @@
     </div>
   </div>
 
-  <!-- Ringing Avatar / Icon (shown while ringing) -->
+  <!-- Ringing Avatar -->
   <div id="nativeRingingAvatar" style="text-align: center; margin: 20px 0;">
-    <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #1c1c1e, #2c2c2e); border: 2px solid rgba(255,255,255,0.2); display: inline-flex; align-items: center; justify-content: center; font-size: 44px; box-shadow: 0 12px 30px rgba(0,0,0,0.6);">
+    <div style="width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, #1c1c1e, #2c2c2e); border: 2px solid rgba(255,255,255,0.2); display: inline-flex; align-items: center; justify-content: center; font-size: 40px; box-shadow: 0 10px 24px rgba(0,0,0,0.6);">
       👤
     </div>
   </div>
 
-  <!-- Bottom: Call Buttons -->
+  <!-- Bottom: Call Actions -->
   <div>
-    <!-- State 1: Ringing Actions (Decline & Accept) -->
+    <!-- Ringing Actions -->
     <div id="nativeRingingActions" class="native-call-actions">
       <div style="display:flex; flex-direction:column; align-items:center;">
         <button id="endFakeCallBtn" class="native-call-action-btn native-btn-decline" aria-label="Decline call">✕</button>
@@ -1367,70 +1412,68 @@
       </div>
     </div>
 
-    <!-- State 2: In-Call Actions (Single large End Call button) -->
+    <!-- In-Call Actions -->
     <div id="nativeConnectedActions" class="hidden" style="text-align: center;">
       <button id="hangupInCallBtn" class="native-call-action-btn native-btn-decline" style="margin: 0 auto;" aria-label="End Call">✕</button>
-      <div class="native-btn-label" style="margin-top: 8px;">End Call</div>
+      <div class="native-btn-label" style="margin-top: 6px;">End Call</div>
     </div>
   </div>
-
 </div>
 
-<!-- ========== SOS SAFETY SHIELD MODAL (Hand-Drawn Bulletin) ========== -->
+<!-- ========== SOS SAFETY SHIELD MODAL ========== -->
 <div id="sosModal" class="hidden modal-overlay" role="dialog" aria-modal="true">
-  <div class="modal-sheet" style="max-width:500px;">
+  <div class="modal-sheet" style="max-width:480px;">
     <div class="thumbtack"></div>
-    <div style="padding:22px 20px;">
+    <div style="padding:18px 16px;">
       <div class="flex items-center justify-between mb-12">
-        <div class="flex items-center gap-12">
-          <div style="width:48px;height:48px;border-radius:var(--wobbly-circle);background:var(--color-marker-red);border:2.5px solid var(--color-lead);box-shadow:3px 3px 0px var(--color-lead);display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff;">🚨</div>
+        <div class="flex items-center gap-8">
+          <div style="width:42px;height:42px;border-radius:var(--wobbly-circle);background:var(--color-marker-red);border:2px solid var(--color-lead);box-shadow:2px 2px 0px var(--color-lead);display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;">🚨</div>
           <div>
             <div class="caption-1" style="color:var(--color-marker-red);font-weight:700;text-transform:uppercase;letter-spacing:0.04em;">EMERGENCY SHIELD</div>
-            <div class="headline">Safety Shield Dispatch</div>
+            <div class="headline" style="font-size:17px;">Safety Shield Dispatch</div>
           </div>
         </div>
         <button id="closeSosModalBtn" class="btn btn-secondary btn-sm">I'm Safe ✓</button>
       </div>
       
-      <div id="sosCountdownBox" class="hidden card" style="background:#fee2e2;border:2.5px solid var(--color-marker-red);padding:14px;text-align:center;margin-bottom:16px;">
-        <p style="font-family:var(--font-heading);font-size:15px;font-weight:700;color:var(--color-marker-red);text-transform:uppercase;">🚨 Auto-Dispatching In</p>
-        <p id="sosCountdownNumber" style="font-family:var(--font-heading);font-size:52px;font-weight:700;color:var(--color-lead);line-height:1;">3</p>
+      <div id="sosCountdownBox" class="hidden card" style="background:#fee2e2;border:2px solid var(--color-marker-red);padding:12px;text-align:center;margin-bottom:12px;">
+        <p style="font-family:var(--font-heading);font-size:14px;font-weight:700;color:var(--color-marker-red);text-transform:uppercase;">🚨 Auto-Dispatching In</p>
+        <p id="sosCountdownNumber" style="font-family:var(--font-heading);font-size:46px;font-weight:700;color:var(--color-lead);line-height:1;">3</p>
         <button id="cancelSosDispatchBtn" class="btn btn-secondary btn-sm mt-8">Cancel — False Alarm</button>
       </div>
       
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
-        <div class="card" style="padding:12px;background:#ffffff;border-radius:var(--wobbly-sm);">
-          <div class="flex items-center justify-between" style="font-size:14px;font-weight:700;color:var(--color-marker-red);font-family:var(--font-heading);">
-            <span>📡 Live GPS</span><span id="sosCoordDisplay" class="mono" style="font-size:12px;">12.9716° N</span>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
+        <div class="card" style="padding:10px;background:#ffffff;border-radius:var(--wobbly-sm);">
+          <div class="flex items-center justify-between" style="font-size:13px;font-weight:700;color:var(--color-marker-red);font-family:var(--font-heading);">
+            <span>📡 Live GPS</span><span id="sosCoordDisplay" class="mono" style="font-size:11px;">12.9716° N</span>
           </div>
-          <p style="font-size:14px;color:var(--color-lead-soft);margin-top:4px;">Broadcasting to 3 emergency contacts + 4 nearby sisters.</p>
+          <p style="font-size:13px;color:var(--color-lead-soft);margin-top:3px;">Broadcasting to 3 contacts + nearby sisters.</p>
         </div>
-        <div class="card" style="padding:12px;background:var(--color-safe-wash);border-radius:var(--wobbly-sm);">
-          <div class="flex items-center justify-between" style="font-size:14px;font-weight:700;color:var(--color-safe-green);font-family:var(--font-heading);">
-            <span>🛡️ Safe Haven</span><span id="sosNearestHavenDist" class="mono" style="font-size:12px;">140m</span>
+        <div class="card" style="padding:10px;background:var(--color-safe-wash);border-radius:var(--wobbly-sm);">
+          <div class="flex items-center justify-between" style="font-size:13px;font-weight:700;color:var(--color-safe-green);font-family:var(--font-heading);">
+            <span>🛡️ Safe Haven</span><span id="sosNearestHavenDist" class="mono" style="font-size:11px;">140m</span>
           </div>
-          <p id="sosNearestHavenName" style="font-size:14px;color:var(--color-lead-soft);margin-top:4px;">Sisterhood 24/7 Café</p>
+          <p id="sosNearestHavenName" style="font-size:13px;color:var(--color-lead-soft);margin-top:3px;">Sisterhood 24/7 Café</p>
         </div>
       </div>
       
-      <div class="card mb-12" style="padding:12px 16px;display:flex;align-items:center;justify-content:space-between;border-radius:var(--wobbly-sm);">
+      <div class="card mb-12" style="padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-radius:var(--wobbly-sm);">
         <div>
-          <div class="subhead">🔊 Acoustic Distress Siren</div>
-          <div class="caption-1">Piercing synthesized alarm to attract crowd attention</div>
+          <div class="subhead" style="font-size:16px;">🔊 Acoustic Distress Siren</div>
+          <div class="caption-1" style="font-size:13px;">Piercing synthesized alarm to attract help</div>
         </div>
         <button id="toggleSirenBtn" class="btn btn-danger btn-sm">🔊 Siren</button>
       </div>
       
-      <!-- Perforated Voucher Ticket -->
-      <div class="card card-postit" style="padding:14px 16px;border:2.5px dashed var(--color-lead);transform:rotate(-0.5deg);">
+      <div class="card card-postit" style="padding:12px 14px;border:2px dashed var(--color-lead);">
         <div class="flex items-center justify-between">
           <div>
-            <div class="caption-1" style="font-family:var(--font-heading);font-weight:700;text-transform:uppercase;color:var(--color-sister-pink);">Emergency Safe Ride Voucher</div>
-            <div style="font-size:18px;font-weight:700;margin-top:4px;">Code: <span class="mono" style="color:var(--color-sister-pink);background:#fff;padding:2px 8px;border:1.5px solid var(--color-lead);border-radius:4px;">SISTER-SAFE-100</span></div>
+            <div class="caption-1" style="font-family:var(--font-heading);font-weight:700;text-transform:uppercase;color:var(--color-sister-pink);font-size:13px;">Emergency Safe Ride Voucher</div>
+            <div style="font-size:16px;font-weight:700;margin-top:3px;">Code: <span class="mono" style="color:var(--color-sister-pink);background:#fff;padding:2px 6px;border:1.5px solid var(--color-lead);border-radius:4px;">SISTER-SAFE-100</span></div>
           </div>
           <button id="copyVoucherBtn" class="btn btn-primary btn-sm">Copy ✂️</button>
         </div>
-        <div style="font-size:13px;color:var(--color-lead-soft);margin-top:6px;">100% sponsored by Bangalore Mahila Guild for emergency cab pickup.</div>
+        <div style="font-size:12px;color:var(--color-lead-soft);margin-top:5px;">100% sponsored by Bangalore Mahila Guild for emergency cab pickup.</div>
       </div>
     </div>
   </div>
@@ -1443,31 +1486,32 @@
     <div id="toastTitle" class="toast-title">Updated</div>
     <div id="toastMessage" class="toast-message">R-Algorithm recalculated.</div>
   </div>
-  <button id="toastCloseBtn" style="background:none;border:none;font-family:var(--font-heading);font-size:20px;font-weight:700;cursor:pointer;padding:4px;color:var(--color-lead);">✕</button>
+  <button id="toastCloseBtn" style="background:none;border:none;font-family:var(--font-heading);font-size:18px;font-weight:700;cursor:pointer;padding:2px 6px;color:var(--color-lead);">✕</button>
 </div>
 
-<!-- ========== HEADER (Sketched Banner) ========== -->
+<!-- ========== HEADER (Mobile & Desktop Responsive) ========== -->
 <header class="app-header">
   <div class="header-inner">
     <div class="brand">
       <div class="brand-icon">A</div>
       <div class="brand-text">
-        <h1>AURA SafeRoute ✏️</h1>
-        <p class="desktop-only">Crowd-Verified Women's Safety • R-Algorithm Safe Corridors</p>
+        <h1>AURA ✏️</h1>
+        <p class="desktop-only">Crowd-Verified Women's Safety • R-Algorithm</p>
       </div>
     </div>
     
-    <!-- Time Segmented Control (desktop) -->
-    <div class="segmented-control desktop-only" style="min-width: 200px;">
+    <!-- Time Segmented Control (desktop only) -->
+    <div class="segmented-control desktop-only" style="min-width: 190px;">
       <button data-time="day" class="time-filter-btn left-tab-btn">☀️ Day</button>
       <button data-time="evening" class="time-filter-btn left-tab-btn">🌆 Eve</button>
       <button data-time="night" class="time-filter-btn left-tab-btn seg-active">🌙 Night</button>
     </div>
     
+    <!-- Actions (Available on both Mobile & Desktop) -->
     <div class="header-actions">
       <button id="findNearestHavenBtn" class="btn btn-green-tint btn-sm desktop-only">🛡️ Safe Spot</button>
-      <button id="openFakeCallBtn" class="btn btn-secondary btn-sm desktop-only">📞 Fake Call</button>
-      <button id="openStealthBtn" class="btn btn-secondary btn-sm desktop-only" title="Stealth Decoy Notepad">🕶️ Decoy</button>
+      <button id="openFakeCallBtn" class="btn btn-secondary btn-sm" title="Realistic Fake Call">📞 <span>Call</span></button>
+      <button id="openStealthBtn" class="btn btn-secondary btn-sm" title="Stealth Decoy Notepad">🕶️ <span>Decoy</span></button>
       <button id="openSosBtn" class="btn btn-sos btn-sm">🚨 SOS</button>
     </div>
   </div>
@@ -1477,20 +1521,113 @@
 <main style="flex:1;">
   <div class="content-grid">
 
-    <!-- ═══ SIDEBAR (Left Panel on Desktop, Below Map on Mobile) ═══ -->
-    <div class="sidebar" id="leftPanelSection" style="order: 2;">
+    <!-- ═══ MAP COLUMN (At top on Mobile, Right side on Desktop) ═══ -->
+    <div class="main-col">
+      <div class="map-section">
+        <div class="map-card">
+          <div class="tape-strip-corner"></div>
+          <!-- Map Top Bar -->
+          <div class="map-top-bar">
+            <button id="openChangeRegionBtn" class="btn btn-ghost btn-sm" style="gap:4px;min-height:30px;font-size:13px;padding:3px 8px;max-width:160px;">
+              🌍 <span id="currentRegionLabel" class="truncate">Bengaluru (Zoomed)</span> ▾
+            </button>
+            <div class="flex gap-4">
+              <button id="toggleMapSizeBtn" class="btn btn-ghost btn-sm mobile-only" style="min-height:30px;padding:3px 8px;font-size:12px;">⤢ Map</button>
+              <button id="locateMeBtn" class="btn btn-secondary btn-sm" style="min-height:30px;padding:3px 8px;font-size:12px;">📍 Locate</button>
+              <button id="mapClickModeBtn" class="btn btn-tinted btn-sm" style="min-height:30px;padding:3px 8px;font-size:12px;">📌 Pin</button>
+            </div>
+          </div>
+          
+          <!-- Map Toolbar / Layers -->
+          <div class="map-toolbar">
+            <div class="map-toolbar-group">
+              <button id="toggleHeatmapLayerBtn" class="chip chip-danger" style="font-size:11px;padding:3px 8px;"><span>🔥</span><span>Heatmap: ON</span></button>
+              <button id="toggleHavensLayerBtn" class="chip chip-safe" style="font-size:11px;padding:3px 8px;"><span>🛡️</span><span>Havens: ON</span></button>
+              <button id="toggleSistersLayerBtn" class="chip" style="font-size:11px;padding:3px 8px;background:var(--color-sister-wash);color:var(--color-sister-pink);"><span>👩</span><span>Sisters: ON</span></button>
+            </div>
+            <!-- Mobile Lighting Switch in Toolbar -->
+            <div class="map-toolbar-group mobile-only" style="margin-left:auto;border-left:1.5px dashed var(--color-lead);padding-left:6px;gap:4px;">
+              <button data-time="night" class="chip chip-active time-filter-btn" style="font-size:11px;padding:3px 7px;">🌙 Night</button>
+              <button data-time="evening" class="chip time-filter-btn" style="font-size:11px;padding:3px 7px;">🌆 Eve</button>
+              <button data-time="day" class="chip time-filter-btn" style="font-size:11px;padding:3px 7px;">☀️ Day</button>
+            </div>
+          </div>
 
-      <!-- Mobile Time Selector -->
-      <div class="mobile-only" style="padding: 8px 16px;">
-        <div class="segmented-control">
-          <button data-time="day" class="time-filter-btn left-tab-btn">☀️ Day</button>
-          <button data-time="evening" class="time-filter-btn left-tab-btn">🌆 Eve</button>
-          <button data-time="night" class="time-filter-btn left-tab-btn seg-active">🌙 Night</button>
+          <!-- Leaflet Canvas -->
+          <div id="leafletMap"></div>
+
+          <!-- Sketched Map Legend -->
+          <div style="padding:6px 10px;border-top:2px solid var(--color-lead);display:flex;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--color-lead);background:var(--bg-paper);">
+            <span class="flex items-center gap-4"><span style="width:9px;height:9px;border-radius:50%;background:var(--color-safe-green);border:1px solid #2d2d2d;"></span> Safe</span>
+            <span class="flex items-center gap-4"><span style="width:14px;height:3px;border-radius:2px;background:var(--color-safe-green);border:1px solid #2d2d2d;"></span> R-Safe</span>
+            <span class="flex items-center gap-4"><span style="width:14px;height:3px;border-radius:2px;background:var(--color-caution-orange);border:1px solid #2d2d2d;"></span> Balanced</span>
+            <span class="flex items-center gap-4"><span style="width:14px;height:2.5px;border-bottom:2px dashed var(--color-marker-red);"></span> Shortcut</span>
+            <span class="flex items-center gap-4"><span style="width:9px;height:9px;border-radius:50%;background:var(--color-marker-red);border:1px solid #2d2d2d;"></span> Risk</span>
+          </div>
         </div>
       </div>
 
-      <!-- Tab Segmented Control -->
-      <div style="padding: 4px 16px 12px;">
+      <!-- Desktop-Only Bottom Grid (On mobile, this is in the 💬 Community Tab) -->
+      <div class="bottom-grid desktop-bottom-grid" style="margin-top: 10px;">
+        <!-- Left: Live Warnings Feed -->
+        <div>
+          <div class="section-header" style="margin-top:0;">Live Women's Reports</div>
+          <div class="card" style="overflow:hidden;">
+            <div class="grouped-row" style="background:#fffdfa;">
+              <div class="headline" style="font-size:15px;">Verified Community Notes</div>
+              <select id="feedFilterSelectDesktop" class="ios-select" style="max-width:130px;min-height:32px;font-size:13px;padding:3px 24px 3px 6px;" aria-label="Filter">
+                <option value="all">All Spots</option>
+                <option value="high">🔴 High Risk</option>
+                <option value="safe">🟢 Safe Only</option>
+              </select>
+            </div>
+            <div id="communityFeedListDesktop" style="max-height:260px;overflow-y:auto;"></div>
+          </div>
+        </div>
+
+        <!-- Right: By Women, For Women Mission Note -->
+        <div>
+          <div class="section-header" style="margin-top:0;">♀ Sisterhood Fund</div>
+          <div class="card card-postit">
+            <div class="thumbtack"></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;text-align:center;padding:12px 10px;border-bottom:1.5px dashed var(--color-lead);">
+              <div>
+                <div style="font-family:var(--font-heading);font-size:24px;font-weight:700;color:var(--color-marker-red);" class="statTotalPins">1,428</div>
+                <div class="caption-1">Pins</div>
+              </div>
+              <div>
+                <div style="font-family:var(--font-heading);font-size:24px;font-weight:700;color:var(--color-safe-green);" class="statSafeHavens">64</div>
+                <div class="caption-1">Havens</div>
+              </div>
+              <div>
+                <div style="font-family:var(--font-heading);font-size:24px;font-weight:700;color:var(--color-caution-orange);">₹18.4L</div>
+                <div class="caption-1">Pool</div>
+              </div>
+            </div>
+            <div style="padding:10px 14px;border-bottom:1.5px dashed var(--color-lead);">
+              <div class="subhead" style="font-size:15px;">🏛️ Women Sponsors</div>
+              <p class="caption-1 mt-4">Namma Mahila Doctors Guild (24/7 clinic lounges), SheCodes BLR (night cab vouchers), Women's Café Network.</p>
+            </div>
+            <div class="flex items-center justify-between" style="padding:10px 14px;">
+              <span class="caption-1">Sponsor solar lights or cab vouchers?</span>
+              <button class="pledgeSponsorBtn btn btn-primary btn-sm btn-pill">♀ Pledge</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- main-col -->
+
+    <!-- ═══ SIDEBAR / TAB DRAWER (Under Map on Mobile, Left on Desktop) ═══ -->
+    <div class="sidebar" id="leftPanelSection">
+
+      <!-- Mobile Active Panel Header & Jump-to-Map -->
+      <div class="mobile-only flex items-center justify-between" style="padding: 6px 12px 6px;">
+        <span id="mobileActivePanelTitle" style="font-family:var(--font-heading);font-weight:700;font-size:13px;color:var(--color-marker-red);text-transform:uppercase;letter-spacing:0.04em;">🧭 Route Planner</span>
+        <button id="scrollToMapBtn" class="btn btn-ghost btn-sm" style="font-size:11px;min-height:26px;padding:2px 8px;">↑ Back to Map</button>
+      </div>
+
+      <!-- Desktop Tab Segmented Control -->
+      <div class="desktop-only" style="padding: 4px 16px 12px;">
         <div class="segmented-control" role="tablist">
           <button data-tab="router" class="left-tab-btn seg-active" role="tab" aria-selected="true">🧭 Route</button>
           <button data-tab="pin" class="left-tab-btn" role="tab" aria-selected="false">📍 Report</button>
@@ -1501,7 +1638,7 @@
 
       <div class="tab-content-area">
 
-        <!-- ══ TAB: ROUTE PLANNER ══ -->
+        <!-- ══ TAB 1: ROUTE PLANNER ══ -->
         <div id="tab-router" class="left-tab-panel" role="tabpanel">
           <div class="section-header" style="margin-top:0;">
             <span>R-Algorithm v3.4 · <strong id="activeTimeBadge" style="color:var(--color-marker-red)">Late Night</strong></span>
@@ -1509,24 +1646,24 @@
           
           <div class="card mb-12">
             <div class="tape-strip"></div>
-            <div class="grouped-row">
-              <div class="flex items-center gap-8">
-                <span style="width:12px;height:12px;border-radius:50%;background:var(--color-pen-blue);border:1.5px solid var(--color-lead);"></span>
+            <div class="grouped-row select-row">
+              <div class="flex items-center gap-6">
+                <span style="width:10px;height:10px;border-radius:50%;background:var(--color-pen-blue);border:1.5px solid var(--color-lead);"></span>
                 <label class="row-label" for="originSelect">From:</label>
               </div>
-              <select id="originSelect" class="ios-select" style="max-width:230px;" aria-label="Origin">
+              <select id="originSelect" class="ios-select" aria-label="Origin">
                 <option value="indiranagar" selected>Indiranagar Metro</option>
                 <option value="mgroad">MG Road / Church St</option>
                 <option value="koramangala">Koramangala 5th Block</option>
                 <option value="ulsoor">Ulsoor Lake</option>
               </select>
             </div>
-            <div class="grouped-row">
-              <div class="flex items-center gap-8">
-                <span style="width:12px;height:12px;border-radius:50%;background:var(--color-safe-green);border:1.5px solid var(--color-lead);"></span>
+            <div class="grouped-row select-row">
+              <div class="flex items-center gap-6">
+                <span style="width:10px;height:10px;border-radius:50%;background:var(--color-safe-green);border:1.5px solid var(--color-lead);"></span>
                 <label class="row-label" for="destSelect">To:</label>
               </div>
-              <select id="destSelect" class="ios-select" style="max-width:230px;" aria-label="Destination">
+              <select id="destSelect" class="ios-select" aria-label="Destination">
                 <option value="hsr" selected>HSR Layout Sector 2</option>
                 <option value="koramangala">Koramangala 5th Block</option>
                 <option value="domlur">Domlur Flyover</option>
@@ -1538,19 +1675,19 @@
           <div class="section-header">Safety Filters</div>
           <div class="card mb-12">
             <label class="grouped-row" style="cursor:pointer;">
-              <span class="row-label">💡 Avoid Unlit Alleys & Corners</span>
+              <span class="row-label">💡 Avoid Unlit Alleys</span>
               <input type="checkbox" id="prefAvoidUnlit" checked class="ios-checkbox" />
             </label>
             <label class="grouped-row" style="cursor:pointer;">
-              <span class="row-label">🛡️ Anchor Near Verified Safe Spots</span>
+              <span class="row-label">🛡️ Anchor to Safe Spots</span>
               <input type="checkbox" id="prefPassHavens" checked class="ios-checkbox" />
             </label>
             <label class="grouped-row" style="cursor:pointer;">
-              <span class="row-label">👭 Women Foot-Traffic Priority</span>
+              <span class="row-label">👭 Women Foot-Traffic Bias</span>
               <input type="checkbox" id="prefCrowdDensity" checked class="ios-checkbox" />
             </label>
             <label class="grouped-row" style="cursor:pointer;">
-              <span class="row-label">🚓 Pink Patrol Corridor Bias</span>
+              <span class="row-label">🚓 Pink Patrol Zones</span>
               <input type="checkbox" id="prefPatrolZones" checked class="ios-checkbox" />
             </label>
           </div>
@@ -1558,16 +1695,16 @@
           <div class="section-header">Computed Routes</div>
           <div class="card mb-12" id="routeCardsContainer" style="overflow:hidden;"></div>
 
-          <div class="section-header">Live Walk Simulation</div>
+          <div class="section-header">Live Walk Escort</div>
           <div class="card mb-12">
             <div class="grouped-row">
               <div>
-                <div class="subhead" style="color:var(--color-safe-green);">● R-Guided Safe Escort</div>
+                <div class="subhead" style="color:var(--color-safe-green);font-size:16px;">● R-Guided Escort</div>
                 <p id="walkSimStatus" class="caption-1 mt-4">Simulates walking your computed safe corridor.</p>
               </div>
               <button id="toggleWalkSimBtn" class="btn btn-green btn-sm" aria-label="Start walk">▶ Walk</button>
             </div>
-            <div style="padding: 0 16px 14px;">
+            <div style="padding: 0 14px 12px;">
               <div class="progress-bar-track">
                 <div id="walkProgressBar" class="progress-bar-fill"></div>
               </div>
@@ -1575,24 +1712,24 @@
           </div>
 
           <!-- Formula Post-It Card -->
-          <div class="card card-postit" style="padding:14px 16px;">
-            <div class="flex items-center justify-between" style="font-family:var(--font-heading);font-size:14px;font-weight:700;color:var(--color-lead);">
-              <span>📐 R-ALGORITHM COST FORMULA</span>
+          <div class="card card-postit" style="padding:12px 14px;">
+            <div class="flex items-center justify-between" style="font-family:var(--font-heading);font-size:13px;font-weight:700;color:var(--color-lead);">
+              <span>📐 R-ALGORITHM COST</span>
               <span id="rAlgoDynamicPenalty" style="color:var(--color-marker-red);">α=3.8 (Night)</span>
             </div>
-            <div class="mono" style="font-size:14px;padding:8px 10px;background:#ffffff;border:2px solid var(--color-lead);border-radius:var(--wobbly-sm);margin-top:6px;">
+            <div class="mono" style="font-size:13px;padding:6px 8px;background:#ffffff;border:1.5px solid var(--color-lead);border-radius:var(--wobbly-sm);margin-top:6px;">
               Cost(e) = Dist(e) × [1 + α·Risk(e,t) − β·Haven(e)]
             </div>
-            <p class="caption-1 mt-8">Unlike standard maps that prioritize dark alleys to save 2 minutes, the R-Algorithm automatically redirects your journey toward lit corridors and safe havens.</p>
+            <p class="caption-1 mt-6">Redirects you down lit avenues and safe spots rather than dangerous unlit shortcuts.</p>
           </div>
         </div>
 
-        <!-- ══ TAB: REPORT A HAZARD ══ -->
+        <!-- ══ TAB 2: REPORT A HAZARD ══ -->
         <div id="tab-pin" class="left-tab-panel hidden" role="tabpanel">
           <div class="section-header" style="margin-top:0;">Crowd-Verified Pin</div>
-          <div class="card mb-12" style="padding:14px 16px;">
+          <div class="card mb-12" style="padding:12px 14px;">
             <div class="flex items-center justify-between">
-              <span class="subhead">📍 Pin: <strong id="selectedPinCoordsLabel" class="mono" style="color:var(--color-marker-red);">Click map to set</strong></span>
+              <span class="subhead" style="font-size:16px;">📍 Pin: <strong id="selectedPinCoordsLabel" class="mono" style="color:var(--color-marker-red);font-size:14px;">Tap map to set</strong></span>
               <button id="activateMapCrosshairBtn" class="btn btn-primary btn-sm">Tap on Map 🎯</button>
             </div>
           </div>
@@ -1600,32 +1737,32 @@
           <form id="addSpotForm">
             <div class="section-header">Spot Details</div>
             <div class="card mb-12">
-              <div style="padding:12px 16px;">
+              <div style="padding:10px 14px;">
                 <label class="caption-1" for="pinSpotName" style="display:block;margin-bottom:4px;font-weight:700;">Spot or Street Name</label>
                 <input id="pinSpotName" type="text" required placeholder="e.g. Broken lamp behind bus stop" class="ios-input" />
               </div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px 14px;">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 14px 12px;">
                 <div>
                   <label class="caption-1" for="pinSeveritySelect" style="display:block;margin-bottom:4px;font-weight:700;">Classification</label>
                   <select id="pinSeveritySelect" class="ios-select">
                     <option value="high">🔴 High Risk</option>
-                    <option value="medium">🟠 Caution Spot</option>
+                    <option value="medium">🟠 Caution</option>
                     <option value="safe">🟢 Safe Haven</option>
                   </select>
                 </div>
                 <div>
                   <label class="caption-1" for="pinTimeWindow" style="display:block;margin-bottom:4px;font-weight:700;">When Risky?</label>
                   <select id="pinTimeWindow" class="ios-select">
-                    <option value="night">🌙 After 9 PM</option>
-                    <option value="evening">🌆 Evening+</option>
-                    <option value="all">⚠️ All Hours</option>
+                    <option value="night">🌙 Night</option>
+                    <option value="evening">🌆 Eve+</option>
+                    <option value="all">⚠️ All Day</option>
                   </select>
                 </div>
               </div>
             </div>
 
             <div class="section-header">Hazard Tags</div>
-            <div style="padding: 0 4px 10px; display: flex; flex-wrap: wrap; gap: 6px;" id="hazardTagsGroup">
+            <div style="padding: 0 2px 10px; display: flex; flex-wrap: wrap; gap: 5px;" id="hazardTagsGroup">
               <button type="button" data-tag="Broken Streetlights" class="hazard-tag-btn chip chip-active">💡 Broken Lights</button>
               <button type="button" data-tag="Catcalling / Loitering" class="hazard-tag-btn chip">👁️ Catcalling</button>
               <button type="button" data-tag="No CCTV / Blind Turn" class="hazard-tag-btn chip">📷 No CCTV</button>
@@ -1634,46 +1771,57 @@
               <button type="button" data-tag="24/7 Female Staff" class="hazard-tag-btn chip">🛡️ Female Staff</button>
             </div>
 
-            <div class="card mb-12" style="padding: 12px 16px;">
+            <div class="card mb-12" style="padding: 10px 14px;">
               <label class="caption-1" for="pinRemarkInput" style="display:block;margin-bottom:4px;font-weight:700;">Your Note for Other Women</label>
               <textarea id="pinRemarkInput" rows="3" required placeholder="Describe what you observed so women can navigate safely…" class="ios-textarea"></textarea>
             </div>
 
-            <div style="padding: 0 4px;">
-              <button type="submit" class="btn btn-primary w-full" style="font-size:18px;">📌 Publish Pin & Update R-Algorithm</button>
+            <div style="padding: 0 2px;">
+              <button type="submit" class="btn btn-primary w-full" style="font-size:17px;">📌 Publish Pin & Update R-Algorithm</button>
             </div>
           </form>
         </div>
 
-        <!-- ══ TAB: HAVENS ══ -->
+        <!-- ══ TAB 3: SAFE HAVENS ══ -->
         <div id="tab-havens" class="left-tab-panel hidden" role="tabpanel">
-          <div class="flex items-center justify-between px-16 mt-4 mb-8">
+          <div class="flex items-center justify-between px-8 mt-4 mb-8">
             <div>
               <div class="caption-1" style="font-family:var(--font-heading);font-weight:700;color:var(--color-safe-green);text-transform:uppercase;">Audited 24/7 Safe Shelters</div>
-              <div class="headline">Nearest Verified Havens</div>
+              <div class="headline" style="font-size:18px;">Nearest Verified Havens</div>
             </div>
             <button id="recalcHavensBtn" class="btn btn-green-tint btn-sm">Sort ↓</button>
           </div>
-          <p class="caption-1 px-16 mb-8">Every spot is audited by local women volunteers for working lights, phone charging, clean washrooms, female staff, and discreet refuge.</p>
-          <div class="card" style="margin: 0 4px; overflow:hidden;">
-            <div id="safeHavensListContainer" style="max-height:430px;overflow-y:auto;"></div>
+          <p class="caption-1 px-8 mb-8">Every spot is audited by local women volunteers for working lights, phone charging, clean washrooms, female staff, and discreet refuge.</p>
+          <div class="card" style="margin: 0 2px; overflow:hidden;">
+            <div id="safeHavensListContainer" style="max-height:420px;overflow-y:auto;"></div>
           </div>
         </div>
 
-        <!-- ══ TAB: TOOLKIT ══ -->
+        <!-- ══ TAB 4: SAFETY TOOLKIT ══ -->
         <div id="tab-toolkit" class="left-tab-panel hidden" role="tabpanel">
           <div class="section-header" style="margin-top:0;">Emergency Safety Toolkit</div>
+
+          <!-- Fake Phone Call Card -->
+          <div class="card card-postit mb-12" style="padding:14px 16px;">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="subhead" style="font-size:18px;">📞 Fake Phone Call Decoy</div>
+                <p class="caption-1 mt-4">Simulates a realistic incoming call from Dad, Roommate, or Police with audio.</p>
+              </div>
+              <button id="toolsFakeCallBtn" class="btn btn-primary btn-sm">Start Call 📞</button>
+            </div>
+          </div>
 
           <!-- Cab Plate Lock -->
           <div class="card mb-12">
             <div class="grouped-row">
               <div>
-                <div class="subhead">🚕 Cab Plate Corridor Lock</div>
+                <div class="subhead" style="font-size:16px;">🚕 Cab Plate Lock</div>
                 <p class="caption-1 mt-4">Alerts emergency contacts if driver deviates >150m from corridor.</p>
               </div>
-              <span id="cabLockStatusBadge" class="chip chip-safe" style="font-size:12px;">Standby</span>
+              <span id="cabLockStatusBadge" class="chip chip-safe" style="font-size:11px;">Standby</span>
             </div>
-            <div class="flex gap-8" style="padding:0 16px 14px;">
+            <div class="flex gap-6 select-row" style="padding:0 12px 12px;">
               <input id="cabPlateInput" type="text" value="KA-01-AM-7492" class="ios-input mono" style="text-transform:uppercase;color:var(--color-caution-orange);flex:1;" aria-label="Plate" />
               <button id="activateCabLockBtn" class="btn btn-primary btn-sm">Lock Plate</button>
             </div>
@@ -1683,56 +1831,92 @@
           <div class="card mb-12">
             <div class="grouped-row">
               <div>
-                <div class="subhead">⏱️ Auto-Escalation Watch Timer</div>
+                <div class="subhead" style="font-size:16px;">⏱️ Auto-Escalation Timer</div>
                 <p class="caption-1 mt-4">If you don't tap "I'm Safe" before 0:00, SOS alert fires.</p>
               </div>
-              <span id="checkInCountdownDisplay" class="mono" style="font-size:18px;font-weight:700;color:var(--color-marker-red);">05:00</span>
+              <span id="checkInCountdownDisplay" class="mono" style="font-size:17px;font-weight:700;color:var(--color-marker-red);">05:00</span>
             </div>
-            <div style="padding:0 16px 8px;">
-              <div class="flex items-center gap-8" style="font-size:14px;color:var(--color-lead-soft);">
+            <div style="padding:0 12px 6px;">
+              <div class="flex items-center gap-6" style="font-size:13px;color:var(--color-lead-soft);">
                 <span>1m</span>
                 <input type="range" id="timerDurationSlider" min="60" max="1800" value="300" step="60" class="ios-range" style="flex:1;" aria-label="Timer" />
                 <span>30m</span>
-                <span id="timerDurationLabel" class="mono" style="color:var(--color-marker-red);width:40px;text-align:right;">5:00</span>
+                <span id="timerDurationLabel" class="mono" style="color:var(--color-marker-red);width:36px;text-align:right;">5:00</span>
               </div>
             </div>
-            <div class="flex gap-8" style="padding:0 16px 14px;">
+            <div class="flex gap-6" style="padding:0 12px 12px;">
               <button id="toggleCheckInTimerBtn" class="btn btn-tinted flex-1">Start Watch</button>
               <button id="imSafeResetBtn" class="btn btn-green-tint">✓ I'm Safe</button>
             </div>
           </div>
 
           <!-- Walk With A Sister -->
-          <div class="card">
+          <div class="card mb-12">
             <div class="grouped-row">
               <div>
-                <div class="subhead">👭 Walk With A Sister</div>
+                <div class="subhead" style="font-size:16px;">👭 Walk With A Sister</div>
                 <p class="caption-1 mt-4">Match with verified women traveling your same route.</p>
               </div>
-              <span class="chip" style="font-size:12px;">4 Active</span>
+              <span class="chip" style="font-size:11px;">4 Active</span>
             </div>
             <div id="buddyMatchBox">
               <div class="grouped-row">
                 <div style="flex:1;">
-                  <div class="subhead" style="font-weight:700;">Ananya K. <span class="caption-1">(99% Trust)</span></div>
-                  <div class="caption-1">Indiranagar Metro → Domlur • 90m away</div>
+                  <div class="subhead" style="font-weight:700;font-size:15px;">Ananya K. <span class="caption-1">(99% Trust)</span></div>
+                  <div class="caption-1" style="font-size:13px;">Indiranagar Metro → Domlur • 90m away</div>
                 </div>
                 <button class="pingBuddyBtn btn btn-primary btn-sm">Ping</button>
               </div>
               <div class="grouped-row">
                 <div style="flex:1;">
-                  <div class="subhead" style="font-weight:700;">Priya R. <span class="caption-1">(97% Trust)</span></div>
-                  <div class="caption-1">100ft Road → HSR Layout • 150m away</div>
+                  <div class="subhead" style="font-weight:700;font-size:15px;">Priya R. <span class="caption-1">(97% Trust)</span></div>
+                  <div class="caption-1" style="font-size:13px;">100ft Road → HSR Layout • 150m away</div>
                 </div>
                 <button class="pingBuddyBtn btn btn-primary btn-sm">Ping</button>
               </div>
-              <div class="grouped-row">
-                <div style="flex:1;">
-                  <div class="subhead" style="font-weight:700;">Zoya M. <span class="caption-1">(98% Trust)</span></div>
-                  <div class="caption-1">Sony World Signal → Koramangala • 200m away</div>
-                </div>
-                <button class="pingBuddyBtn btn btn-primary btn-sm">Ping</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ TAB 5: COMMUNITY FEED & FUND (Mobile Drawer View) ══ -->
+        <div id="tab-community" class="left-tab-panel hidden" role="tabpanel">
+          <div class="section-header" style="margin-top:0;">Live Women's Reports</div>
+          <div class="card mb-12" style="overflow:hidden;">
+            <div class="grouped-row" style="background:#fffdfa;">
+              <div class="headline" style="font-size:15px;">Verified Community Notes</div>
+              <select id="feedFilterSelect" class="ios-select" style="max-width:130px;min-height:32px;font-size:13px;padding:3px 24px 3px 6px;" aria-label="Filter">
+                <option value="all">All Spots</option>
+                <option value="high">🔴 High Risk</option>
+                <option value="safe">🟢 Safe Only</option>
+              </select>
+            </div>
+            <div id="communityFeedList" style="max-height:300px;overflow-y:auto;"></div>
+          </div>
+
+          <div class="section-header">♀ Sisterhood Fund</div>
+          <div class="card card-postit mb-12">
+            <div class="thumbtack"></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;text-align:center;padding:12px 10px;border-bottom:1.5px dashed var(--color-lead);">
+              <div>
+                <div style="font-family:var(--font-heading);font-size:22px;font-weight:700;color:var(--color-marker-red);" class="statTotalPins">1,428</div>
+                <div class="caption-1">Pins</div>
               </div>
+              <div>
+                <div style="font-family:var(--font-heading);font-size:22px;font-weight:700;color:var(--color-safe-green);" class="statSafeHavens">64</div>
+                <div class="caption-1">Havens</div>
+              </div>
+              <div>
+                <div style="font-family:var(--font-heading);font-size:22px;font-weight:700;color:var(--color-caution-orange);">₹18.4L</div>
+                <div class="caption-1">Pool</div>
+              </div>
+            </div>
+            <div style="padding:10px 14px;border-bottom:1.5px dashed var(--color-lead);">
+              <div class="subhead" style="font-size:15px;">🏛️ Women Sponsors</div>
+              <p class="caption-1 mt-4">Namma Mahila Doctors Guild, SheCodes BLR (night cab vouchers), Women's Café Network.</p>
+            </div>
+            <div class="flex items-center justify-between" style="padding:10px 14px;">
+              <span class="caption-1">Sponsor solar lights or cab vouchers?</span>
+              <button class="pledgeSponsorBtn btn btn-primary btn-sm btn-pill">♀ Pledge</button>
             </div>
           </div>
         </div>
@@ -1740,112 +1924,27 @@
       </div><!-- tab-content-area -->
     </div><!-- sidebar -->
 
-    <!-- ═══ MAIN COLUMN (Map + Feed + Sponsors) ═══ -->
-    <div class="main-col" style="order: 1;">
-      <!-- Hand-Drawn Map Container -->
-      <div class="map-section">
-        <div class="map-card">
-          <div class="tape-strip-corner"></div>
-          <!-- Region Bar -->
-          <div class="flex items-center justify-between" style="padding:10px 14px;border-bottom:2px solid var(--color-lead);background:#fffdfa;">
-            <button id="openChangeRegionBtn" class="btn btn-ghost btn-sm" style="gap:6px;min-height:34px;">
-              🌍 <span id="currentRegionLabel">Bengaluru (Auto-Zoomed)</span> ▾
-            </button>
-            <div class="flex gap-6">
-              <button id="locateMeBtn" class="btn btn-secondary btn-sm" style="min-height:34px;">📍 Locate Me</button>
-              <button id="mapClickModeBtn" class="btn btn-tinted btn-sm" style="min-height:34px;">📌 Pick Pin</button>
-            </div>
-          </div>
-          
-          <!-- Map Toolbar -->
-          <div class="map-toolbar">
-            <div class="map-toolbar-group">
-              <button id="toggleHeatmapLayerBtn" class="chip chip-danger" style="font-size:12px;"><span>🔥</span><span>Heatmap: ON</span></button>
-              <button id="toggleHavensLayerBtn" class="chip chip-safe" style="font-size:12px;"><span>🛡️</span><span>Havens: ON</span></button>
-              <button id="toggleSistersLayerBtn" class="chip" style="font-size:12px;background:var(--color-sister-wash);color:var(--color-sister-pink);"><span>👩</span><span>Sisters: ON</span></button>
-            </div>
-          </div>
-
-          <!-- Leaflet Interactive Canvas -->
-          <div id="leafletMap"></div>
-
-          <!-- Sketched Map Legend -->
-          <div style="padding:8px 14px;border-top:2px solid var(--color-lead);display:flex;flex-wrap:wrap;gap:14px;font-size:14px;color:var(--color-lead);background:var(--bg-paper);">
-            <span class="flex items-center gap-4"><span style="width:10px;height:10px;border-radius:50%;background:var(--color-safe-green);border:1px solid #2d2d2d;"></span> Safe Spot</span>
-            <span class="flex items-center gap-4"><span style="width:16px;height:4px;border-radius:2px;background:var(--color-safe-green);border:1px solid #2d2d2d;"></span> R-Safe Route</span>
-            <span class="flex items-center gap-4"><span style="width:16px;height:4px;border-radius:2px;background:var(--color-caution-orange);border:1px solid #2d2d2d;"></span> Balanced Road</span>
-            <span class="flex items-center gap-4"><span style="width:16px;height:3px;border-bottom:2.5px dashed var(--color-marker-red);"></span> Risky Shortcut</span>
-            <span class="flex items-center gap-4"><span style="width:10px;height:10px;border-radius:50%;background:var(--color-marker-red);border:1px solid #2d2d2d;"></span> Risk Pin</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- ═══ Community Feed & Sponsorship Fund ═══ -->
-      <div class="bottom-grid" style="margin-top: 14px;">
-        <!-- Left: Live Warnings Feed -->
-        <div>
-          <div class="section-header" style="margin-top:0;">Live Women's Reports</div>
-          <div class="card" style="overflow:hidden;">
-            <div class="grouped-row" style="background:#fffdfa;">
-              <div class="headline" style="font-size:16px;">Verified Community Notes</div>
-              <select id="feedFilterSelect" class="ios-select" style="max-width:140px;min-height:34px;font-size:14px;padding:4px 28px 4px 8px;" aria-label="Filter">
-                <option value="all">All Spots</option>
-                <option value="high">🔴 High Risk</option>
-                <option value="safe">🟢 Safe Only</option>
-              </select>
-            </div>
-            <div id="communityFeedList" style="max-height:280px;overflow-y:auto;"></div>
-          </div>
-        </div>
-
-        <!-- Right: By Women, For Women Mission Note -->
-        <div>
-          <div class="section-header" style="margin-top:0;">♀ Sisterhood Fund</div>
-          <div class="card card-postit">
-            <div class="thumbtack"></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;text-align:center;padding:16px 12px;border-bottom:1.5px dashed var(--color-lead);">
-              <div>
-                <div style="font-family:var(--font-heading);font-size:26px;font-weight:700;color:var(--color-marker-red);" id="statTotalPins">1,428</div>
-                <div class="caption-1">Verified Pins</div>
-              </div>
-              <div>
-                <div style="font-family:var(--font-heading);font-size:26px;font-weight:700;color:var(--color-safe-green);" id="statSafeHavens">64</div>
-                <div class="caption-1">Active Havens</div>
-              </div>
-              <div>
-                <div style="font-family:var(--font-heading);font-size:26px;font-weight:700;color:var(--color-caution-orange);">₹18.4L</div>
-                <div class="caption-1">Safety Pool</div>
-              </div>
-            </div>
-            <div style="padding:12px 16px;border-bottom:1.5px dashed var(--color-lead);">
-              <div class="subhead">🏛️ Women-Owned Sponsors</div>
-              <p class="caption-1 mt-4">Namma Mahila Doctors Guild (24/7 clinic lounges), SheCodes BLR (night cab vouchers), Indiranagar Women's Café Network.</p>
-            </div>
-            <div style="padding:12px 16px;border-bottom:1.5px dashed var(--color-lead);">
-              <div class="subhead">💡 Why Hand-Drawn Imperfection?</div>
-              <p class="caption-1 mt-4">"Real street safety isn't corporate PR. It's handwritten notes, verified tips, and sisters looking out for each other on real streets."</p>
-            </div>
-            <div class="flex items-center justify-between" style="padding:12px 16px;">
-              <span class="caption-1">Sponsor solar streetlights or emergency rides?</span>
-              <button id="pledgeSponsorBtn" class="btn btn-primary btn-sm btn-pill">♀ Pledge</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- main-col -->
-  </div>
+  </div><!-- content-grid -->
 </main>
 
-<!-- ========== BOTTOM MOBILE TAB BAR ========== -->
+<!-- ========== 5-TAB MOBILE NAVIGATION BAR ========== -->
 <nav class="tab-bar mobile-only" role="navigation" aria-label="Mobile navigation">
   <div class="tab-bar-inner">
-    <button data-mobile-tab="router" class="mobile-nav-btn active" aria-label="Route"><span class="nav-icon">🧭</span><span>Route</span></button>
-    <button id="mobileMapBtn" class="mobile-nav-btn" aria-label="Map"><span class="nav-icon">🗺️</span><span>Map</span></button>
-    <button data-mobile-tab="pin" class="mobile-nav-btn" aria-label="Report"><span class="nav-icon">📍</span><span>Report</span></button>
-    <button data-mobile-tab="havens" class="mobile-nav-btn" aria-label="Havens"><span class="nav-icon">🛡️</span><span>Havens</span></button>
-    <button data-mobile-tab="toolkit" class="mobile-nav-btn" aria-label="Tools"><span class="nav-icon">⚡</span><span>Tools</span></button>
-    <button id="mobileSOSBtn" class="mobile-nav-btn sos-nav" aria-label="SOS"><span class="nav-icon">🚨</span><span>SOS</span></button>
+    <button data-mobile-tab="router" class="mobile-nav-btn active" aria-label="Route">
+      <span class="nav-icon">🧭</span><span>Route</span>
+    </button>
+    <button data-mobile-tab="pin" class="mobile-nav-btn" aria-label="Report">
+      <span class="nav-icon">📍</span><span>Report</span>
+    </button>
+    <button data-mobile-tab="havens" class="mobile-nav-btn" aria-label="Havens">
+      <span class="nav-icon">🛡️</span><span>Havens</span>
+    </button>
+    <button data-mobile-tab="toolkit" class="mobile-nav-btn" aria-label="Tools">
+      <span class="nav-icon">⚡</span><span>Tools</span>
+    </button>
+    <button data-mobile-tab="community" class="mobile-nav-btn" aria-label="Community">
+      <span class="nav-icon">💬</span><span>Feed</span>
+    </button>
   </div>
 </nav>
 
@@ -1946,7 +2045,7 @@ const state = {
 };
 
 // ============================================================================
-// LEAFLET MAP INITIALIZATION & TILES (OpenStreetMap Reliable & Fast)
+// LEAFLET MAP
 // ============================================================================
 let _resizeDebounce = null;
 function initLeafletMap(lat, lng, zoom) {
@@ -1967,7 +2066,6 @@ function initLeafletMap(lat, lng, zoom) {
       attributionControl: false
     });
 
-    // 100% Reliable OpenStreetMap tiles - Free, fast, no API key needed
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '© OpenStreetMap contributors'
@@ -1976,7 +2074,6 @@ function initLeafletMap(lat, lng, zoom) {
     state.map.on('click', onMapClick);
     drawAllMapLayers();
 
-    // Ensure map tiles render without gray blanks by invalidating size after mount
     setTimeout(() => {
       if (state.map) state.map.invalidateSize();
     }, 250);
@@ -1992,7 +2089,7 @@ function onMapClick(e) {
   state.pendingPinLatLng = { lat, lng };
   document.getElementById('selectedPinCoordsLabel').textContent = `${lat.toFixed(4)}°N, ${lng.toFixed(4)}°E`;
   state.isPickingOnMap = false;
-  switchLeftTab('pin');
+  switchTab('pin');
   if (state._tempPinMarker) state.map.removeLayer(state._tempPinMarker);
   state._tempPinMarker = L.circleMarker([lat, lng], {
     radius: 12, color: '#2d2d2d', weight: 2.5, fillColor: '#ff4d4d', fillOpacity: 0.6, dashArray: '5,5'
@@ -2023,16 +2120,16 @@ function drawAllMapLayers() {
       const icon = L.divIcon({
         className: 'haven-marker',
         html: `<div class="marker-pin haven" title="${spot.name}">✓</div>`,
-        iconSize: [32, 32], iconAnchor: [16, 16]
+        iconSize: [30, 30], iconAnchor: [15, 15]
       });
       const m = L.marker([spot.lat, spot.lng], { icon }).addTo(state.map);
       m.on('click', () => updateMapInspector(spot));
-      m.bindPopup(`<div style="min-width:190px">
-        <div style="color:#2e7d32;font-family:var(--font-heading);font-weight:700;font-size:13px;">🟢 SAFE HAVEN (AUDITED)</div>
-        <div style="font-family:var(--font-heading);font-weight:700;font-size:15px;margin:4px 0">${spot.name}</div>
-        <div style="font-size:14px;color:#55524e">${spot.havenType||''}</div>
-        <div style="font-size:13px;color:#2d2d2d;margin-top:4px;">"${spot.remark.substring(0,80)}…"</div>
-        ${spot.phone?`<a href="tel:${spot.phone}" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2e7d32;color:#fff;border-radius:12px;border:1.5px solid #2d2d2d;font-family:var(--font-heading);font-size:12px;text-decoration:none;">📞 Call Desk</a>`:''}
+      m.bindPopup(`<div style="min-width:180px">
+        <div style="color:#2e7d32;font-family:var(--font-heading);font-weight:700;font-size:13px;">🟢 SAFE HAVEN</div>
+        <div style="font-family:var(--font-heading);font-weight:700;font-size:15px;margin:3px 0">${spot.name}</div>
+        <div style="font-size:13px;color:#55524e">${spot.havenType||''}</div>
+        <div style="font-size:12px;color:#2d2d2d;margin-top:3px;">"${spot.remark.substring(0,80)}…"</div>
+        ${spot.phone?`<a href="tel:${spot.phone}" style="display:inline-block;margin-top:6px;padding:3px 8px;background:#2e7d32;color:#fff;border-radius:10px;font-family:var(--font-heading);font-size:12px;text-decoration:none;">📞 Call Desk</a>`:''}
       </div>`);
       state.havenMarkers.push(m);
     } else if (spot.severity !== 'safe' && state.showHeatmap) {
@@ -2045,14 +2142,14 @@ function drawAllMapLayers() {
       const icon = L.divIcon({
         className: `risk-marker-${spot.severity}`,
         html: `<div class="marker-pin ${cls}" title="${spot.name}">!</div>`,
-        iconSize: [30, 30], iconAnchor: [15, 15]
+        iconSize: [28, 28], iconAnchor: [14, 14]
       });
       const m = L.marker([spot.lat, spot.lng], { icon }).addTo(state.map);
       m.on('click', () => updateMapInspector(spot));
-      m.bindPopup(`<div style="min-width:190px">
-        <div style="color:${color};font-family:var(--font-heading);font-weight:700;font-size:13px;">${spot.severity==='high'?'🔴 HIGH RISK PIN':'🟠 CAUTION PIN'} • ${spot.reportsCount} reports</div>
-        <div style="font-family:var(--font-heading);font-weight:700;font-size:15px;margin:4px 0">${spot.name}</div>
-        <div style="font-style:italic;font-size:14px;color:#55524e">"${spot.remark.substring(0,100)}…"</div>
+      m.bindPopup(`<div style="min-width:180px">
+        <div style="color:${color};font-family:var(--font-heading);font-weight:700;font-size:12px;">${spot.severity==='high'?'🔴 HIGH RISK':'🟠 CAUTION'} • ${spot.reportsCount} reports</div>
+        <div style="font-family:var(--font-heading);font-weight:700;font-size:14px;margin:3px 0">${spot.name}</div>
+        <div style="font-style:italic;font-size:13px;color:#55524e">"${spot.remark.substring(0,90)}…"</div>
       </div>`);
       state.riskMarkers.push(m);
     }
@@ -2063,12 +2160,12 @@ function drawAllMapLayers() {
       const icon = L.divIcon({
         className: 'sister-marker',
         html: `<div class="marker-pin sister" title="${s.name}">♀</div>`,
-        iconSize: [24, 24], iconAnchor: [12, 12]
+        iconSize: [22, 22], iconAnchor: [11, 11]
       });
       const m = L.marker([s.lat, s.lng], { icon }).addTo(state.map);
       m.bindPopup(`<div>
-        <div style="font-family:var(--font-heading);font-weight:700;font-size:14px;color:#d92662">${s.name}</div>
-        <div style="font-size:13px;color:#55524e">${s.status}</div>
+        <div style="font-family:var(--font-heading);font-weight:700;font-size:13px;color:#d92662">${s.name}</div>
+        <div style="font-size:12px;color:#55524e">${s.status}</div>
       </div>`);
       state.sisterMarkers.push(m);
     });
@@ -2089,32 +2186,32 @@ function drawAllMapLayers() {
 
   const routes = state.calculatedRoutes;
   if (routes.shortest && routes.safest) {
-    // Shortest (Risky shortcut) - Red sketched dashed line
+    // Shortest (Risky shortcut) - Red dashed line
     const sc = routes.shortest.nodes.map(nid => [CITY_NODES[nid]?.lat, CITY_NODES[nid]?.lng]).filter(c => c[0]);
     state.routePolylines.push(L.polyline(sc, {
-      color: '#ff4d4d', weight: state.selectedRouteKey === 'shortest' ? 5 : 2.5, dashArray: '6,6', opacity: state.selectedRouteKey === 'shortest' ? 0.95 : 0.45
+      color: '#ff4d4d', weight: state.selectedRouteKey === 'shortest' ? 4 : 2, dashArray: '6,6', opacity: state.selectedRouteKey === 'shortest' ? 0.95 : 0.45
     }).addTo(state.map));
 
     // Balanced - Amber line
     const bc = routes.balanced.nodes.map(nid => [CITY_NODES[nid]?.lat, CITY_NODES[nid]?.lng]).filter(c => c[0]);
     state.routePolylines.push(L.polyline(bc, {
-      color: '#d97706', weight: state.selectedRouteKey === 'balanced' ? 5 : 2.5, opacity: state.selectedRouteKey === 'balanced' ? 0.95 : 0.45
+      color: '#d97706', weight: state.selectedRouteKey === 'balanced' ? 4 : 2, opacity: state.selectedRouteKey === 'balanced' ? 0.95 : 0.45
     }).addTo(state.map));
 
-    // Safest (R-Corridor) - Grassy green highlighter stroke + solid pencil spine
+    // Safest (R-Corridor) - Green highlighter
     const safc = routes.safest.nodes.map(nid => [CITY_NODES[nid]?.lat, CITY_NODES[nid]?.lng]).filter(c => c[0]);
     state.routePolylines.push(L.polyline(safc, {
-      color: '#2e7d32', weight: state.selectedRouteKey === 'safest' ? 14 : 7, opacity: 0.25, interactive: false
+      color: '#2e7d32', weight: state.selectedRouteKey === 'safest' ? 12 : 6, opacity: 0.25, interactive: false
     }).addTo(state.map));
     state.routePolylines.push(L.polyline(safc, {
-      color: '#2e7d32', weight: state.selectedRouteKey === 'safest' ? 5 : 3, opacity: 0.95
+      color: '#2e7d32', weight: state.selectedRouteKey === 'safest' ? 4 : 2.5, opacity: 0.95
     }).addTo(state.map));
   }
 
   Object.values(CITY_NODES).forEach(node => {
     const isOD = node.id === state.originId || node.id === state.destId;
     const c = L.circleMarker([node.lat, node.lng], {
-      radius: isOD ? 8 : 4.5,
+      radius: isOD ? 7 : 4,
       color: '#2d2d2d',
       weight: 2,
       fillColor: node.id === state.originId ? '#2d5da1' : (node.id === state.destId ? '#2e7d32' : '#e5e0d8'),
@@ -2128,7 +2225,7 @@ function drawAllMapLayers() {
     const icon = L.divIcon({
       className: 'traveler-marker',
       html: `<div class="marker-pin traveler">YOU</div>`,
-      iconSize: [36, 36], iconAnchor: [18, 18]
+      iconSize: [34, 34], iconAnchor: [17, 17]
     });
     state.travelerMarker = L.marker([state.travelerPos.lat, state.travelerPos.lng], { icon, zIndexOffset: 1000 }).addTo(state.map);
   }
@@ -2250,7 +2347,7 @@ function renderRouteCards() {
   if (!c) return;
   const routes = state.calculatedRoutes;
   if (!routes.safest) {
-    c.innerHTML = `<div style="padding:14px 16px;font-size:16px;color:var(--color-lead-soft);">Select two distinct places above to calculate hand-drawn safe corridor.</div>`;
+    c.innerHTML = `<div style="padding:12px 14px;font-size:15px;color:var(--color-lead-soft);">Select two distinct places above to calculate hand-drawn safe corridor.</div>`;
     return;
   }
   c.innerHTML = ['safest','balanced','shortest'].map(key => {
@@ -2260,11 +2357,11 @@ function renderRouteCards() {
     let detail = '';
     if (key === 'safest') {
       const av = r.avoidedHazards.length > 0 ? `Bypasses ${r.avoidedHazards.join(', ')}` : '100% well-lit commercial avenue';
-      detail = `<div style="font-size:14px;color:var(--color-safe-green);margin-top:4px;font-family:var(--font-heading);">✓ ${av}${r.havens.length ? ` · ${r.havens.length} Safe Haven(s)` : ''}</div>`;
+      detail = `<div style="font-size:13px;color:var(--color-safe-green);margin-top:3px;font-family:var(--font-heading);">✓ ${av}${r.havens.length ? ` · ${r.havens.length} Safe Haven(s)` : ''}</div>`;
     } else if (key === 'shortest') {
-      detail = `<div style="font-size:14px;color:var(--color-marker-red);margin-top:4px;font-family:var(--font-heading);">⚠ ${r.hazards.length ? r.hazards.join(' & ') : `Only ${r.avgLighting}% lighting`}</div>`;
+      detail = `<div style="font-size:13px;color:var(--color-marker-red);margin-top:3px;font-family:var(--font-heading);">⚠ ${r.hazards.length ? r.hazards.join(' & ') : `Only ${r.avgLighting}% lighting`}</div>`;
     } else {
-      detail = `<div style="font-size:14px;color:var(--color-lead-soft);margin-top:4px;">💡 ${r.avgLighting}% Lighting · ${r.havens.length} Haven near route</div>`;
+      detail = `<div style="font-size:13px;color:var(--color-lead-soft);margin-top:3px;">💡 ${r.avgLighting}% Lighting · ${r.havens.length} Haven near route</div>`;
     }
     return `<div data-route-key="${key}" class="route-option-card route-card${sel?' selected':''}">
       <div class="route-meta">
@@ -2273,8 +2370,8 @@ function renderRouteCards() {
         </div>
         <span class="safety-badge ${bc}">${r.safetyScore}% Safe</span>
       </div>
-      <div style="display:flex;justify-content:space-between;font-size:15px;color:var(--color-lead-soft);margin-top:4px;">
-        <span class="truncate" style="max-width:210px;">${path}</span>
+      <div style="display:flex;justify-content:space-between;font-size:14px;color:var(--color-lead-soft);margin-top:4px;">
+        <span class="truncate" style="max-width:200px;">${path}</span>
         <span style="font-weight:700;color:var(--color-lead);font-family:var(--font-heading);">${r.totalMinutes} min walk</span>
       </div>
       ${detail}
@@ -2297,39 +2394,44 @@ function updateMapInspector(spot) {
 }
 
 function renderCommunityFeed() {
-  const filterEl = document.getElementById('feedFilterSelect');
-  if (!filterEl) return;
-  const filter = filterEl.value;
-  const list = document.getElementById('communityFeedList');
-  if (!list) return;
+  const filter = document.getElementById('feedFilterSelect')?.value || document.getElementById('feedFilterSelectDesktop')?.value || 'all';
+  const lists = [document.getElementById('communityFeedList'), document.getElementById('communityFeedListDesktop')];
   const filtered = communitySpots.filter(s => {
     if (filter === 'high') return s.severity === 'high' || s.severity === 'medium';
     if (filter === 'safe') return s.severity === 'safe';
     return true;
   });
-  list.innerHTML = filtered.map(spot => {
+
+  const html = filtered.map(spot => {
     const badge = spot.severity === 'safe'
-      ? '<span class="chip chip-safe" style="font-size:11px;padding:2px 8px;">SAFE</span>'
-      : (spot.severity === 'high' ? '<span class="chip chip-danger" style="font-size:11px;padding:2px 8px;">HIGH RISK</span>' : '<span class="chip chip-warn" style="font-size:11px;padding:2px 8px;">CAUTION</span>');
+      ? '<span class="chip chip-safe" style="font-size:10px;padding:1px 6px;">SAFE</span>'
+      : (spot.severity === 'high' ? '<span class="chip chip-danger" style="font-size:10px;padding:1px 6px;">HIGH RISK</span>' : '<span class="chip chip-warn" style="font-size:10px;padding:1px 6px;">CAUTION</span>');
     return `<div data-spot-id="${spot.id}" class="feed-spot-item feed-item">
-      <div class="flex items-center justify-between gap-8">
-        <span style="font-size:17px;font-weight:700;font-family:var(--font-heading);" class="truncate">${spot.name}</span>
+      <div class="flex items-center justify-between gap-6">
+        <span style="font-size:16px;font-weight:700;font-family:var(--font-heading);" class="truncate">${spot.name}</span>
         ${badge}
       </div>
-      <p style="font-size:16px;color:var(--color-lead-soft);margin-top:4px;font-style:italic;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">"${spot.remark}"</p>
-      <div class="flex items-center justify-between" style="font-size:13px;color:var(--color-lead-soft);margin-top:6px;">
+      <p style="font-size:15px;color:var(--color-lead-soft);margin-top:3px;font-style:italic;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">"${spot.remark}"</p>
+      <div class="flex items-center justify-between" style="font-size:12px;color:var(--color-lead-soft);margin-top:4px;">
         <span>${spot.author} · ${spot.timeAgo}</span>
         <span style="color:var(--color-marker-red);font-weight:700;font-family:var(--font-heading);">▲ ${spot.reportsCount} verified</span>
       </div>
     </div>`;
   }).join('');
 
-  list.querySelectorAll('.feed-spot-item').forEach(el => el.addEventListener('click', () => {
-    const s = communitySpots.find(sp => sp.id === el.getAttribute('data-spot-id'));
-    if (s) updateMapInspector(s);
-  }));
-  const sp = document.getElementById('statTotalPins');
-  if (sp) sp.textContent = (1420 + communitySpots.length).toLocaleString();
+  lists.forEach(list => {
+    if (list) {
+      list.innerHTML = html;
+      list.querySelectorAll('.feed-spot-item').forEach(el => el.addEventListener('click', () => {
+        const s = communitySpots.find(sp => sp.id === el.getAttribute('data-spot-id'));
+        if (s) updateMapInspector(s);
+      }));
+    }
+  });
+
+  document.querySelectorAll('.statTotalPins').forEach(el => {
+    el.textContent = (1420 + communitySpots.length).toLocaleString();
+  });
 }
 
 // ============================================================================
@@ -2348,22 +2450,22 @@ function renderSafeHavensList() {
   const sorted = getSortedSafeHavens();
   c.innerHTML = sorted.map((h, i) => `
     <div class="haven-item${i===0?' closest':''}">
-      <div class="flex items-center justify-between gap-8">
+      <div class="flex items-center justify-between gap-6">
         <div style="flex:1;min-width:0;">
-          <div class="flex items-center gap-6" style="flex-wrap:wrap;">
-            ${i===0?'<span class="chip chip-safe" style="font-size:11px;padding:2px 8px;font-weight:700;">CLOSEST</span>':''}
-            <span style="font-size:17px;font-weight:700;font-family:var(--font-heading);" class="truncate">${h.name}</span>
+          <div class="flex items-center gap-4" style="flex-wrap:wrap;">
+            ${i===0?'<span class="chip chip-safe" style="font-size:10px;padding:1px 6px;font-weight:700;">CLOSEST</span>':''}
+            <span style="font-size:16px;font-weight:700;font-family:var(--font-heading);" class="truncate">${h.name}</span>
           </div>
-          <div style="font-size:15px;color:var(--color-safe-green);margin-top:2px;">${h.havenType||'Safe Spot'}</div>
+          <div style="font-size:14px;color:var(--color-safe-green);margin-top:2px;">${h.havenType||'Safe Spot'}</div>
         </div>
         <div style="text-align:right;flex-shrink:0;">
-          <div class="mono" style="font-size:16px;font-weight:700;color:var(--color-lead);">${h.distMeters}m</div>
+          <div class="mono" style="font-size:15px;font-weight:700;color:var(--color-lead);">${h.distMeters}m</div>
           <div class="caption-1">~${h.walkMins} min</div>
         </div>
       </div>
-      <p style="font-size:15px;color:var(--color-lead-soft);margin-top:6px;font-style:italic;">"${h.remark.substring(0,100)}…"</p>
-      <div class="flex items-center justify-between mt-8">
-        ${h.phone?`<a href="tel:${h.phone}" style="font-size:14px;color:var(--color-safe-green);text-decoration:none;font-weight:700;" class="mono">📞 ${h.phone}</a>`:'<span class="mono caption-1">📞 112 Patrol</span>'}
+      <p style="font-size:14px;color:var(--color-lead-soft);margin-top:4px;font-style:italic;">"${h.remark.substring(0,90)}…"</p>
+      <div class="flex items-center justify-between mt-6">
+        ${h.phone?`<a href="tel:${h.phone}" style="font-size:13px;color:var(--color-safe-green);text-decoration:none;font-weight:700;" class="mono">📞 ${h.phone}</a>`:'<span class="mono caption-1">📞 112 Patrol</span>'}
         <button data-haven-id="${h.id}" class="guide-to-haven-btn btn btn-green btn-sm">🛡️ Guide Me</button>
       </div>
     </div>`).join('');
@@ -2377,6 +2479,8 @@ function renderSafeHavensList() {
       }).addTo(state.map);
       state.map.fitBounds(state.nearestHavenLine.getBounds().pad(0.3));
       showToast('🛡️ Haven Guide', `Guiding directly to ${h.name} (${Math.round(haversineMeters(state.travelerPos.lat,state.travelerPos.lng,h.lat,h.lng))}m)`);
+      // Scroll map into view on mobile
+      document.querySelector('.map-section')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
   }));
 }
@@ -2560,7 +2664,7 @@ function tryGeolocation() {
   if (!navigator.geolocation) { showCityPicker(); return; }
   navigator.geolocation.getCurrentPosition(pos => {
     const { latitude: lat, longitude: lng } = pos.coords;
-    document.getElementById('cityPickerModal').classList.add('hidden');
+    document.getElementById('cityPickerModal')?.classList.add('hidden');
     fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=14`, { headers: { 'Accept': 'application/json' } })
       .then(r => r.json()).then(d => {
         const loc = d.address?.suburb || d.address?.city || d.address?.town || 'Local Area';
@@ -2571,19 +2675,20 @@ function tryGeolocation() {
 
 function showCityPicker(filterCat = 'all') {
   const modal = document.getElementById('cityPickerModal');
+  if (!modal) return;
   modal.classList.remove('hidden');
   const list = document.getElementById('cityOptionsList');
   const filtered = filterCat === 'all' ? CITY_OPTIONS : CITY_OPTIONS.filter(c => c.category === filterCat);
   list.innerHTML = filtered.map(c => `
-    <div data-lat="${c.lat}" data-lng="${c.lng}" data-zoom="${c.zoom}" data-name="${c.name}" class="grouped-row" style="cursor:pointer;padding:12px 14px;">
-      <div class="flex items-center gap-12">
-        <span style="font-size:26px;">${c.emoji}</span>
+    <div data-lat="${c.lat}" data-lng="${c.lng}" data-zoom="${c.zoom}" data-name="${c.name}" class="grouped-row" style="cursor:pointer;padding:10px 12px;">
+      <div class="flex items-center gap-8">
+        <span style="font-size:24px;">${c.emoji}</span>
         <div>
-          <div style="font-family:var(--font-heading);font-size:17px;font-weight:700;color:var(--color-lead);">${c.name}</div>
-          <div class="caption-1">${c.desc}</div>
+          <div style="font-family:var(--font-heading);font-size:16px;font-weight:700;color:var(--color-lead);">${c.name}</div>
+          <div class="caption-1" style="font-size:13px;">${c.desc}</div>
         </div>
       </div>
-      <span class="btn btn-ghost btn-sm" style="min-height:30px;font-size:12px;">Zoom →</span>
+      <span class="btn btn-ghost btn-sm" style="min-height:28px;font-size:11px;">Zoom →</span>
     </div>`).join('');
 
   list.querySelectorAll('.grouped-row').forEach(opt => opt.addEventListener('click', () => {
@@ -2593,18 +2698,56 @@ function showCityPicker(filterCat = 'all') {
 }
 
 // ============================================================================
-// TAB SWITCHING (Hand-Drawn Paper Tabs)
+// TAB SWITCHING (Seamless Desktop & Mobile Sync)
 // ============================================================================
-function switchLeftTab(tabName) {
+function switchTab(tabName) {
+  state.activeTab = tabName;
+
+  // Update desktop tabs
   document.querySelectorAll('.left-tab-btn[data-tab]').forEach(btn => {
     const active = btn.getAttribute('data-tab') === tabName;
     btn.classList.toggle('seg-active', active);
     btn.setAttribute('aria-selected', active);
   });
-  document.querySelectorAll('.left-tab-panel').forEach(p => p.classList.toggle('hidden', p.id !== `tab-${tabName}`));
-  document.querySelectorAll('.mobile-nav-btn[data-mobile-tab]').forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-mobile-tab') === tabName));
+  
+  // Update mobile tab bar
+  document.querySelectorAll('.mobile-nav-btn[data-mobile-tab]').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-mobile-tab') === tabName);
+  });
 
-  // Invalidate map size so it fills container properly when layout shifts
+  // Switch panels
+  document.querySelectorAll('.left-tab-panel').forEach(p => {
+    p.classList.toggle('hidden', p.id !== `tab-${tabName}`);
+  });
+
+  // Update mobile panel title
+  const titleEl = document.getElementById('mobileActivePanelTitle');
+  if (titleEl) {
+    const titles = {
+      router: '🧭 Route Planner',
+      pin: '📍 Report Hazard',
+      havens: '🛡️ Verified Safe Havens',
+      toolkit: '⚡ Emergency Tools',
+      community: '💬 Live Feed & Sisterhood'
+    };
+    titleEl.textContent = titles[tabName] || 'Controls';
+  }
+
+  // Smooth scroll to panel on mobile
+  if (window.innerWidth <= 1023) {
+    const target = document.getElementById('leftPanelSection');
+    if (target) {
+      const headerOffset = 52;
+      const elementPosition = target.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+        top: Math.max(0, offsetPosition),
+        behavior: 'smooth'
+      });
+    }
+  }
+
+  // Invalidate map size so it fills container properly
   setTimeout(() => {
     if (state.map) state.map.invalidateSize();
   }, 150);
@@ -2614,18 +2757,36 @@ function switchLeftTab(tabName) {
 // INITIALIZATION & EVENT BINDINGS
 // ============================================================================
 function initApp() {
-  document.querySelectorAll('.left-tab-btn[data-tab]').forEach(btn => btn.addEventListener('click', () => switchLeftTab(btn.getAttribute('data-tab'))));
-  document.querySelectorAll('.mobile-nav-btn[data-mobile-tab]').forEach(btn => btn.addEventListener('click', () => {
-    switchLeftTab(btn.getAttribute('data-mobile-tab'));
-    document.getElementById('leftPanelSection')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }));
+  // Desktop tab switching
+  document.querySelectorAll('.left-tab-btn[data-tab]').forEach(btn => {
+    btn.addEventListener('click', () => switchTab(btn.getAttribute('data-tab')));
+  });
+
+  // Mobile tab switching
+  document.querySelectorAll('.mobile-nav-btn[data-mobile-tab]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.getAttribute('data-mobile-tab');
+      switchTab(tab);
+    });
+  });
+
+  // Map size expand toggle
+  document.getElementById('toggleMapSizeBtn')?.addEventListener('click', e => {
+    const mapEl = document.getElementById('leafletMap');
+    const isExpanded = mapEl.classList.toggle('map-expanded');
+    e.currentTarget.textContent = isExpanded ? '⤡ Small' : '⤢ Map';
+    setTimeout(() => { if (state.map) state.map.invalidateSize(); }, 260);
+  });
+
+  // Scroll back to map
+  document.getElementById('scrollToMapBtn')?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Mobile SOS button
   document.getElementById('mobileSOSBtn')?.addEventListener('click', () => {
     document.getElementById('sosModal').classList.remove('hidden');
     startSosCountdown();
-  });
-  document.getElementById('mobileMapBtn')?.addEventListener('click', () => {
-    document.querySelector('.map-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    setTimeout(() => { if (state.map) state.map.invalidateSize(); }, 200);
   });
 
   // Time filters
@@ -2691,12 +2852,13 @@ function initApp() {
     }
   });
   document.getElementById('mapClickModeBtn')?.addEventListener('click', () => {
-    state.isPickingOnMap = true; switchLeftTab('pin');
+    state.isPickingOnMap = true; switchTab('pin');
     showToast('🎯 Tap Map', 'Click anywhere on the map to place your hazard pin.');
   });
   document.getElementById('activateMapCrosshairBtn')?.addEventListener('click', () => {
     state.isPickingOnMap = true;
     showToast('🎯 Tap Map', 'Click map to place hazard pin.');
+    document.querySelector('.map-section')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   });
   document.getElementById('openChangeRegionBtn')?.addEventListener('click', () => showCityPicker());
 
@@ -2749,7 +2911,7 @@ function initApp() {
     document.getElementById('pinRemarkInput').value = '';
     if (state._tempPinMarker && state.map) { state.map.removeLayer(state._tempPinMarker); state._tempPinMarker = null; }
     state.pendingPinLatLng = null;
-    renderCommunityFeed(); calculateAllRoutes(); switchLeftTab('router');
+    renderCommunityFeed(); calculateAllRoutes(); switchTab('router');
     showToast('🔥 Spot Published', `"${name}" added to community safety map.`);
   });
 
@@ -2763,7 +2925,7 @@ function initApp() {
         color: '#2d5da1', weight: 4, dashArray: '8,6', opacity: 0.95
       }).addTo(state.map);
       state.map.fitBounds(state.nearestHavenLine.getBounds().pad(0.3));
-      switchLeftTab('havens'); renderSafeHavensList();
+      switchTab('havens'); renderSafeHavensList();
       showToast('🛡️ Nearest Haven', `${c.name} — ${c.distMeters}m (~${c.walkMins} min)`);
     }
   });
@@ -2772,6 +2934,7 @@ function initApp() {
     showToast('Sorted Havens', 'Sorted by current proximity.');
   });
   document.getElementById('feedFilterSelect')?.addEventListener('change', renderCommunityFeed);
+  document.getElementById('feedFilterSelectDesktop')?.addEventListener('change', renderCommunityFeed);
 
   // Toast close
   document.getElementById('toastCloseBtn')?.addEventListener('click', () => {
@@ -2811,7 +2974,7 @@ function initApp() {
       const pct = Math.round(idx / (wps.length - 1) * 100);
       bar.style.width = pct + '%';
       const dist = Math.round(haversineMeters(pt.lat, pt.lng, wps[wps.length-1].lat, wps[wps.length-1].lng));
-      statusEl.textContent = `→ ${pt.segmentName} (${pct}%) · ${dist}m remaining`;
+      statusEl.textContent = `→ ${pt.segmentName} (${pct}%) · ${dist}m left`;
       renderSafeHavensList();
       if (state.travelerMarker) state.travelerMarker.setLatLng([pt.lat, pt.lng]);
       if (state.map && idx % 5 === 0) state.map.panTo([pt.lat, pt.lng], { animate: true, duration: 0.3 });
@@ -2831,7 +2994,6 @@ function initApp() {
 
   function openFakeCall() {
     fcm.classList.remove('hidden');
-    // Set to Ringing mode initially
     inCallControls.classList.add('hidden');
     connectedActions.classList.add('hidden');
     ringingAvatar.classList.remove('hidden');
@@ -2868,6 +3030,7 @@ function initApp() {
   }
 
   document.getElementById('openFakeCallBtn')?.addEventListener('click', openFakeCall);
+  document.getElementById('toolsFakeCallBtn')?.addEventListener('click', openFakeCall);
   document.getElementById('endFakeCallBtn')?.addEventListener('click', endFakeCall);
   document.getElementById('hangupInCallBtn')?.addEventListener('click', endFakeCall);
   document.getElementById('answerFakeCallBtn')?.addEventListener('click', answerFakeCall);
@@ -3002,9 +3165,9 @@ function initApp() {
     if (navigator.vibrate) navigator.vibrate(100);
     showToast('👭 Buddy Paired', 'Walking sister notified.');
   }));
-  document.getElementById('pledgeSponsorBtn')?.addEventListener('click', () => {
+  document.querySelectorAll('.pledgeSponsorBtn').forEach(btn => btn.addEventListener('click', () => {
     showToast('♀ Thank You Sister!', 'Fund a solar streetlight or night cab vouchers.');
-  });
+  }));
   document.getElementById('retryGeoBtn')?.addEventListener('click', tryGeolocation);
 
   // Window Resize

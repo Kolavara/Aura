@@ -1,18 +1,3204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=aura_by_women_for_women_crowd_verified_safety_map_r_algorithm_safe_router.html">
-  <title>AURA // By Women, For Women</title>
-  <script>
-    window.location.replace("aura_by_women_for_women_crowd_verified_safety_map_r_algorithm_safe_router.html");
-  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <title>AURA — Hand-Drawn Women's Safety Map & Safe Router</title>
+  <meta name="description" content="AURA is a crowd-verified women's safety map with R-Algorithm safe routing, authentic hand-drawn paper sketch design, real-time risk heatmaps, and emergency tools." />
+  
+  <!-- Google Fonts: Kalam (Headings/Marker) & Patrick Hand (Body/Handwritten) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Patrick+Hand&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+  
+  <!-- Leaflet CSS & JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+  <style>
+    /* ================================================================
+       HAND-DRAWN DESIGN SYSTEM — Authentic Paper & Ink Sketch
+       ================================================================ */
+    :root {
+      /* Palette Tokens */
+      --bg-paper: #fdfbf7;              /* Warm Paper */
+      --color-lead: #2d2d2d;            /* Soft Pencil Black */
+      --color-lead-soft: #55524e;       /* Medium Pencil */
+      --color-erased: #e5e0d8;          /* Old Paper / Erased Pencil */
+      --color-erased-light: #f4efe7;    /* Lighter Erased */
+      --color-marker-red: #ff4d4d;      /* Red Correction Marker */
+      --color-pen-blue: #2d5da1;        /* Blue Ballpoint Pen */
+      --color-postit: #fff9c4;          /* Post-it Note Yellow */
+      --color-safe-green: #2e7d32;      /* Hand-drawn Green */
+      --color-safe-wash: #dcfce7;       /* Green Highlighter Wash */
+      --color-caution-orange: #d97706;  /* Orange Highlighter */
+      --color-caution-wash: #fef3c7;    /* Orange Wash */
+      --color-sister-pink: #d92662;     /* Pink Ink Marker */
+      --color-sister-wash: #fce7f3;     /* Pink Wash */
+      --color-tape: rgba(229, 224, 216, 0.88); /* Kraft Tape */
+      
+      /* Wobbly Border-Radius Tokens (No Straight Lines!) */
+      --wobbly-sm: 255px 15px 225px 15px / 15px 225px 15px 255px;
+      --wobbly-sm-alt: 15px 225px 15px 255px / 255px 15px 225px 15px;
+      --wobbly-md: 20px 255px 20px 25px / 255px 20px 225px 20px;
+      --wobbly-card: 255px 25px 225px 25px / 25px 225px 25px 255px;
+      --wobbly-oval: 255px 45px 225px 45px / 45px 225px 45px 255px;
+      --wobbly-circle: 48% 52% 51% 49% / 53% 47% 53% 47%;
+      
+      /* Hard Offset Shadows (Cut-paper layered collage, zero blur) */
+      --shadow-sketch: 4px 4px 0px 0px var(--color-lead);
+      --shadow-sketch-sm: 2px 2px 0px 0px var(--color-lead);
+      --shadow-sketch-lg: 6px 6px 0px 0px var(--color-lead);
+      --shadow-sketch-modal: 8px 8px 0px 0px var(--color-lead);
+      
+      /* Typography */
+      --font-heading: 'Kalam', cursive, sans-serif;
+      --font-body: 'Patrick Hand', cursive, sans-serif;
+    }
+
+    /* ── Reset & Paper Base ── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+    }
+    
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+    }
+    
+    body {
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.45;
+      background-color: var(--bg-paper);
+      /* Authentic notebook paper dot grid texture */
+      background-image: radial-gradient(var(--color-erased) 1.5px, transparent 1.5px);
+      background-size: 24px 24px;
+      color: var(--color-lead);
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    ::selection {
+      background: var(--color-postit);
+      color: var(--color-lead);
+    }
+    
+    .hidden { display: none !important; }
+
+    /* ── Typography Utilities ── */
+    h1, h2, h3, h4, .headline, .large-title, .title-1, .title-2, .title-3 {
+      font-family: var(--font-heading);
+      color: var(--color-lead);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .large-title { font-size: 28px; letter-spacing: -0.01em; }
+    .title-1 { font-size: 24px; }
+    .title-2 { font-size: 21px; }
+    .title-3 { font-size: 18px; }
+    .headline { font-size: 18px; font-weight: 700; }
+    .subhead { font-size: 17px; font-weight: 600; }
+    .caption-1 { font-size: 15px; color: var(--color-lead-soft); }
+    .caption-2 { font-size: 13px; color: var(--color-lead-soft); }
+    .mono { font-family: var(--font-heading); font-weight: 700; letter-spacing: 0.04em; }
+
+    /* ── Hand-Drawn Wobbly Cards ── */
+    .card {
+      background: #ffffff;
+      border: 2.5px solid var(--color-lead);
+      border-radius: var(--wobbly-card);
+      box-shadow: var(--shadow-sketch);
+      position: relative;
+      overflow: visible;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      width: 100%;
+    }
+    .card-postit {
+      background: var(--color-postit);
+      border: 2.5px solid var(--color-lead);
+      border-radius: var(--wobbly-md);
+      box-shadow: var(--shadow-sketch);
+      transform: rotate(-0.5deg);
+    }
+    @media (min-width: 641px) {
+      .card-postit:hover {
+        transform: rotate(0deg) scale(1.01);
+      }
+    }
+
+    /* Decorative Tape & Thumbtack */
+    .tape-strip {
+      position: absolute;
+      top: -9px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-1.5deg);
+      width: 70px;
+      height: 20px;
+      background: var(--color-tape);
+      border: 1px dashed rgba(45, 45, 45, 0.4);
+      box-shadow: 1px 1px 2px rgba(0,0,0,0.06);
+      z-index: 5;
+      pointer-events: none;
+    }
+    .tape-strip-corner {
+      position: absolute;
+      top: -8px;
+      right: 14px;
+      width: 55px;
+      height: 18px;
+      background: var(--color-tape);
+      border: 1px dashed rgba(45, 45, 45, 0.35);
+      transform: rotate(10deg);
+      z-index: 5;
+      pointer-events: none;
+    }
+    .thumbtack {
+      position: absolute;
+      top: -9px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 16px;
+      height: 16px;
+      background: var(--color-marker-red);
+      border: 2px solid var(--color-lead);
+      border-radius: 50%;
+      box-shadow: 2px 2px 0px rgba(45,45,45,0.4);
+      z-index: 6;
+      pointer-events: none;
+    }
+    .thumbtack::after {
+      content: '';
+      position: absolute;
+      top: 3px; left: 3px;
+      width: 4px; height: 4px;
+      background: #fff;
+      border-radius: 50%;
+    }
+
+    /* ── Section Headers ── */
+    .section-header {
+      font-family: var(--font-heading);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--color-lead);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 6px 10px 4px;
+      margin-top: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      position: relative;
+    }
+    .section-header::after {
+      content: '';
+      position: absolute;
+      left: 10px; right: 10px; bottom: 2px;
+      height: 2px;
+      background: var(--color-lead);
+      border-radius: 2px;
+      opacity: 0.25;
+      transform: rotate(-0.5deg);
+    }
+    .section-header:first-child { margin-top: 0; }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      font-family: var(--font-heading);
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 7px 14px;
+      min-height: 40px;
+      background: #ffffff;
+      color: var(--color-lead);
+      border: 2px solid var(--color-lead);
+      border-radius: var(--wobbly-oval);
+      box-shadow: var(--shadow-sketch);
+      transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.15s ease, color 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .btn:hover {
+      background: var(--color-marker-red);
+      color: #ffffff;
+      transform: translate(1.5px, 1.5px);
+      box-shadow: var(--shadow-sketch-sm);
+    }
+    .btn:active {
+      transform: translate(3px, 3px);
+      box-shadow: 0px 0px 0px 0px var(--color-lead);
+    }
+    .btn-primary { background: var(--color-marker-red); color: #ffffff; }
+    .btn-primary:hover { background: #e02f2f; color: #ffffff; }
+    .btn-secondary { background: var(--color-erased-light); color: var(--color-lead); }
+    .btn-secondary:hover { background: var(--color-pen-blue); color: #ffffff; }
+    .btn-tinted { background: var(--color-postit); color: var(--color-lead); }
+    .btn-tinted:hover { background: var(--color-pen-blue); color: #ffffff; }
+    .btn-green { background: var(--color-safe-green); color: #ffffff; }
+    .btn-green:hover { background: #1b5e20; color: #ffffff; }
+    .btn-green-tint { background: var(--color-safe-wash); color: var(--color-safe-green); }
+    .btn-green-tint:hover { background: var(--color-safe-green); color: #ffffff; }
+    .btn-danger { background: var(--color-marker-red); color: #ffffff; }
+    .btn-danger:hover { background: #d32f2f; color: #ffffff; }
+    .btn-ghost {
+      background: transparent;
+      border: 1.5px dashed var(--color-lead);
+      color: var(--color-lead);
+      box-shadow: 1.5px 1.5px 0px var(--color-lead);
+    }
+    .btn-ghost:hover { background: var(--color-postit); color: var(--color-lead); }
+    .btn-sm { font-size: 13px; padding: 4px 8px; min-height: 32px; }
+    .btn-pill { border-radius: var(--wobbly-oval); }
+    .btn-sos {
+      background: var(--color-marker-red);
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 700;
+      border: 2.5px solid var(--color-lead);
+      box-shadow: 3px 3px 0px var(--color-lead);
+      animation: sketchJiggle 3s infinite;
+    }
+    .btn-sos:hover { background: #b91c1c; color: #ffffff; }
+    @keyframes sketchJiggle {
+      0%, 90%, 100% { transform: rotate(0deg); }
+      92% { transform: rotate(-2deg); }
+      96% { transform: rotate(2deg); }
+    }
+    .opacity-50 { opacity: 0.5; }
+
+    /* ── Segmented Control ── */
+    .segmented-control {
+      display: flex;
+      background: var(--color-erased);
+      border: 2px solid var(--color-lead);
+      border-radius: var(--wobbly-sm);
+      padding: 3px;
+      gap: 3px;
+      box-shadow: 2px 2px 0px rgba(45,45,45,0.15);
+      width: 100%;
+    }
+    .segmented-control .left-tab-btn {
+      flex: 1;
+      padding: 6px 4px;
+      border: 1.5px solid transparent;
+      background: transparent;
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--color-lead);
+      cursor: pointer;
+      border-radius: var(--wobbly-sm);
+      transition: all 0.15s ease;
+      min-height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      white-space: nowrap;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .segmented-control .left-tab-btn.seg-active {
+      background: #ffffff;
+      border: 2px solid var(--color-lead);
+      box-shadow: 2px 2px 0px var(--color-lead);
+      color: var(--color-marker-red);
+    }
+
+    /* ── Form Inputs & Selects ── */
+    .ios-input, .ios-select, .ios-textarea {
+      background: #ffffff;
+      border: 2px solid var(--color-lead);
+      border-radius: var(--wobbly-sm);
+      box-shadow: 2.5px 2.5px 0px rgba(45,45,45,0.12);
+      font-family: var(--font-body);
+      font-size: 17px;
+      color: var(--color-lead);
+      padding: 8px 12px;
+      min-height: 42px;
+      width: 100%;
+      box-sizing: border-box;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .ios-input:focus, .ios-select:focus, .ios-textarea:focus {
+      outline: none;
+      border-color: var(--color-pen-blue);
+      box-shadow: 3px 3px 0px var(--color-pen-blue);
+    }
+    .ios-select {
+      appearance: none;
+      -webkit-appearance: none;
+      padding-right: 30px;
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='10' viewBox='0 0 14 10'%3E%3Cpath d='M2 2l5 5 5-5' stroke='%232d2d2d' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+    }
+    .ios-textarea {
+      resize: vertical;
+      min-height: 75px;
+    }
+    .ios-checkbox {
+      width: 22px; height: 22px;
+      accent-color: var(--color-marker-red);
+      border: 2px solid var(--color-lead);
+      border-radius: 4px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .ios-range {
+      accent-color: var(--color-marker-red);
+      width: 100%;
+      cursor: pointer;
+    }
+
+    /* ── Hand-Drawn Chips ── */
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: var(--wobbly-oval);
+      background: #ffffff;
+      color: var(--color-lead);
+      border: 1.5px solid var(--color-lead);
+      box-shadow: 1.5px 1.5px 0px var(--color-lead);
+      cursor: pointer;
+      transition: transform 0.1s ease, background 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .chip:active {
+      transform: translate(1px, 1px);
+      box-shadow: 0px 0px 0px var(--color-lead);
+    }
+    .chip.chip-active {
+      background: var(--color-postit);
+      border-color: var(--color-lead);
+      color: var(--color-lead);
+    }
+    .chip-danger { background: var(--color-marker-red); color: #ffffff; }
+    .chip-safe { background: var(--color-safe-wash); color: var(--color-safe-green); }
+    .chip-warn { background: var(--color-caution-wash); color: var(--color-caution-orange); }
+
+    /* ── Grouped Rows ── */
+    .grouped-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      min-height: 44px;
+      gap: 10px;
+      border-bottom: 1.5px dashed var(--color-erased);
+    }
+    .grouped-row:last-child {
+      border-bottom: none;
+    }
+    .row-label {
+      font-size: 17px;
+      color: var(--color-lead);
+      font-weight: 600;
+    }
+
+    /* Mobile Responsive Optimizations (< 768px) */
+    @media (max-width: 768px) {
+      .grouped-row {
+        padding: 8px 10px;
+        min-height: 40px;
+      }
+      .grouped-row.select-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 5px;
+      }
+      .grouped-row.select-row .row-label {
+        font-size: 15px;
+      }
+      .ios-input, .ios-select, .ios-textarea {
+        font-size: 16px !important; /* Prevents iOS auto-zoom on focus */
+        min-height: 42px;
+        padding: 7px 10px;
+      }
+      .card {
+        border-radius: 14px !important;
+        transform: none !important;
+        box-shadow: 2px 2px 0px var(--color-lead) !important;
+      }
+      .card-postit {
+        transform: none !important;
+        border-radius: 14px !important;
+        box-shadow: 2px 2px 0px var(--color-lead) !important;
+      }
+      .card:hover, .card-postit:hover {
+        transform: none !important;
+      }
+      .tape-strip {
+        width: 48px;
+        height: 15px;
+        top: -7px;
+      }
+      .tape-strip-corner {
+        width: 42px;
+        height: 14px;
+        top: -6px;
+        right: 8px;
+      }
+      .section-header {
+        font-size: 14px;
+        margin-top: 10px;
+        padding: 4px 6px;
+      }
+      .app-header {
+        padding: env(safe-area-inset-top, 6px) 10px 6px 10px;
+      }
+      .brand-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+      }
+      .brand-text h1 {
+        font-size: 18px;
+      }
+      .header-actions {
+        gap: 5px;
+      }
+      .header-actions .btn {
+        font-size: 13px;
+        min-height: 34px;
+        padding: 4px 9px;
+        border-radius: 12px;
+      }
+    }
+
+    /* ── App Shell & Layout ── */
+    .app-shell {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* ── Header ── */
+    .app-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: var(--bg-paper);
+      border-bottom: 2.5px solid var(--color-lead);
+      box-shadow: 0 3px 0px 0px rgba(45,45,45,0.06);
+      padding: env(safe-area-inset-top, 0) 12px 0 12px;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 8px 0;
+      min-height: 48px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .brand-icon {
+      width: 36px; height: 36px;
+      border-radius: var(--wobbly-sm);
+      background: var(--color-marker-red);
+      border: 2px solid var(--color-lead);
+      box-shadow: 2px 2px 0px var(--color-lead);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-heading);
+      font-size: 19px; font-weight: 700; color: #fff;
+    }
+    .brand-text h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--color-lead);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      line-height: 1;
+    }
+    .brand-text p {
+      font-size: 13px;
+      color: var(--color-lead-soft);
+      font-family: var(--font-body);
+      margin-top: -1px;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    /* ── Content Grid ── */
+    .content-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding: 0;
+      width: 100%;
+    }
+    @media (min-width: 1024px) {
+      .content-grid {
+        display: grid;
+        grid-template-columns: 410px 1fr;
+        gap: 0;
+        padding: 0 16px;
+      }
+      .sidebar {
+        order: 1;
+        padding: 16px 16px 16px 0;
+        max-height: calc(100vh - 70px);
+        overflow-y: auto;
+      }
+      .main-col {
+        order: 2;
+        padding: 16px 0 16px 8px;
+      }
+    }
+
+    /* On mobile, map is placed first, tabs below */
+    @media (max-width: 1023px) {
+      .main-col {
+        order: 1;
+        width: 100%;
+      }
+      .sidebar {
+        order: 2;
+        width: 100%;
+        padding-bottom: 20px;
+      }
+      .desktop-bottom-grid {
+        display: none !important;
+      }
+    }
+
+    .tab-content-area {
+      padding: 0 12px 16px;
+    }
+    @media (min-width: 1024px) {
+      .tab-content-area { padding: 0; }
+    }
+    .left-tab-panel {
+      animation: sketchFade 0.2s ease-out;
+    }
+    @keyframes sketchFade {
+      from { opacity: 0; transform: translateY(3px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Route Cards ── */
+    .route-card {
+      padding: 12px 14px;
+      cursor: pointer;
+      border-bottom: 1.5px dashed var(--color-erased);
+      transition: background 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .route-card:last-child {
+      border-bottom: none;
+    }
+    .route-card:hover {
+      background: var(--color-erased-light);
+    }
+    .route-card.selected {
+      background: var(--color-postit);
+      border-left: 4px solid var(--color-lead);
+    }
+    .route-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+    .route-name {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--color-lead);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .route-dot {
+      width: 11px; height: 11px;
+      border-radius: 50%;
+      border: 1.5px solid var(--color-lead);
+      flex-shrink: 0;
+    }
+    .safety-badge {
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border: 1.5px solid var(--color-lead);
+      border-radius: var(--wobbly-oval);
+      box-shadow: 1px 1px 0px var(--color-lead);
+      white-space: nowrap;
+    }
+    .badge-safe { background: var(--color-safe-wash); color: var(--color-safe-green); }
+    .badge-warn { background: var(--color-caution-wash); color: var(--color-caution-orange); }
+    .badge-danger { background: #fee2e2; color: var(--color-marker-red); }
+
+    /* ── Feed & Haven Items ── */
+    .feed-item {
+      padding: 11px 14px;
+      cursor: pointer;
+      border-bottom: 1.5px dashed var(--color-erased);
+      transition: background 0.15s ease;
+    }
+    .feed-item:last-child { border-bottom: none; }
+    .feed-item:hover { background: var(--color-erased-light); }
+    
+    .haven-item {
+      padding: 12px 14px;
+      border-bottom: 1.5px dashed var(--color-erased);
+      transition: background 0.15s ease;
+    }
+    .haven-item:last-child { border-bottom: none; }
+    .haven-item.closest {
+      background: var(--color-safe-wash);
+      border-left: 4px solid var(--color-safe-green);
+    }
+
+    /* ── Map Section ── */
+    .map-section {
+      padding: 0 12px;
+      margin: 10px 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    @media (min-width: 1024px) {
+      .map-section { padding: 0; margin: 0 0 16px 0; }
+    }
+    .map-card {
+      background: #ffffff;
+      border: 2.5px solid var(--color-lead);
+      border-radius: var(--wobbly-card);
+      box-shadow: var(--shadow-sketch);
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+    }
+    .map-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      padding: 8px 10px;
+      border-bottom: 2px solid var(--color-lead);
+      background: #fffdfa;
+    }
+    .map-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 6px;
+      padding: 6px 10px;
+      background: var(--color-erased-light);
+      border-bottom: 2px solid var(--color-lead);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .map-toolbar::-webkit-scrollbar { display: none; }
+    .map-toolbar-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    
+    #leafletMap {
+      width: 100%;
+      height: 420px;
+      min-height: 280px;
+      background: #e5e0d8;
+      position: relative;
+      z-index: 1;
+      transition: height 0.25s ease;
+    }
+    @media (max-width: 768px) {
+      #leafletMap {
+        height: 235px;
+        min-height: 190px;
+      }
+      #leafletMap.map-expanded {
+        height: 420px !important;
+      }
+    }
+
+    /* Warm Paper Map Filter */
+    .leaflet-tile {
+      filter: sepia(0.18) saturate(1.1) brightness(0.98) contrast(1.02);
+    }
+    
+    /* Hand-Drawn Leaflet Controls */
+    .leaflet-control-zoom {
+      border: 2px solid var(--color-lead) !important;
+      border-radius: var(--wobbly-sm) !important;
+      box-shadow: 2.5px 2.5px 0px var(--color-lead) !important;
+      overflow: hidden;
+    }
+    .leaflet-control-zoom a {
+      background: #ffffff !important;
+      color: var(--color-lead) !important;
+      font-family: var(--font-heading) !important;
+      font-weight: 700 !important;
+      border-bottom: 1.5px solid var(--color-lead) !important;
+    }
+    .leaflet-control-zoom a:hover {
+      background: var(--color-postit) !important;
+    }
+
+    /* Hand-Drawn Leaflet Popups */
+    .leaflet-popup-content-wrapper {
+      background: var(--color-postit) !important;
+      color: var(--color-lead) !important;
+      border: 2.5px solid var(--color-lead) !important;
+      border-radius: var(--wobbly-sm) !important;
+      box-shadow: 3px 3px 0px var(--color-lead) !important;
+      padding: 2px !important;
+      font-family: var(--font-body) !important;
+    }
+    .leaflet-popup-tip {
+      background: var(--color-postit) !important;
+      border: 2px solid var(--color-lead) !important;
+    }
+    .leaflet-popup-content {
+      margin: 8px 10px !important;
+      font-size: 15px !important;
+      line-height: 1.35 !important;
+    }
+
+    /* Custom Hand-Drawn Markers */
+    .leaflet-marker-icon.risk-marker-high,
+    .leaflet-marker-icon.risk-marker-medium,
+    .leaflet-marker-icon.haven-marker,
+    .leaflet-marker-icon.sister-marker,
+    .leaflet-marker-icon.traveler-marker {
+      background: none !important;
+      border: none !important;
+    }
+    .marker-pin {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: #fff;
+      border: 2px solid var(--color-lead);
+      box-shadow: 2px 2px 0px var(--color-lead);
+      border-radius: var(--wobbly-circle);
+      transition: transform 0.2s ease;
+    }
+    .marker-pin:hover {
+      transform: scale(1.15);
+    }
+    .marker-pin.risk-high {
+      width: 28px; height: 28px;
+      background: var(--color-marker-red);
+      font-size: 15px;
+      animation: markerPulse 2s infinite;
+    }
+    .marker-pin.risk-medium {
+      width: 26px; height: 26px;
+      background: var(--color-caution-orange);
+      font-size: 14px;
+    }
+    .marker-pin.haven {
+      width: 30px; height: 30px;
+      background: var(--color-safe-green);
+      font-size: 15px;
+    }
+    .marker-pin.sister {
+      width: 22px; height: 22px;
+      background: var(--color-sister-pink);
+      font-size: 11px;
+    }
+    .marker-pin.traveler {
+      width: 34px; height: 34px;
+      background: var(--color-pen-blue);
+      border: 2px solid var(--color-lead);
+      box-shadow: 2.5px 2.5px 0px var(--color-lead);
+      font-size: 12px;
+    }
+    @keyframes markerPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+    }
+
+    /* ── Walk Progress ── */
+    .progress-bar-track {
+      height: 7px;
+      background: var(--color-erased);
+      border: 1.5px solid var(--color-lead);
+      border-radius: var(--wobbly-oval);
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--color-safe-green);
+      border-right: 2px solid var(--color-lead);
+      transition: width 0.3s ease;
+      width: 0;
+    }
+
+    /* ── Modals ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      background: rgba(45, 45, 45, 0.6);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 0;
+      animation: modalFadeIn 0.2s ease-out;
+    }
+    @media (min-width: 640px) {
+      .modal-overlay {
+        align-items: center;
+        padding: 20px;
+      }
+    }
+    @keyframes modalFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .modal-sheet {
+      background: var(--bg-paper);
+      background-image: radial-gradient(var(--color-erased) 1.5px, transparent 1.5px);
+      background-size: 20px 20px;
+      border: 2.5px solid var(--color-lead);
+      border-radius: 20px 20px 0 0;
+      width: 100%;
+      max-width: 520px;
+      max-height: 88vh;
+      overflow-y: auto;
+      box-shadow: var(--shadow-sketch-modal);
+      position: relative;
+      animation: modalSlideUp 0.25s ease-out;
+      padding-bottom: env(safe-area-inset-bottom, 16px);
+    }
+    @media (min-width: 640px) {
+      .modal-sheet {
+        border-radius: var(--wobbly-card);
+      }
+    }
+    @keyframes modalSlideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+    .modal-grabber {
+      width: 40px;
+      height: 5px;
+      border-radius: var(--wobbly-oval);
+      background: var(--color-lead);
+      margin: 8px auto 4px;
+      opacity: 0.3;
+    }
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px 8px;
+      border-bottom: 2px solid var(--color-lead);
+    }
+    .modal-body {
+      padding: 14px 16px;
+    }
+    .modal-fullscreen {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      animation: modalFadeIn 0.2s;
+    }
+
+    /* ── Toast Sticky Note ── */
+    .toast-banner {
+      position: fixed;
+      top: calc(env(safe-area-inset-top, 10px) + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 45;
+      background: var(--color-postit);
+      border: 2px solid var(--color-lead);
+      border-radius: var(--wobbly-sm);
+      padding: 8px 14px;
+      box-shadow: var(--shadow-sketch);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      max-width: 380px;
+      width: calc(100% - 24px);
+      animation: toastIn 0.3s ease-out;
+    }
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+      to { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+    .toast-icon { font-size: 22px; flex-shrink: 0; }
+    .toast-content { flex: 1; }
+    .toast-title { font-family: var(--font-heading); font-size: 15px; font-weight: 700; color: var(--color-lead); }
+    .toast-message { font-size: 14px; color: var(--color-lead-soft); margin-top: 1px; }
+
+    /* ── Mobile Tab Bar (5-tab App Nav) ── */
+    .tab-bar {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 40;
+      background: var(--bg-paper);
+      border-top: 2.5px solid var(--color-lead);
+      box-shadow: 0 -3px 0px rgba(45,45,45,0.06);
+      padding: 3px 0 env(safe-area-inset-bottom, 8px) 0;
+    }
+    .tab-bar-inner {
+      display: flex;
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 0 4px;
+      width: 100%;
+    }
+    .mobile-nav-btn {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      padding: 4px 1px;
+      min-height: 50px;
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--color-lead-soft);
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+      position: relative;
+    }
+    .mobile-nav-btn .nav-icon { font-size: 21px; line-height: 1; }
+    .mobile-nav-btn.active {
+      color: var(--color-marker-red);
+      transform: translateY(-1px);
+    }
+    .mobile-nav-btn.active span:last-child {
+      border-bottom: 2px solid var(--color-marker-red);
+    }
+    @media (max-width: 1023px) {
+      .tab-bar { display: block; }
+      body { padding-bottom: calc(72px + env(safe-area-inset-bottom, 8px)) !important; }
+      .desktop-only { display: none !important; }
+    }
+    @media (min-width: 1024px) {
+      .mobile-only { display: none !important; }
+    }
+
+    /* ── Stealth Decoy ── */
+    .stealth-overlay {
+      background: #fffdf5;
+      background-image: repeating-linear-gradient(#fffdf5, #fffdf5 31px, #d1d5db 32px);
+      color: var(--color-lead);
+    }
+
+    /* ── Bottom Section Grid ── */
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      padding: 0 12px 20px;
+    }
+    @media (min-width: 768px) {
+      .bottom-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* ── Utilities ── */
+    .flex { display: flex; }
+    .flex-col { flex-direction: column; }
+    .items-center { align-items: center; }
+    .justify-between { justify-content: space-between; }
+    .gap-4 { gap: 4px; } .gap-6 { gap: 6px; } .gap-8 { gap: 8px; } .gap-12 { gap: 12px; }
+    .flex-1 { flex: 1; }
+    .shrink-0 { flex-shrink: 0; }
+    .truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .text-center { text-align: center; }
+    .mt-4 { margin-top: 4px; } .mt-8 { margin-top: 8px; } .mt-12 { margin-top: 12px; }
+    .mb-8 { margin-bottom: 8px; } .mb-12 { margin-bottom: 12px; }
+    .w-full { width: 100%; }
+
+    /* Custom Sketch Scrollbars */
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: var(--color-erased); }
+    ::-webkit-scrollbar-thumb { background: var(--color-lead); border-radius: 4px; }
+
+    /* ================================================================
+       REALISTIC NATIVE SMARTPHONE CALL UI (Normal Phone App Interface)
+       ================================================================ */
+    .native-phone-wrapper {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: #000000;
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Roboto", "Helvetica Neue", sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: env(safe-area-inset-top, 36px) 20px env(safe-area-inset-bottom, 32px);
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+      user-select: none;
+    }
+    
+    .native-call-top {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .native-caller-tag {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.6);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .native-caller-name {
+      font-size: 32px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin: 0;
+      line-height: 1.2;
+    }
+    .native-caller-sub {
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 4px;
+    }
+    .native-call-status {
+      font-size: 15px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.9);
+      margin-top: 8px;
+    }
+    .native-call-status.connected {
+      color: #34c759;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Caller Preset Switcher */
+    .native-preset-bar {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin: 14px auto 0;
+      max-width: 320px;
+    }
+    .native-preset-btn {
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 12px;
+      border-radius: 100px;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: background 0.15s;
+    }
+    .native-preset-btn.active {
+      background: rgba(255, 255, 255, 0.35);
+      font-weight: 600;
+    }
+
+    /* In-Call Keypad / Controls Grid */
+    .native-incall-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px 12px;
+      max-width: 320px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .native-control-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: none;
+      color: #ffffff;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .native-circle-btn {
+      width: 66px;
+      height: 66px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #ffffff;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .native-circle-btn:active {
+      transform: scale(0.92);
+      background: rgba(255, 255, 255, 0.25);
+    }
+    .native-circle-btn.btn-active-white {
+      background: #ffffff;
+      color: #000000;
+    }
+    .native-control-label {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    /* Bottom Action Area */
+    .native-call-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      max-width: 300px;
+      margin: 0 auto 12px;
+      width: 100%;
+    }
+    .native-call-action-btn {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      color: #ffffff;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+      transition: transform 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .native-call-action-btn:active {
+      transform: scale(0.9);
+    }
+    .native-btn-decline {
+      background: #ff3b30;
+    }
+    .native-btn-accept {
+      background: #34c759;
+      animation: nativeRingPulse 1.8s infinite;
+    }
+    @keyframes nativeRingPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); box-shadow: 0 0 24px rgba(52, 199, 89, 0.7); }
+    }
+    .native-btn-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.8);
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    /* Dialogue Prompter */
+    .native-voice-card {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(25px);
+      border-radius: 14px;
+      padding: 12px 16px;
+      max-width: 320px;
+      margin: 12px auto 0;
+      text-align: left;
+      border: 0.5px solid rgba(255, 255, 255, 0.2);
+    }
+    .native-voice-title {
+      font-size: 11px;
+      font-weight: 600;
+      color: #34c759;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+    .native-voice-text {
+      font-size: 14px;
+      color: #ffffff;
+      line-height: 1.45;
+      margin-top: 5px;
+      font-style: italic;
+    }
+    .native-voice-hint {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.55);
+      margin-top: 5px;
+    }
+  </style>
 </head>
-<body style="background:#0d0914; color:#fff; font-family:sans-serif; display:flex; align-items:center; justify-content:center; height:100vh; margin:0;">
-  <div style="text-align:center;">
-    <h1 style="font-size:24px; margin-bottom:8px;">AURA // SafeRoute</h1>
-    <p style="color:#f472b6;">Redirecting to crowd-verified safety map...</p>
-    <a href="aura_by_women_for_women_crowd_verified_safety_map_r_algorithm_safe_router.html" style="color:#38bdf8;">Click here if not redirected automatically</a>
+<body>
+<div class="app-shell">
+
+<!-- ========== CITY PICKER MODAL ========== -->
+<div id="cityPickerModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-label="Choose your region">
+  <div class="modal-sheet">
+    <div class="tape-strip"></div>
+    <div class="modal-grabber"></div>
+    <div class="modal-header">
+      <div>
+        <div class="headline">✏️ Focus Your Region</div>
+        <div class="caption-1 mt-4">The safety map auto-zooms to your neighborhood.</div>
+      </div>
+      <button id="closeCityPickerBtn" class="btn btn-ghost btn-sm" aria-label="Close">Done ✕</button>
+    </div>
+    <div class="modal-body" style="padding-top: 10px;">
+      <div style="position:relative; margin-bottom: 10px;">
+        <input id="citySearchInput" type="text" placeholder="Search city, area, or country…" class="ios-input" style="padding-right: 65px;" />
+        <button id="citySearchBtn" class="btn btn-primary btn-sm" style="position:absolute; right:4px; top:4px; min-height:34px;">Go</button>
+      </div>
+      <div class="flex gap-4 mb-8">
+        <button id="filterAllCitiesBtn" class="chip chip-active">All</button>
+        <button id="filterIndiaCitiesBtn" class="chip">🇮🇳 India</button>
+        <button id="filterWorldCitiesBtn" class="chip">🌐 Global</button>
+      </div>
+      <div class="card" style="border-radius: var(--wobbly-sm); overflow:hidden;">
+        <div id="cityOptionsList" style="max-height: 250px; overflow-y: auto;"></div>
+      </div>
+      <div class="flex gap-6 mt-12">
+        <button id="retryGeoBtn" class="btn btn-primary flex-1">📍 Auto-Detect GPS</button>
+        <button id="closeCityPickerAltBtn" class="btn btn-secondary">Dismiss</button>
+      </div>
+    </div>
   </div>
+</div>
+
+<!-- ========== STEALTH DECOY ========== -->
+<div id="stealthDecoyModal" class="hidden modal-fullscreen stealth-overlay" role="dialog" aria-modal="true">
+  <div style="padding: 20px 16px; max-width: 600px; width: 100%; flex: 1; display: flex; flex-direction: column;">
+    <div class="card" style="background:#fff9c4; padding: 12px 16px; margin-bottom: 16px; display:flex; align-items:center; justify-content:space-between;">
+      <div class="flex items-center gap-6">
+        <span style="font-size:22px">📒</span>
+        <div>
+          <span style="font-family:var(--font-heading);font-weight:700;font-size:16px;color:#78350f">Kitchen & Grocery Notes</span>
+          <div style="font-size:12px;color:#92400e">Auto-saved to cloud notepad</div>
+        </div>
+      </div>
+      <button id="exitStealthBtn" class="btn btn-sm" style="background:#d97706;color:#fff;min-height:30px;">Unlock AURA 🔓</button>
+    </div>
+    
+    <div class="card" style="background:var(--color-safe-wash); border:2px dashed var(--color-safe-green); padding:10px 14px; margin-bottom:14px; display:flex; align-items:center; justify-content:space-between; gap:6px;">
+      <span style="font-size:14px;color:#065f46;">🔒 <strong>Silent Escort Active:</strong> GPS beacon running in background.</span>
+      <button id="stealthSilentSOSBtn" class="btn btn-sm btn-green" style="min-height:32px;">Silent SOS</button>
+    </div>
+    
+    <h2 style="font-size:22px;font-weight:700;color:var(--color-lead);margin-bottom:10px;">Paneer Butter Masala & Dal Tadka</h2>
+    <ul style="padding-left:20px;font-size:18px;color:var(--color-lead);line-height:2;">
+      <li>☐ 400g fresh malai paneer (cubed, soaked in warm salted water)</li>
+      <li>☐ 5 ripe Roma tomatoes + 2 Kashmiri dry chilies + 12 soaked cashews</li>
+      <li>☐ 1 tbsp ginger-garlic paste, 1 tsp kasuri methi (crushed)</li>
+      <li>☐ Collect laundry from 12th Main dry cleaners before 7:30 PM</li>
+    </ul>
+    
+    <textarea class="ios-textarea" style="margin-top:16px;flex:1;min-height:100px;background:#ffffff;font-size:18px;" placeholder="Write notes or grocery list here…">Remember to pick up filter coffee powder, roasted almonds, and oat milk.</textarea>
+  </div>
+</div>
+
+<!-- ========== REALISTIC NATIVE SMARTPHONE CALL UI ========== -->
+<div id="fakeCallModal" class="hidden native-phone-wrapper" role="dialog" aria-modal="true" aria-label="Incoming Phone Call">
+  <!-- Top: Caller Info -->
+  <div class="native-call-top">
+    <div class="native-caller-tag">AURA Secure Escort Call</div>
+    <h2 id="fakeCallerTitle" class="native-caller-name">Dad (Waiting at Gate)</h2>
+    <p id="fakeCallerSubtitle" class="native-caller-sub">+91 98450 ••••21</p>
+    <div id="fakeCallTimerText" class="native-call-status">Ringing…</div>
+
+    <!-- Caller Presets -->
+    <div class="native-preset-bar">
+      <button data-caller="Dad (Waiting at Gate)" class="caller-preset-btn native-preset-btn active">Dad</button>
+      <button data-caller="Priya (Roommate)" class="caller-preset-btn native-preset-btn">Priya</button>
+      <button data-caller="Pink Hoysala Police #14" class="caller-preset-btn native-preset-btn">Police 112</button>
+    </div>
+  </div>
+
+  <!-- Middle: In-Call Controls Grid -->
+  <div id="nativeInCallControls" class="hidden" style="margin: 16px 0;">
+    <div class="native-incall-grid">
+      <div class="native-control-item">
+        <div class="native-circle-btn">🎤</div>
+        <span class="native-control-label">mute</span>
+      </div>
+      <div class="native-control-item">
+        <div class="native-circle-btn">🔢</div>
+        <span class="native-control-label">keypad</span>
+      </div>
+      <div class="native-control-item">
+        <div class="native-circle-btn btn-active-white">🔊</div>
+        <span class="native-control-label">speaker</span>
+      </div>
+      <div class="native-control-item">
+        <div class="native-circle-btn">➕</div>
+        <span class="native-control-label">add call</span>
+      </div>
+      <div class="native-control-item">
+        <div class="native-circle-btn">📹</div>
+        <span class="native-control-label">FaceTime</span>
+      </div>
+      <div class="native-control-item">
+        <div class="native-circle-btn">👤</div>
+        <span class="native-control-label">contacts</span>
+      </div>
+    </div>
+
+    <!-- Live Audio Prompter -->
+    <div class="native-voice-card">
+      <div class="native-voice-title">● LIVE AUDIO PROMPT (ON SPEAKER)</div>
+      <p id="fakeCallVoicePrompt" class="native-voice-text">"Hey beta, I can see your live GPS dot right now on AURA. I'm standing outside the main gate with security. Just stay on the phone."</p>
+      <p class="native-voice-hint">Tip: Say aloud: <em>"Yes Dad, I see the gate right ahead, walking up in 30 seconds."</em></p>
+    </div>
+  </div>
+
+  <!-- Ringing Avatar -->
+  <div id="nativeRingingAvatar" style="text-align: center; margin: 20px 0;">
+    <div style="width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, #1c1c1e, #2c2c2e); border: 2px solid rgba(255,255,255,0.2); display: inline-flex; align-items: center; justify-content: center; font-size: 40px; box-shadow: 0 10px 24px rgba(0,0,0,0.6);">
+      👤
+    </div>
+  </div>
+
+  <!-- Bottom: Call Actions -->
+  <div>
+    <!-- Ringing Actions -->
+    <div id="nativeRingingActions" class="native-call-actions">
+      <div style="display:flex; flex-direction:column; align-items:center;">
+        <button id="endFakeCallBtn" class="native-call-action-btn native-btn-decline" aria-label="Decline call">✕</button>
+        <span class="native-btn-label">Decline</span>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:center;">
+        <button id="answerFakeCallBtn" class="native-call-action-btn native-btn-accept" aria-label="Accept call">📞</button>
+        <span class="native-btn-label">Accept</span>
+      </div>
+    </div>
+
+    <!-- In-Call Actions -->
+    <div id="nativeConnectedActions" class="hidden" style="text-align: center;">
+      <button id="hangupInCallBtn" class="native-call-action-btn native-btn-decline" style="margin: 0 auto;" aria-label="End Call">✕</button>
+      <div class="native-btn-label" style="margin-top: 6px;">End Call</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SOS SAFETY SHIELD MODAL ========== -->
+<div id="sosModal" class="hidden modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal-sheet" style="max-width:480px;">
+    <div class="thumbtack"></div>
+    <div style="padding:18px 16px;">
+      <div class="flex items-center justify-between mb-12">
+        <div class="flex items-center gap-8">
+          <div style="width:42px;height:42px;border-radius:var(--wobbly-circle);background:var(--color-marker-red);border:2px solid var(--color-lead);box-shadow:2px 2px 0px var(--color-lead);display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;">🚨</div>
+          <div>
+            <div class="caption-1" style="color:var(--color-marker-red);font-weight:700;text-transform:uppercase;letter-spacing:0.04em;">EMERGENCY SHIELD</div>
+            <div class="headline" style="font-size:17px;">Safety Shield Dispatch</div>
+          </div>
+        </div>
+        <button id="closeSosModalBtn" class="btn btn-secondary btn-sm">I'm Safe ✓</button>
+      </div>
+      
+      <div id="sosCountdownBox" class="hidden card" style="background:#fee2e2;border:2px solid var(--color-marker-red);padding:12px;text-align:center;margin-bottom:12px;">
+        <p style="font-family:var(--font-heading);font-size:14px;font-weight:700;color:var(--color-marker-red);text-transform:uppercase;">🚨 Auto-Dispatching In</p>
+        <p id="sosCountdownNumber" style="font-family:var(--font-heading);font-size:46px;font-weight:700;color:var(--color-lead);line-height:1;">3</p>
+        <button id="cancelSosDispatchBtn" class="btn btn-secondary btn-sm mt-8">Cancel — False Alarm</button>
+      </div>
+      
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
+        <div class="card" style="padding:10px;background:#ffffff;border-radius:var(--wobbly-sm);">
+          <div class="flex items-center justify-between" style="font-size:13px;font-weight:700;color:var(--color-marker-red);font-family:var(--font-heading);">
+            <span>📡 Live GPS</span><span id="sosCoordDisplay" class="mono" style="font-size:11px;">12.9716° N</span>
+          </div>
+          <p style="font-size:13px;color:var(--color-lead-soft);margin-top:3px;">Broadcasting to 3 contacts + nearby sisters.</p>
+        </div>
+        <div class="card" style="padding:10px;background:var(--color-safe-wash);border-radius:var(--wobbly-sm);">
+          <div class="flex items-center justify-between" style="font-size:13px;font-weight:700;color:var(--color-safe-green);font-family:var(--font-heading);">
+            <span>🛡️ Safe Haven</span><span id="sosNearestHavenDist" class="mono" style="font-size:11px;">140m</span>
+          </div>
+          <p id="sosNearestHavenName" style="font-size:13px;color:var(--color-lead-soft);margin-top:3px;">Sisterhood 24/7 Café</p>
+        </div>
+      </div>
+      
+      <div class="card mb-12" style="padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-radius:var(--wobbly-sm);">
+        <div>
+          <div class="subhead" style="font-size:16px;">🔊 Acoustic Distress Siren</div>
+          <div class="caption-1" style="font-size:13px;">Piercing synthesized alarm to attract help</div>
+        </div>
+        <button id="toggleSirenBtn" class="btn btn-danger btn-sm">🔊 Siren</button>
+      </div>
+      
+      <div class="card card-postit" style="padding:12px 14px;border:2px dashed var(--color-lead);">
+        <div class="flex items-center justify-between">
+          <div>
+            <div class="caption-1" style="font-family:var(--font-heading);font-weight:700;text-transform:uppercase;color:var(--color-sister-pink);font-size:13px;">Emergency Safe Ride Voucher</div>
+            <div style="font-size:16px;font-weight:700;margin-top:3px;">Code: <span class="mono" style="color:var(--color-sister-pink);background:#fff;padding:2px 6px;border:1.5px solid var(--color-lead);border-radius:4px;">SISTER-SAFE-100</span></div>
+          </div>
+          <button id="copyVoucherBtn" class="btn btn-primary btn-sm">Copy ✂️</button>
+        </div>
+        <div style="font-size:12px;color:var(--color-lead-soft);margin-top:5px;">100% sponsored by Bangalore Mahila Guild for emergency cab pickup.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TOAST NOTIFICATION ========== -->
+<div id="toastBanner" class="hidden toast-banner" role="alert" aria-live="polite">
+  <span id="toastIcon" class="toast-icon">✏️</span>
+  <div class="toast-content">
+    <div id="toastTitle" class="toast-title">Updated</div>
+    <div id="toastMessage" class="toast-message">R-Algorithm recalculated.</div>
+  </div>
+  <button id="toastCloseBtn" style="background:none;border:none;font-family:var(--font-heading);font-size:18px;font-weight:700;cursor:pointer;padding:2px 6px;color:var(--color-lead);">✕</button>
+</div>
+
+<!-- ========== HEADER (Mobile & Desktop Responsive) ========== -->
+<header class="app-header">
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-icon">A</div>
+      <div class="brand-text">
+        <h1>AURA ✏️</h1>
+        <p class="desktop-only">Crowd-Verified Women's Safety • R-Algorithm</p>
+      </div>
+    </div>
+    
+    <!-- Time Segmented Control (desktop only) -->
+    <div class="segmented-control desktop-only" style="min-width: 190px;">
+      <button data-time="day" class="time-filter-btn left-tab-btn">☀️ Day</button>
+      <button data-time="evening" class="time-filter-btn left-tab-btn">🌆 Eve</button>
+      <button data-time="night" class="time-filter-btn left-tab-btn seg-active">🌙 Night</button>
+    </div>
+    
+    <!-- Actions (Available on both Mobile & Desktop) -->
+    <div class="header-actions">
+      <button id="findNearestHavenBtn" class="btn btn-green-tint btn-sm desktop-only">🛡️ Safe Spot</button>
+      <button id="openFakeCallBtn" class="btn btn-secondary btn-sm" title="Realistic Fake Call">📞 <span>Call</span></button>
+      <button id="openStealthBtn" class="btn btn-secondary btn-sm" title="Stealth Decoy Notepad">🕶️ <span>Decoy</span></button>
+      <button id="openSosBtn" class="btn btn-sos btn-sm">🚨 SOS</button>
+    </div>
+  </div>
+</header>
+
+<!-- ========== MAIN CONTENT ========== -->
+<main style="flex:1;">
+  <div class="content-grid">
+
+    <!-- ═══ MAP COLUMN (At top on Mobile, Right side on Desktop) ═══ -->
+    <div class="main-col">
+      <div class="map-section">
+        <div class="map-card">
+          <div class="tape-strip-corner"></div>
+          <!-- Map Top Bar -->
+          <div class="map-top-bar">
+            <button id="openChangeRegionBtn" class="btn btn-ghost btn-sm" style="gap:4px;min-height:30px;font-size:13px;padding:3px 8px;max-width:160px;">
+              🌍 <span id="currentRegionLabel" class="truncate">Bengaluru (Zoomed)</span> ▾
+            </button>
+            <div class="flex gap-4">
+              <button id="toggleMapSizeBtn" class="btn btn-ghost btn-sm mobile-only" style="min-height:30px;padding:3px 8px;font-size:12px;">⤢ Map</button>
+              <button id="locateMeBtn" class="btn btn-secondary btn-sm" style="min-height:30px;padding:3px 8px;font-size:12px;">📍 Locate</button>
+              <button id="mapClickModeBtn" class="btn btn-tinted btn-sm" style="min-height:30px;padding:3px 8px;font-size:12px;">📌 Pin</button>
+            </div>
+          </div>
+          
+          <!-- Map Toolbar / Layers -->
+          <div class="map-toolbar">
+            <div class="map-toolbar-group">
+              <button id="toggleHeatmapLayerBtn" class="chip chip-danger" style="font-size:11px;padding:3px 8px;"><span>🔥</span><span>Heatmap: ON</span></button>
+              <button id="toggleHavensLayerBtn" class="chip chip-safe" style="font-size:11px;padding:3px 8px;"><span>🛡️</span><span>Havens: ON</span></button>
+              <button id="toggleSistersLayerBtn" class="chip" style="font-size:11px;padding:3px 8px;background:var(--color-sister-wash);color:var(--color-sister-pink);"><span>👩</span><span>Sisters: ON</span></button>
+            </div>
+            <!-- Mobile Lighting Switch in Toolbar -->
+            <div class="map-toolbar-group mobile-only" style="margin-left:auto;border-left:1.5px dashed var(--color-lead);padding-left:6px;gap:4px;">
+              <button data-time="night" class="chip chip-active time-filter-btn" style="font-size:11px;padding:3px 7px;">🌙 Night</button>
+              <button data-time="evening" class="chip time-filter-btn" style="font-size:11px;padding:3px 7px;">🌆 Eve</button>
+              <button data-time="day" class="chip time-filter-btn" style="font-size:11px;padding:3px 7px;">☀️ Day</button>
+            </div>
+          </div>
+
+          <!-- Leaflet Canvas -->
+          <div id="leafletMap"></div>
+
+          <!-- Sketched Map Legend -->
+          <div style="padding:6px 10px;border-top:2px solid var(--color-lead);display:flex;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--color-lead);background:var(--bg-paper);">
+            <span class="flex items-center gap-4"><span style="width:9px;height:9px;border-radius:50%;background:var(--color-safe-green);border:1px solid #2d2d2d;"></span> Safe</span>
+            <span class="flex items-center gap-4"><span style="width:14px;height:3px;border-radius:2px;background:var(--color-safe-green);border:1px solid #2d2d2d;"></span> R-Safe</span>
+            <span class="flex items-center gap-4"><span style="width:14px;height:3px;border-radius:2px;background:var(--color-caution-orange);border:1px solid #2d2d2d;"></span> Balanced</span>
+            <span class="flex items-center gap-4"><span style="width:14px;height:2.5px;border-bottom:2px dashed var(--color-marker-red);"></span> Shortcut</span>
+            <span class="flex items-center gap-4"><span style="width:9px;height:9px;border-radius:50%;background:var(--color-marker-red);border:1px solid #2d2d2d;"></span> Risk</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desktop-Only Bottom Grid (On mobile, this is in the 💬 Community Tab) -->
+      <div class="bottom-grid desktop-bottom-grid" style="margin-top: 10px;">
+        <!-- Left: Live Warnings Feed -->
+        <div>
+          <div class="section-header" style="margin-top:0;">Live Women's Reports</div>
+          <div class="card" style="overflow:hidden;">
+            <div class="grouped-row" style="background:#fffdfa;">
+              <div class="headline" style="font-size:15px;">Verified Community Notes</div>
+              <select id="feedFilterSelectDesktop" class="ios-select" style="max-width:130px;min-height:32px;font-size:13px;padding:3px 24px 3px 6px;" aria-label="Filter">
+                <option value="all">All Spots</option>
+                <option value="high">🔴 High Risk</option>
+                <option value="safe">🟢 Safe Only</option>
+              </select>
+            </div>
+            <div id="communityFeedListDesktop" style="max-height:260px;overflow-y:auto;"></div>
+          </div>
+        </div>
+
+        <!-- Right: By Women, For Women Mission Note -->
+        <div>
+          <div class="section-header" style="margin-top:0;">♀ Sisterhood Fund</div>
+          <div class="card card-postit">
+            <div class="thumbtack"></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;text-align:center;padding:12px 10px;border-bottom:1.5px dashed var(--color-lead);">
+              <div>
+                <div style="font-family:var(--font-heading);font-size:24px;font-weight:700;color:var(--color-marker-red);" class="statTotalPins">1,428</div>
+                <div class="caption-1">Pins</div>
+              </div>
+              <div>
+                <div style="font-family:var(--font-heading);font-size:24px;font-weight:700;color:var(--color-safe-green);" class="statSafeHavens">64</div>
+                <div class="caption-1">Havens</div>
+              </div>
+              <div>
+                <div style="font-family:var(--font-heading);font-size:24px;font-weight:700;color:var(--color-caution-orange);">₹18.4L</div>
+                <div class="caption-1">Pool</div>
+              </div>
+            </div>
+            <div style="padding:10px 14px;border-bottom:1.5px dashed var(--color-lead);">
+              <div class="subhead" style="font-size:15px;">🏛️ Women Sponsors</div>
+              <p class="caption-1 mt-4">Namma Mahila Doctors Guild (24/7 clinic lounges), SheCodes BLR (night cab vouchers), Women's Café Network.</p>
+            </div>
+            <div class="flex items-center justify-between" style="padding:10px 14px;">
+              <span class="caption-1">Sponsor solar lights or cab vouchers?</span>
+              <button class="pledgeSponsorBtn btn btn-primary btn-sm btn-pill">♀ Pledge</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- main-col -->
+
+    <!-- ═══ SIDEBAR / TAB DRAWER (Under Map on Mobile, Left on Desktop) ═══ -->
+    <div class="sidebar" id="leftPanelSection">
+
+      <!-- Mobile Active Panel Header & Jump-to-Map -->
+      <div class="mobile-only flex items-center justify-between" style="padding: 6px 12px 6px;">
+        <span id="mobileActivePanelTitle" style="font-family:var(--font-heading);font-weight:700;font-size:13px;color:var(--color-marker-red);text-transform:uppercase;letter-spacing:0.04em;">🧭 Route Planner</span>
+        <button id="scrollToMapBtn" class="btn btn-ghost btn-sm" style="font-size:11px;min-height:26px;padding:2px 8px;">↑ Back to Map</button>
+      </div>
+
+      <!-- Desktop Tab Segmented Control -->
+      <div class="desktop-only" style="padding: 4px 16px 12px;">
+        <div class="segmented-control" role="tablist">
+          <button data-tab="router" class="left-tab-btn seg-active" role="tab" aria-selected="true">🧭 Route</button>
+          <button data-tab="pin" class="left-tab-btn" role="tab" aria-selected="false">📍 Report</button>
+          <button data-tab="havens" class="left-tab-btn" role="tab" aria-selected="false">🛡️ Havens</button>
+          <button data-tab="toolkit" class="left-tab-btn" role="tab" aria-selected="false">⚡ Tools</button>
+        </div>
+      </div>
+
+      <div class="tab-content-area">
+
+        <!-- ══ TAB 1: ROUTE PLANNER ══ -->
+        <div id="tab-router" class="left-tab-panel" role="tabpanel">
+          <div class="section-header" style="margin-top:0;">
+            <span>R-Algorithm v3.4 · <strong id="activeTimeBadge" style="color:var(--color-marker-red)">Late Night</strong></span>
+          </div>
+          
+          <div class="card mb-12">
+            <div class="tape-strip"></div>
+            <div class="grouped-row select-row">
+              <div class="flex items-center gap-6">
+                <span style="width:10px;height:10px;border-radius:50%;background:var(--color-pen-blue);border:1.5px solid var(--color-lead);"></span>
+                <label class="row-label" for="originSelect">From:</label>
+              </div>
+              <select id="originSelect" class="ios-select" aria-label="Origin">
+                <option value="indiranagar" selected>Indiranagar Metro</option>
+                <option value="mgroad">MG Road / Church St</option>
+                <option value="koramangala">Koramangala 5th Block</option>
+                <option value="ulsoor">Ulsoor Lake</option>
+              </select>
+            </div>
+            <div class="grouped-row select-row">
+              <div class="flex items-center gap-6">
+                <span style="width:10px;height:10px;border-radius:50%;background:var(--color-safe-green);border:1.5px solid var(--color-lead);"></span>
+                <label class="row-label" for="destSelect">To:</label>
+              </div>
+              <select id="destSelect" class="ios-select" aria-label="Destination">
+                <option value="hsr" selected>HSR Layout Sector 2</option>
+                <option value="koramangala">Koramangala 5th Block</option>
+                <option value="domlur">Domlur Flyover</option>
+                <option value="ejipura">Ejipura Cross</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="section-header">Safety Filters</div>
+          <div class="card mb-12">
+            <label class="grouped-row" style="cursor:pointer;">
+              <span class="row-label">💡 Avoid Unlit Alleys</span>
+              <input type="checkbox" id="prefAvoidUnlit" checked class="ios-checkbox" />
+            </label>
+            <label class="grouped-row" style="cursor:pointer;">
+              <span class="row-label">🛡️ Anchor to Safe Spots</span>
+              <input type="checkbox" id="prefPassHavens" checked class="ios-checkbox" />
+            </label>
+            <label class="grouped-row" style="cursor:pointer;">
+              <span class="row-label">👭 Women Foot-Traffic Bias</span>
+              <input type="checkbox" id="prefCrowdDensity" checked class="ios-checkbox" />
+            </label>
+            <label class="grouped-row" style="cursor:pointer;">
+              <span class="row-label">🚓 Pink Patrol Zones</span>
+              <input type="checkbox" id="prefPatrolZones" checked class="ios-checkbox" />
+            </label>
+          </div>
+
+          <div class="section-header">Computed Routes</div>
+          <div class="card mb-12" id="routeCardsContainer" style="overflow:hidden;"></div>
+
+          <div class="section-header">Live Walk Escort</div>
+          <div class="card mb-12">
+            <div class="grouped-row">
+              <div>
+                <div class="subhead" style="color:var(--color-safe-green);font-size:16px;">● R-Guided Escort</div>
+                <p id="walkSimStatus" class="caption-1 mt-4">Simulates walking your computed safe corridor.</p>
+              </div>
+              <button id="toggleWalkSimBtn" class="btn btn-green btn-sm" aria-label="Start walk">▶ Walk</button>
+            </div>
+            <div style="padding: 0 14px 12px;">
+              <div class="progress-bar-track">
+                <div id="walkProgressBar" class="progress-bar-fill"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formula Post-It Card -->
+          <div class="card card-postit" style="padding:12px 14px;">
+            <div class="flex items-center justify-between" style="font-family:var(--font-heading);font-size:13px;font-weight:700;color:var(--color-lead);">
+              <span>📐 R-ALGORITHM COST</span>
+              <span id="rAlgoDynamicPenalty" style="color:var(--color-marker-red);">α=3.8 (Night)</span>
+            </div>
+            <div class="mono" style="font-size:13px;padding:6px 8px;background:#ffffff;border:1.5px solid var(--color-lead);border-radius:var(--wobbly-sm);margin-top:6px;">
+              Cost(e) = Dist(e) × [1 + α·Risk(e,t) − β·Haven(e)]
+            </div>
+            <p class="caption-1 mt-6">Redirects you down lit avenues and safe spots rather than dangerous unlit shortcuts.</p>
+          </div>
+        </div>
+
+        <!-- ══ TAB 2: REPORT A HAZARD ══ -->
+        <div id="tab-pin" class="left-tab-panel hidden" role="tabpanel">
+          <div class="section-header" style="margin-top:0;">Crowd-Verified Pin</div>
+          <div class="card mb-12" style="padding:12px 14px;">
+            <div class="flex items-center justify-between">
+              <span class="subhead" style="font-size:16px;">📍 Pin: <strong id="selectedPinCoordsLabel" class="mono" style="color:var(--color-marker-red);font-size:14px;">Tap map to set</strong></span>
+              <button id="activateMapCrosshairBtn" class="btn btn-primary btn-sm">Tap on Map 🎯</button>
+            </div>
+          </div>
+
+          <form id="addSpotForm">
+            <div class="section-header">Spot Details</div>
+            <div class="card mb-12">
+              <div style="padding:10px 14px;">
+                <label class="caption-1" for="pinSpotName" style="display:block;margin-bottom:4px;font-weight:700;">Spot or Street Name</label>
+                <input id="pinSpotName" type="text" required placeholder="e.g. Broken lamp behind bus stop" class="ios-input" />
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 14px 12px;">
+                <div>
+                  <label class="caption-1" for="pinSeveritySelect" style="display:block;margin-bottom:4px;font-weight:700;">Classification</label>
+                  <select id="pinSeveritySelect" class="ios-select">
+                    <option value="high">🔴 High Risk</option>
+                    <option value="medium">🟠 Caution</option>
+                    <option value="safe">🟢 Safe Haven</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="caption-1" for="pinTimeWindow" style="display:block;margin-bottom:4px;font-weight:700;">When Risky?</label>
+                  <select id="pinTimeWindow" class="ios-select">
+                    <option value="night">🌙 Night</option>
+                    <option value="evening">🌆 Eve+</option>
+                    <option value="all">⚠️ All Day</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-header">Hazard Tags</div>
+            <div style="padding: 0 2px 10px; display: flex; flex-wrap: wrap; gap: 5px;" id="hazardTagsGroup">
+              <button type="button" data-tag="Broken Streetlights" class="hazard-tag-btn chip chip-active">💡 Broken Lights</button>
+              <button type="button" data-tag="Catcalling / Loitering" class="hazard-tag-btn chip">👁️ Catcalling</button>
+              <button type="button" data-tag="No CCTV / Blind Turn" class="hazard-tag-btn chip">📷 No CCTV</button>
+              <button type="button" data-tag="Bar Crowd Spillover" class="hazard-tag-btn chip">🍺 Bar Spillover</button>
+              <button type="button" data-tag="Zero Foot Traffic" class="hazard-tag-btn chip">🏚️ Deserted</button>
+              <button type="button" data-tag="24/7 Female Staff" class="hazard-tag-btn chip">🛡️ Female Staff</button>
+            </div>
+
+            <div class="card mb-12" style="padding: 10px 14px;">
+              <label class="caption-1" for="pinRemarkInput" style="display:block;margin-bottom:4px;font-weight:700;">Your Note for Other Women</label>
+              <textarea id="pinRemarkInput" rows="3" required placeholder="Describe what you observed so women can navigate safely…" class="ios-textarea"></textarea>
+            </div>
+
+            <div style="padding: 0 2px;">
+              <button type="submit" class="btn btn-primary w-full" style="font-size:17px;">📌 Publish Pin & Update R-Algorithm</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- ══ TAB 3: SAFE HAVENS ══ -->
+        <div id="tab-havens" class="left-tab-panel hidden" role="tabpanel">
+          <div class="flex items-center justify-between px-8 mt-4 mb-8">
+            <div>
+              <div class="caption-1" style="font-family:var(--font-heading);font-weight:700;color:var(--color-safe-green);text-transform:uppercase;">Audited 24/7 Safe Shelters</div>
+              <div class="headline" style="font-size:18px;">Nearest Verified Havens</div>
+            </div>
+            <button id="recalcHavensBtn" class="btn btn-green-tint btn-sm">Sort ↓</button>
+          </div>
+          <p class="caption-1 px-8 mb-8">Every spot is audited by local women volunteers for working lights, phone charging, clean washrooms, female staff, and discreet refuge.</p>
+          <div class="card" style="margin: 0 2px; overflow:hidden;">
+            <div id="safeHavensListContainer" style="max-height:420px;overflow-y:auto;"></div>
+          </div>
+        </div>
+
+        <!-- ══ TAB 4: SAFETY TOOLKIT ══ -->
+        <div id="tab-toolkit" class="left-tab-panel hidden" role="tabpanel">
+          <div class="section-header" style="margin-top:0;">Emergency Safety Toolkit</div>
+
+          <!-- Fake Phone Call Card -->
+          <div class="card card-postit mb-12" style="padding:14px 16px;">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="subhead" style="font-size:18px;">📞 Fake Phone Call Decoy</div>
+                <p class="caption-1 mt-4">Simulates a realistic incoming call from Dad, Roommate, or Police with audio.</p>
+              </div>
+              <button id="toolsFakeCallBtn" class="btn btn-primary btn-sm">Start Call 📞</button>
+            </div>
+          </div>
+
+          <!-- Cab Plate Lock -->
+          <div class="card mb-12">
+            <div class="grouped-row">
+              <div>
+                <div class="subhead" style="font-size:16px;">🚕 Cab Plate Lock</div>
+                <p class="caption-1 mt-4">Alerts emergency contacts if driver deviates >150m from corridor.</p>
+              </div>
+              <span id="cabLockStatusBadge" class="chip chip-safe" style="font-size:11px;">Standby</span>
+            </div>
+            <div class="flex gap-6 select-row" style="padding:0 12px 12px;">
+              <input id="cabPlateInput" type="text" value="KA-01-AM-7492" class="ios-input mono" style="text-transform:uppercase;color:var(--color-caution-orange);flex:1;" aria-label="Plate" />
+              <button id="activateCabLockBtn" class="btn btn-primary btn-sm">Lock Plate</button>
+            </div>
+          </div>
+
+          <!-- Auto-Escalation Check-In Timer -->
+          <div class="card mb-12">
+            <div class="grouped-row">
+              <div>
+                <div class="subhead" style="font-size:16px;">⏱️ Auto-Escalation Timer</div>
+                <p class="caption-1 mt-4">If you don't tap "I'm Safe" before 0:00, SOS alert fires.</p>
+              </div>
+              <span id="checkInCountdownDisplay" class="mono" style="font-size:17px;font-weight:700;color:var(--color-marker-red);">05:00</span>
+            </div>
+            <div style="padding:0 12px 6px;">
+              <div class="flex items-center gap-6" style="font-size:13px;color:var(--color-lead-soft);">
+                <span>1m</span>
+                <input type="range" id="timerDurationSlider" min="60" max="1800" value="300" step="60" class="ios-range" style="flex:1;" aria-label="Timer" />
+                <span>30m</span>
+                <span id="timerDurationLabel" class="mono" style="color:var(--color-marker-red);width:36px;text-align:right;">5:00</span>
+              </div>
+            </div>
+            <div class="flex gap-6" style="padding:0 12px 12px;">
+              <button id="toggleCheckInTimerBtn" class="btn btn-tinted flex-1">Start Watch</button>
+              <button id="imSafeResetBtn" class="btn btn-green-tint">✓ I'm Safe</button>
+            </div>
+          </div>
+
+          <!-- Walk With A Sister -->
+          <div class="card mb-12">
+            <div class="grouped-row">
+              <div>
+                <div class="subhead" style="font-size:16px;">👭 Walk With A Sister</div>
+                <p class="caption-1 mt-4">Match with verified women traveling your same route.</p>
+              </div>
+              <span class="chip" style="font-size:11px;">4 Active</span>
+            </div>
+            <div id="buddyMatchBox">
+              <div class="grouped-row">
+                <div style="flex:1;">
+                  <div class="subhead" style="font-weight:700;font-size:15px;">Ananya K. <span class="caption-1">(99% Trust)</span></div>
+                  <div class="caption-1" style="font-size:13px;">Indiranagar Metro → Domlur • 90m away</div>
+                </div>
+                <button class="pingBuddyBtn btn btn-primary btn-sm">Ping</button>
+              </div>
+              <div class="grouped-row">
+                <div style="flex:1;">
+                  <div class="subhead" style="font-weight:700;font-size:15px;">Priya R. <span class="caption-1">(97% Trust)</span></div>
+                  <div class="caption-1" style="font-size:13px;">100ft Road → HSR Layout • 150m away</div>
+                </div>
+                <button class="pingBuddyBtn btn btn-primary btn-sm">Ping</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ TAB 5: COMMUNITY FEED & FUND (Mobile Drawer View) ══ -->
+        <div id="tab-community" class="left-tab-panel hidden" role="tabpanel">
+          <div class="section-header" style="margin-top:0;">Live Women's Reports</div>
+          <div class="card mb-12" style="overflow:hidden;">
+            <div class="grouped-row" style="background:#fffdfa;">
+              <div class="headline" style="font-size:15px;">Verified Community Notes</div>
+              <select id="feedFilterSelect" class="ios-select" style="max-width:130px;min-height:32px;font-size:13px;padding:3px 24px 3px 6px;" aria-label="Filter">
+                <option value="all">All Spots</option>
+                <option value="high">🔴 High Risk</option>
+                <option value="safe">🟢 Safe Only</option>
+              </select>
+            </div>
+            <div id="communityFeedList" style="max-height:300px;overflow-y:auto;"></div>
+          </div>
+
+          <div class="section-header">♀ Sisterhood Fund</div>
+          <div class="card card-postit mb-12">
+            <div class="thumbtack"></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;text-align:center;padding:12px 10px;border-bottom:1.5px dashed var(--color-lead);">
+              <div>
+                <div style="font-family:var(--font-heading);font-size:22px;font-weight:700;color:var(--color-marker-red);" class="statTotalPins">1,428</div>
+                <div class="caption-1">Pins</div>
+              </div>
+              <div>
+                <div style="font-family:var(--font-heading);font-size:22px;font-weight:700;color:var(--color-safe-green);" class="statSafeHavens">64</div>
+                <div class="caption-1">Havens</div>
+              </div>
+              <div>
+                <div style="font-family:var(--font-heading);font-size:22px;font-weight:700;color:var(--color-caution-orange);">₹18.4L</div>
+                <div class="caption-1">Pool</div>
+              </div>
+            </div>
+            <div style="padding:10px 14px;border-bottom:1.5px dashed var(--color-lead);">
+              <div class="subhead" style="font-size:15px;">🏛️ Women Sponsors</div>
+              <p class="caption-1 mt-4">Namma Mahila Doctors Guild, SheCodes BLR (night cab vouchers), Women's Café Network.</p>
+            </div>
+            <div class="flex items-center justify-between" style="padding:10px 14px;">
+              <span class="caption-1">Sponsor solar lights or cab vouchers?</span>
+              <button class="pledgeSponsorBtn btn btn-primary btn-sm btn-pill">♀ Pledge</button>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- tab-content-area -->
+    </div><!-- sidebar -->
+
+  </div><!-- content-grid -->
+</main>
+
+<!-- ========== 5-TAB MOBILE NAVIGATION BAR ========== -->
+<nav class="tab-bar mobile-only" role="navigation" aria-label="Mobile navigation">
+  <div class="tab-bar-inner">
+    <button data-mobile-tab="router" class="mobile-nav-btn active" aria-label="Route">
+      <span class="nav-icon">🧭</span><span>Route</span>
+    </button>
+    <button data-mobile-tab="pin" class="mobile-nav-btn" aria-label="Report">
+      <span class="nav-icon">📍</span><span>Report</span>
+    </button>
+    <button data-mobile-tab="havens" class="mobile-nav-btn" aria-label="Havens">
+      <span class="nav-icon">🛡️</span><span>Havens</span>
+    </button>
+    <button data-mobile-tab="toolkit" class="mobile-nav-btn" aria-label="Tools">
+      <span class="nav-icon">⚡</span><span>Tools</span>
+    </button>
+    <button data-mobile-tab="community" class="mobile-nav-btn" aria-label="Community">
+      <span class="nav-icon">💬</span><span>Feed</span>
+    </button>
+  </div>
+</nav>
+
+</div><!-- app-shell -->
+
+<script>
+// ============================================================================
+// AURA // SAFE ROUTE R-ENGINE & CROWD-VERIFIED HEATMAP APPLICATION
+// ============================================================================
+
+const CITY_NODES = {
+  indiranagar: { id: 'indiranagar', name: 'Indiranagar Metro Station', lat: 12.9784, lng: 77.6408, zone: 'Indiranagar' },
+  ulsoor:      { id: 'ulsoor',      name: 'Ulsoor Lake North Gate',   lat: 12.9825, lng: 77.6212, zone: 'Ulsoor' },
+  mgroad:      { id: 'mgroad',      name: 'MG Road / Church Street',  lat: 12.9756, lng: 77.6070, zone: 'Central' },
+  hundredft:   { id: 'hundredft',   name: '100ft Road Junction',      lat: 12.9710, lng: 77.6410, zone: 'Indiranagar' },
+  domlur:      { id: 'domlur',      name: 'Domlur Flyover Terminal',  lat: 12.9610, lng: 77.6380, zone: 'Domlur' },
+  ejipura:     { id: 'ejipura',     name: 'Ejipura Backlane Cross',   lat: 12.9520, lng: 77.6280, zone: 'Ejipura' },
+  sonyworld:   { id: 'sonyworld',   name: 'Sony World Signal (Lit)',  lat: 12.9345, lng: 77.6210, zone: 'Koramangala' },
+  koramangala: { id: 'koramangala', name: 'Koramangala 5th Block',    lat: 12.9352, lng: 77.6125, zone: 'Koramangala' },
+  agaram:      { id: 'agaram',      name: 'Agara Lake Service Cut',   lat: 12.9240, lng: 77.6322, zone: 'Agara' },
+  hsr:         { id: 'hsr',         name: 'HSR Layout Sector 2',      lat: 12.9116, lng: 77.6389, zone: 'HSR Layout' }
+};
+
+const CITY_EDGES = [
+  { from: 'indiranagar', to: 'mgroad', dist: 6, lighting: 0.92, roadName: 'CMH / Metro Boulevard' },
+  { from: 'indiranagar', to: 'ulsoor', dist: 5, lighting: 0.55, roadName: 'Old Madras Service Cut' },
+  { from: 'ulsoor', to: 'mgroad', dist: 6, lighting: 0.78, roadName: 'Trinity Circle Main Rd' },
+  { from: 'indiranagar', to: 'hundredft', dist: 4, lighting: 0.96, roadName: '100ft Commercial Ave' },
+  { from: 'mgroad', to: 'hundredft', dist: 5, lighting: 0.88, roadName: '80ft Double Road' },
+  { from: 'hundredft', to: 'domlur', dist: 5, lighting: 0.94, roadName: '100ft Flyover Promenade' },
+  { from: 'hundredft', to: 'ejipura', dist: 4, lighting: 0.25, roadName: 'Ejipura Drain Shortcut' },
+  { from: 'ulsoor', to: 'ejipura', dist: 6, lighting: 0.30, roadName: 'Backyard Military Wall Lane' },
+  { from: 'domlur', to: 'sonyworld', dist: 5, lighting: 0.95, roadName: 'Inner Ring Lit Corridor' },
+  { from: 'domlur', to: 'ejipura', dist: 3, lighting: 0.38, roadName: 'Unlit Service Underpass' },
+  { from: 'ejipura', to: 'koramangala', dist: 4, lighting: 0.32, roadName: 'Ejipura 18th Main Alley' },
+  { from: 'sonyworld', to: 'koramangala', dist: 4, lighting: 0.94, roadName: '80ft Sony World Avenue' },
+  { from: 'sonyworld', to: 'hsr', dist: 6, lighting: 0.93, roadName: '27th Main Patrolled Corridor' },
+  { from: 'koramangala', to: 'agaram', dist: 3, lighting: 0.28, roadName: 'Agara Marsh Back-Cut' },
+  { from: 'agaram', to: 'hsr', dist: 3, lighting: 0.35, roadName: 'Unlit Storm-Drain Service Rd' },
+  { from: 'koramangala', to: 'hsr', dist: 6, lighting: 0.89, roadName: 'Jakkasandra 1st Main Lit Rd' }
+];
+
+let communitySpots = [
+  { id: 'spot-1', name: 'Ejipura Transformer Backlane', lat: 12.9520, lng: 77.6280, severity: 'high', timeWindow: 'night', radius: 150, intensity: 0.95, reportsCount: 24, author: '@Meera_BLR', timeAgo: '38m ago', tags: ['💡 Broken Streetlights', '👁️ Catcalling'], remark: 'Three streetlights near the transformer dead for 10 days. Men drink inside parked autos after 9:30 PM.' },
+  { id: 'spot-2', name: 'Agara Lake Dark Service Cut', lat: 12.9240, lng: 77.6322, severity: 'high', timeWindow: 'night', radius: 140, intensity: 0.90, reportsCount: 19, author: '@Divya_Tech', timeAgo: '1h ago', tags: ['🏚️ Zero Foot Traffic', '💡 Broken Streetlights'], remark: 'Google Maps suggests this lane to save 2 mins toward HSR, but zero shops open after 8 PM and stray dogs.' },
+  { id: 'spot-3', name: 'Ulsoor Backyard Wall Stretch', lat: 12.9810, lng: 77.6150, severity: 'medium', timeWindow: 'evening', radius: 120, intensity: 0.72, reportsCount: 11, author: '@Rhea_Student', timeAgo: '3h ago', tags: ['📷 No CCTV', '🏚️ Zero Foot Traffic'], remark: 'Isolated stretch with compound walls. Safe during morning, sketchy after sunset.' },
+  { id: 'spot-4', name: 'Domlur Underpass Service Turn', lat: 12.9585, lng: 77.6350, severity: 'medium', timeWindow: 'night', radius: 110, intensity: 0.68, reportsCount: 9, author: '@Kavya_M', timeAgo: '4h ago', tags: ['🍺 Bar Crowd Spillover'], remark: 'Unverified cabs cluster under the flyover late at night. Stay on the lit 100ft promenade.' },
+  { id: 'haven-1', name: 'Sisterhood 24/7 Café & Pink Desk', lat: 12.9710, lng: 77.6410, severity: 'safe', havenType: '24/7 Women-Run Café', phone: '+91 80-4112-8890', timeWindow: 'all', radius: 100, intensity: 0.95, reportsCount: 42, author: '@Nandini_Founder', timeAgo: 'Verified', tags: ['🛡️ 24/7 Female Staff', '🔌 Free Charge'], remark: 'Open 24 hours! All-female night staff, free mobile charging, clean washroom, verified cab lounge.' },
+  { id: 'haven-2', name: 'Pink Hoysala Booth #09', lat: 12.9345, lng: 77.6210, severity: 'safe', havenType: 'All-Women Police Hub', phone: '112', timeWindow: 'all', radius: 120, intensity: 0.98, reportsCount: 67, author: '@Inspector_Lakshmi', timeAgo: 'Live', tags: ['🛡️ 24/7 Officers', '📷 ANPR Cameras'], remark: 'Female police officer 24/7 with floodlights, ANPR cameras, and prepaid auto dispatch.' },
+  { id: 'haven-3', name: "Sanjeevini 24x7 Women's Pharmacy", lat: 12.9610, lng: 77.6380, severity: 'safe', havenType: '24/7 Medical Hub', phone: '+91 80-4092-1100', timeWindow: 'all', radius: 100, intensity: 0.90, reportsCount: 31, author: '@Dr_Shalini', timeAgo: 'Verified', tags: ['🛡️ 24/7 Female Staff', '🏥 First Aid'], remark: 'Any woman feeling unsafe can step inside our waiting area at any hour, no purchase needed.' },
+  { id: 'haven-4', name: "HSR Sector 2 Women's Co-Living Hub", lat: 12.9116, lng: 77.6389, severity: 'safe', havenType: "24/7 Biometric Lobby", phone: '+91 80-4890-7711', timeWindow: 'all', radius: 100, intensity: 0.92, reportsCount: 28, author: '@Sneha_Warden', timeAgo: 'Verified', tags: ['🛡️ 24/7 Guard', '☕ Safe Lounge'], remark: 'Two female guards at gate 24/7. Wait inside our guarded glass lobby for late-night Uber/Ola.' }
+];
+
+const ACTIVE_SISTERS = [
+  { name: 'Ananya K.', lat: 12.9770, lng: 77.6350, status: 'Walking to Indiranagar Metro' },
+  { name: 'Pooja R.', lat: 12.9650, lng: 77.6400, status: 'In Cab KA-03-9912 (Tracked)' },
+  { name: 'Zoya M.', lat: 12.9400, lng: 77.6250, status: 'Cycling on Lit Ring Road' },
+  { name: 'Harini S.', lat: 12.9300, lng: 77.6300, status: 'Walking with Sister Buddy' },
+  { name: 'Tanya V.', lat: 12.9355, lng: 77.6120, status: 'Waiting at Verified Spot' }
+];
+
+const CITY_OPTIONS = [
+  { name: 'Bengaluru', emoji: '🏙️', lat: 12.9716, lng: 77.5946, zoom: 14, desc: 'Karnataka, India', category: 'india' },
+  { name: 'Mumbai', emoji: '🌊', lat: 19.0760, lng: 72.8777, zoom: 13, desc: 'Maharashtra, India', category: 'india' },
+  { name: 'Delhi / NCR', emoji: '🏛️', lat: 28.6139, lng: 77.2090, zoom: 13, desc: 'National Capital Region', category: 'india' },
+  { name: 'Chennai', emoji: '🌴', lat: 13.0827, lng: 80.2707, zoom: 13, desc: 'Tamil Nadu, India', category: 'india' },
+  { name: 'Hyderabad', emoji: '🕌', lat: 17.3850, lng: 78.4867, zoom: 13, desc: 'Telangana, India', category: 'india' },
+  { name: 'Pune', emoji: '📚', lat: 18.5204, lng: 73.8567, zoom: 13, desc: 'Maharashtra, India', category: 'india' },
+  { name: 'Kolkata', emoji: '🌉', lat: 22.5726, lng: 88.3639, zoom: 13, desc: 'West Bengal, India', category: 'india' },
+  { name: 'London', emoji: '🇬🇧', lat: 51.5074, lng: -0.1278, zoom: 14, desc: 'United Kingdom', category: 'world' },
+  { name: 'New York', emoji: '🇺🇸', lat: 40.7128, lng: -74.0060, zoom: 14, desc: 'United States', category: 'world' },
+  { name: 'Tokyo', emoji: '🇯🇵', lat: 35.6762, lng: 139.6503, zoom: 14, desc: 'Japan', category: 'world' },
+  { name: 'Paris', emoji: '🇫🇷', lat: 48.8566, lng: 2.3522, zoom: 14, desc: 'France', category: 'world' },
+  { name: 'Sydney', emoji: '🇦🇺', lat: -33.8688, lng: 151.2093, zoom: 14, desc: 'Australia', category: 'world' },
+  { name: 'Dubai', emoji: '🇦🇪', lat: 25.2048, lng: 55.2708, zoom: 14, desc: 'UAE', category: 'world' }
+];
+
+const ORIGINAL_CITY_NODES = JSON.parse(JSON.stringify(CITY_NODES));
+const ORIGINAL_CITY_EDGES = JSON.parse(JSON.stringify(CITY_EDGES));
+const ORIGINAL_COMMUNITY_SPOTS = JSON.parse(JSON.stringify(communitySpots));
+const ORIGINAL_ACTIVE_SISTERS = JSON.parse(JSON.stringify(ACTIVE_SISTERS));
+
+const state = {
+  timeOfDay: 'night', showHeatmap: true, showHavens: true, showSisters: true,
+  originId: 'indiranagar', destId: 'hsr', selectedRouteKey: 'safest',
+  calculatedRoutes: {}, selectedSpotId: 'spot-1',
+  pendingPinLatLng: null, isPickingOnMap: false,
+  selectedTags: new Set(['Broken Streetlights']),
+  travelerPos: { lat: 12.9710, lng: 77.6410 },
+  walkSimInterval: null, walkSimProgress: 0,
+  checkInSeconds: 300, checkInInterval: null,
+  audioCtx: null, sirenOsc: null, sirenInterval: null, sirenActive: false,
+  ringtoneOsc: null, ringtoneInterval: null, ringtoneActive: false,
+  fakeCallTimerInterval: null, fakeCallSeconds: 0, sosCountdown: null,
+  map: null, heatCircles: [], havenMarkers: [], riskMarkers: [],
+  sisterMarkers: [], routePolylines: [],
+  travelerMarker: null, nearestHavenLine: null, userLatLng: null
+};
+
+// ============================================================================
+// LEAFLET MAP
+// ============================================================================
+let _resizeDebounce = null;
+function initLeafletMap(lat, lng, zoom) {
+  const container = document.getElementById('leafletMap');
+  if (!container) return;
+
+  if (state.map) {
+    state.map.setView([lat, lng], zoom);
+    setTimeout(() => { if (state.map) state.map.invalidateSize(); }, 200);
+    return;
+  }
+
+  try {
+    state.map = L.map('leafletMap', {
+      center: [lat, lng],
+      zoom: zoom,
+      zoomControl: true,
+      attributionControl: false
+    });
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(state.map);
+
+    state.map.on('click', onMapClick);
+    drawAllMapLayers();
+
+    setTimeout(() => {
+      if (state.map) state.map.invalidateSize();
+    }, 250);
+  } catch (err) {
+    console.error('Error initializing Leaflet map:', err);
+  }
+}
+
+function onMapClick(e) {
+  const { lat, lng } = e.latlng;
+  const clickedSpot = communitySpots.find(s => state.map.distance(e.latlng, L.latLng(s.lat, s.lng)) < 100);
+  if (clickedSpot && !state.isPickingOnMap) { updateMapInspector(clickedSpot); return; }
+  state.pendingPinLatLng = { lat, lng };
+  document.getElementById('selectedPinCoordsLabel').textContent = `${lat.toFixed(4)}°N, ${lng.toFixed(4)}°E`;
+  state.isPickingOnMap = false;
+  switchTab('pin');
+  if (state._tempPinMarker) state.map.removeLayer(state._tempPinMarker);
+  state._tempPinMarker = L.circleMarker([lat, lng], {
+    radius: 12, color: '#2d2d2d', weight: 2.5, fillColor: '#ff4d4d', fillOpacity: 0.6, dashArray: '5,5'
+  }).addTo(state.map);
+  showToast('📍 Pin Placed', `Selected ${lat.toFixed(4)}°N, ${lng.toFixed(4)}°E on map.`);
+}
+
+function drawAllMapLayers() {
+  if (!state.map) return;
+  state.heatCircles.forEach(c => state.map.removeLayer(c));
+  state.havenMarkers.forEach(m => state.map.removeLayer(m));
+  state.riskMarkers.forEach(m => state.map.removeLayer(m));
+  state.sisterMarkers.forEach(m => state.map.removeLayer(m));
+  state.routePolylines.forEach(p => state.map.removeLayer(p));
+  if (state.travelerMarker) state.map.removeLayer(state.travelerMarker);
+  if (state.nearestHavenLine) state.map.removeLayer(state.nearestHavenLine);
+  state.heatCircles = []; state.havenMarkers = []; state.riskMarkers = [];
+  state.sisterMarkers = []; state.routePolylines = [];
+
+  const timeScale = state.timeOfDay === 'night' ? 1.15 : (state.timeOfDay === 'evening' ? 0.92 : 0.6);
+  
+  communitySpots.forEach(spot => {
+    if (spot.severity === 'safe' && state.showHavens) {
+      const c = L.circle([spot.lat, spot.lng], {
+        radius: spot.radius, color: '#2e7d32', weight: 1.5, fillColor: '#dcfce7', fillOpacity: 0.35, dashArray: '4,4', interactive: false
+      }).addTo(state.map);
+      state.heatCircles.push(c);
+      const icon = L.divIcon({
+        className: 'haven-marker',
+        html: `<div class="marker-pin haven" title="${spot.name}">✓</div>`,
+        iconSize: [30, 30], iconAnchor: [15, 15]
+      });
+      const m = L.marker([spot.lat, spot.lng], { icon }).addTo(state.map);
+      m.on('click', () => updateMapInspector(spot));
+      m.bindPopup(`<div style="min-width:180px">
+        <div style="color:#2e7d32;font-family:var(--font-heading);font-weight:700;font-size:13px;">🟢 SAFE HAVEN</div>
+        <div style="font-family:var(--font-heading);font-weight:700;font-size:15px;margin:3px 0">${spot.name}</div>
+        <div style="font-size:13px;color:#55524e">${spot.havenType||''}</div>
+        <div style="font-size:12px;color:#2d2d2d;margin-top:3px;">"${spot.remark.substring(0,80)}…"</div>
+        ${spot.phone?`<a href="tel:${spot.phone}" style="display:inline-block;margin-top:6px;padding:3px 8px;background:#2e7d32;color:#fff;border-radius:10px;font-family:var(--font-heading);font-size:12px;text-decoration:none;">📞 Call Desk</a>`:''}
+      </div>`);
+      state.havenMarkers.push(m);
+    } else if (spot.severity !== 'safe' && state.showHeatmap) {
+      const color = spot.severity === 'high' ? '#ff4d4d' : '#d97706';
+      const c = L.circle([spot.lat, spot.lng], {
+        radius: spot.radius * timeScale, color: '#2d2d2d', weight: 1.5, fillColor: color, fillOpacity: spot.severity === 'high' ? 0.3 : 0.22, dashArray: '3,3', interactive: false
+      }).addTo(state.map);
+      state.heatCircles.push(c);
+      const cls = spot.severity === 'high' ? 'risk-high' : 'risk-medium';
+      const icon = L.divIcon({
+        className: `risk-marker-${spot.severity}`,
+        html: `<div class="marker-pin ${cls}" title="${spot.name}">!</div>`,
+        iconSize: [28, 28], iconAnchor: [14, 14]
+      });
+      const m = L.marker([spot.lat, spot.lng], { icon }).addTo(state.map);
+      m.on('click', () => updateMapInspector(spot));
+      m.bindPopup(`<div style="min-width:180px">
+        <div style="color:${color};font-family:var(--font-heading);font-weight:700;font-size:12px;">${spot.severity==='high'?'🔴 HIGH RISK':'🟠 CAUTION'} • ${spot.reportsCount} reports</div>
+        <div style="font-family:var(--font-heading);font-weight:700;font-size:14px;margin:3px 0">${spot.name}</div>
+        <div style="font-style:italic;font-size:13px;color:#55524e">"${spot.remark.substring(0,90)}…"</div>
+      </div>`);
+      state.riskMarkers.push(m);
+    }
+  });
+
+  if (state.showSisters) {
+    ACTIVE_SISTERS.forEach(s => {
+      const icon = L.divIcon({
+        className: 'sister-marker',
+        html: `<div class="marker-pin sister" title="${s.name}">♀</div>`,
+        iconSize: [22, 22], iconAnchor: [11, 11]
+      });
+      const m = L.marker([s.lat, s.lng], { icon }).addTo(state.map);
+      m.bindPopup(`<div>
+        <div style="font-family:var(--font-heading);font-weight:700;font-size:13px;color:#d92662">${s.name}</div>
+        <div style="font-size:12px;color:#55524e">${s.status}</div>
+      </div>`);
+      state.sisterMarkers.push(m);
+    });
+  }
+
+  CITY_EDGES.forEach(edge => {
+    const n1 = CITY_NODES[edge.from], n2 = CITY_NODES[edge.to];
+    if (!n1 || !n2) return;
+    const p = L.polyline([[n1.lat, n1.lng], [n2.lat, n2.lng]], {
+      color: edge.lighting > 0.75 ? '#8e8b82' : '#b8b2a8',
+      weight: edge.lighting > 0.75 ? 3 : 2,
+      dashArray: edge.lighting > 0.75 ? null : '4,4',
+      opacity: 0.6,
+      interactive: false
+    }).addTo(state.map);
+    state.routePolylines.push(p);
+  });
+
+  const routes = state.calculatedRoutes;
+  if (routes.shortest && routes.safest) {
+    // Shortest (Risky shortcut) - Red dashed line
+    const sc = routes.shortest.nodes.map(nid => [CITY_NODES[nid]?.lat, CITY_NODES[nid]?.lng]).filter(c => c[0]);
+    state.routePolylines.push(L.polyline(sc, {
+      color: '#ff4d4d', weight: state.selectedRouteKey === 'shortest' ? 4 : 2, dashArray: '6,6', opacity: state.selectedRouteKey === 'shortest' ? 0.95 : 0.45
+    }).addTo(state.map));
+
+    // Balanced - Amber line
+    const bc = routes.balanced.nodes.map(nid => [CITY_NODES[nid]?.lat, CITY_NODES[nid]?.lng]).filter(c => c[0]);
+    state.routePolylines.push(L.polyline(bc, {
+      color: '#d97706', weight: state.selectedRouteKey === 'balanced' ? 4 : 2, opacity: state.selectedRouteKey === 'balanced' ? 0.95 : 0.45
+    }).addTo(state.map));
+
+    // Safest (R-Corridor) - Green highlighter
+    const safc = routes.safest.nodes.map(nid => [CITY_NODES[nid]?.lat, CITY_NODES[nid]?.lng]).filter(c => c[0]);
+    state.routePolylines.push(L.polyline(safc, {
+      color: '#2e7d32', weight: state.selectedRouteKey === 'safest' ? 12 : 6, opacity: 0.25, interactive: false
+    }).addTo(state.map));
+    state.routePolylines.push(L.polyline(safc, {
+      color: '#2e7d32', weight: state.selectedRouteKey === 'safest' ? 4 : 2.5, opacity: 0.95
+    }).addTo(state.map));
+  }
+
+  Object.values(CITY_NODES).forEach(node => {
+    const isOD = node.id === state.originId || node.id === state.destId;
+    const c = L.circleMarker([node.lat, node.lng], {
+      radius: isOD ? 7 : 4,
+      color: '#2d2d2d',
+      weight: 2,
+      fillColor: node.id === state.originId ? '#2d5da1' : (node.id === state.destId ? '#2e7d32' : '#e5e0d8'),
+      fillOpacity: 1
+    }).addTo(state.map);
+    c.bindTooltip(node.name, { permanent: false, direction: 'top' });
+    state.routePolylines.push(c);
+  });
+
+  if (state.travelerPos) {
+    const icon = L.divIcon({
+      className: 'traveler-marker',
+      html: `<div class="marker-pin traveler">YOU</div>`,
+      iconSize: [34, 34], iconAnchor: [17, 17]
+    });
+    state.travelerMarker = L.marker([state.travelerPos.lat, state.travelerPos.lng], { icon, zIndexOffset: 1000 }).addTo(state.map);
+  }
+}
+
+// ============================================================================
+// R-ALGORITHM SAFE ROUTING ENGINE
+// ============================================================================
+function haversineMeters(lat1, lng1, lat2, lng2) {
+  const R = 6371000, dLat = (lat2-lat1)*Math.PI/180, dLng = (lng2-lng1)*Math.PI/180;
+  const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLng/2)**2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+}
+
+function computeEdgeRiskAndSafety(edge) {
+  const n1 = CITY_NODES[edge.from], n2 = CITY_NODES[edge.to];
+  if (!n1 || !n2) return { rCost: edge.dist, balancedCost: edge.dist, rawDistCost: edge.dist, totalRisk: 0, nearbyHazards: [], nearbyHavens: [] };
+  const midLat = (n1.lat+n2.lat)/2, midLng = (n1.lng+n2.lng)/2;
+  const timeMul = state.timeOfDay === 'night' ? 1.45 : (state.timeOfDay === 'evening' ? 1.15 : 0.45);
+  const avoidUnlit = document.getElementById('prefAvoidUnlit')?.checked ?? true;
+  const passHavens = document.getElementById('prefPassHavens')?.checked ?? true;
+  const crowdBias = document.getElementById('prefCrowdDensity')?.checked ?? true;
+  let womenRisk = 0, hazards = [], havenBonus = 0, havens = [];
+  
+  communitySpots.forEach(spot => {
+    const dist = haversineMeters(midLat, midLng, spot.lat, spot.lng);
+    const d1 = haversineMeters(n1.lat, n1.lng, spot.lat, spot.lng);
+    const d2 = haversineMeters(n2.lat, n2.lng, spot.lat, spot.lng);
+    const minD = Math.min(dist, d1, d2);
+    if (spot.severity === 'safe') {
+      if (minD < spot.radius * 2.5) { havenBonus += (1 - minD/(spot.radius*2.5)) * 0.65; havens.push(spot.name); }
+    } else {
+      const w = spot.severity === 'high' ? 1.35 : 0.75;
+      if (minD < spot.radius * 2) { womenRisk += (1 - minD/(spot.radius*2)) * w * (1 + spot.reportsCount/30); hazards.push(spot.name); }
+    }
+  });
+
+  const unlitP = avoidUnlit ? (1-edge.lighting)*1.8 : (1-edge.lighting)*0.5;
+  const totalRisk = (womenRisk + unlitP) * timeMul * (crowdBias ? 1.15 : 0.9);
+  const effBonus = passHavens ? havenBonus : havenBonus * 0.2;
+  return {
+    rCost: edge.dist * Math.max(0.55, 1 + 2.6*totalRisk - 0.75*effBonus),
+    balancedCost: edge.dist * (1 + 0.75*totalRisk),
+    rawDistCost: edge.dist,
+    totalRisk,
+    nearbyHazards: [...new Set(hazards)],
+    nearbyHavens: [...new Set(havens)]
+  };
+}
+
+function calculateAllRoutes() {
+  const start = state.originId, goal = state.destId;
+  if (start === goal) { state.calculatedRoutes = {}; renderRouteCards(); drawAllMapLayers(); return; }
+  const adj = {};
+  Object.keys(CITY_NODES).forEach(k => { adj[k] = []; });
+  CITY_EDGES.forEach(edge => {
+    if (!CITY_NODES[edge.from] || !CITY_NODES[edge.to]) return;
+    const m = computeEdgeRiskAndSafety(edge);
+    adj[edge.from].push({ to: edge.to, edge, metrics: m });
+    adj[edge.to].push({ to: edge.from, edge, metrics: m });
+  });
+
+  const allPaths = [];
+  function dfs(cur, vis, eList, nList) {
+    if (cur === goal) { allPaths.push({ nodes: [...nList], edges: [...eList] }); return; }
+    if (nList.length > 6) return;
+    for (const nb of (adj[cur]||[])) {
+      if (!vis.has(nb.to)) {
+        vis.add(nb.to); eList.push(nb); nList.push(nb.to);
+        dfs(nb.to, vis, eList, nList);
+        nList.pop(); eList.pop(); vis.delete(nb.to);
+      }
+    }
+  }
+  dfs(start, new Set([start]), [], [start]);
+  if (allPaths.length === 0) { state.calculatedRoutes = {}; renderRouteCards(); drawAllMapLayers(); return; }
+
+  const scored = allPaths.map(p => {
+    let mins=0, rc=0, bc=0, risk=0, lit=0, haz=[], hav=[];
+    p.edges.forEach(i => {
+      mins += i.edge.dist; rc += i.metrics.rCost; bc += i.metrics.balancedCost;
+      risk += i.metrics.totalRisk; lit += i.edge.lighting;
+      haz.push(...i.metrics.nearbyHazards); hav.push(...i.metrics.nearbyHavens);
+    });
+    const al = Math.round((lit/Math.max(1,p.edges.length))*100);
+    const ss = Math.max(18, Math.min(99, Math.round(98 - risk*19 + hav.length*4)));
+    return {
+      nodes: p.nodes, edges: p.edges, totalMinutes: mins, totalRCost: rc,
+      totalBalancedCost: bc, safetyScore: ss, avgLighting: al,
+      hazards: [...new Set(haz)], havens: [...new Set(hav)]
+    };
+  });
+
+  const safest = [...scored].sort((a,b)=>a.totalRCost-b.totalRCost)[0];
+  const byShort = [...scored].sort((a,b)=>(a.totalMinutes-b.totalMinutes)||(a.safetyScore-b.safetyScore));
+  let shortest = byShort[0];
+  if (shortest.nodes.join(',') === safest.nodes.join(',') && byShort.length > 1) shortest = byShort[1];
+  const byBal = [...scored].sort((a,b)=>a.totalBalancedCost-b.totalBalancedCost);
+  let balanced = byBal.find(r=>r.nodes.join(',')!==safest.nodes.join(',')&&r.nodes.join(',')!==shortest.nodes.join(',')) || byBal[1] || safest;
+  const avoided = shortest.hazards.filter(h=>!safest.hazards.includes(h));
+
+  state.calculatedRoutes = {
+    safest: { ...safest, key:'safest', label:'R-Algorithm Safe Corridor', badge:'♀ RECOMMENDED', color:'#2e7d32', avoidedHazards: avoided },
+    balanced: { ...balanced, key:'balanced', label:'Balanced Main Road', badge:'MODERATE', color:'#d97706', avoidedHazards:[] },
+    shortest: { ...shortest, key:'shortest', label:'Shortest Shortcut (Risky)', badge:'⚠️ HIGH RISK', color:'#ff4d4d', avoidedHazards:[] }
+  };
+
+  if (!state.walkSimInterval && CITY_NODES[state.originId]) {
+    state.travelerPos = { lat: CITY_NODES[state.originId].lat, lng: CITY_NODES[state.originId].lng };
+  }
+  renderRouteCards(); renderSafeHavensList(); drawAllMapLayers();
+}
+
+// ============================================================================
+// RENDER: ROUTE CARDS
+// ============================================================================
+function renderRouteCards() {
+  const c = document.getElementById('routeCardsContainer');
+  if (!c) return;
+  const routes = state.calculatedRoutes;
+  if (!routes.safest) {
+    c.innerHTML = `<div style="padding:12px 14px;font-size:15px;color:var(--color-lead-soft);">Select two distinct places above to calculate hand-drawn safe corridor.</div>`;
+    return;
+  }
+  c.innerHTML = ['safest','balanced','shortest'].map(key => {
+    const r = routes[key], sel = state.selectedRouteKey === key;
+    const bc = r.safetyScore >= 85 ? 'badge-safe' : (r.safetyScore >= 60 ? 'badge-warn' : 'badge-danger');
+    const path = r.nodes.map(nid => CITY_NODES[nid]?.name?.split(' ')[0] || '?').join(' → ');
+    let detail = '';
+    if (key === 'safest') {
+      const av = r.avoidedHazards.length > 0 ? `Bypasses ${r.avoidedHazards.join(', ')}` : '100% well-lit commercial avenue';
+      detail = `<div style="font-size:13px;color:var(--color-safe-green);margin-top:3px;font-family:var(--font-heading);">✓ ${av}${r.havens.length ? ` · ${r.havens.length} Safe Haven(s)` : ''}</div>`;
+    } else if (key === 'shortest') {
+      detail = `<div style="font-size:13px;color:var(--color-marker-red);margin-top:3px;font-family:var(--font-heading);">⚠ ${r.hazards.length ? r.hazards.join(' & ') : `Only ${r.avgLighting}% lighting`}</div>`;
+    } else {
+      detail = `<div style="font-size:13px;color:var(--color-lead-soft);margin-top:3px;">💡 ${r.avgLighting}% Lighting · ${r.havens.length} Haven near route</div>`;
+    }
+    return `<div data-route-key="${key}" class="route-option-card route-card${sel?' selected':''}">
+      <div class="route-meta">
+        <div class="route-name">
+          <span class="route-dot" style="background:${r.color}"></span>${r.label}
+        </div>
+        <span class="safety-badge ${bc}">${r.safetyScore}% Safe</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:14px;color:var(--color-lead-soft);margin-top:4px;">
+        <span class="truncate" style="max-width:200px;">${path}</span>
+        <span style="font-weight:700;color:var(--color-lead);font-family:var(--font-heading);">${r.totalMinutes} min walk</span>
+      </div>
+      ${detail}
+    </div>`;
+  }).join('');
+
+  c.querySelectorAll('.route-option-card').forEach(card => card.addEventListener('click', () => {
+    state.selectedRouteKey = card.getAttribute('data-route-key');
+    renderRouteCards(); drawAllMapLayers();
+  }));
+}
+
+// ============================================================================
+// COMMUNITY FEED & INSPECTOR
+// ============================================================================
+function updateMapInspector(spot) {
+  if (!spot) return;
+  state.selectedSpotId = spot.id;
+  if (state.map) state.map.setView([spot.lat, spot.lng], Math.max(state.map.getZoom(), 15));
+}
+
+function renderCommunityFeed() {
+  const filter = document.getElementById('feedFilterSelect')?.value || document.getElementById('feedFilterSelectDesktop')?.value || 'all';
+  const lists = [document.getElementById('communityFeedList'), document.getElementById('communityFeedListDesktop')];
+  const filtered = communitySpots.filter(s => {
+    if (filter === 'high') return s.severity === 'high' || s.severity === 'medium';
+    if (filter === 'safe') return s.severity === 'safe';
+    return true;
+  });
+
+  const html = filtered.map(spot => {
+    const badge = spot.severity === 'safe'
+      ? '<span class="chip chip-safe" style="font-size:10px;padding:1px 6px;">SAFE</span>'
+      : (spot.severity === 'high' ? '<span class="chip chip-danger" style="font-size:10px;padding:1px 6px;">HIGH RISK</span>' : '<span class="chip chip-warn" style="font-size:10px;padding:1px 6px;">CAUTION</span>');
+    return `<div data-spot-id="${spot.id}" class="feed-spot-item feed-item">
+      <div class="flex items-center justify-between gap-6">
+        <span style="font-size:16px;font-weight:700;font-family:var(--font-heading);" class="truncate">${spot.name}</span>
+        ${badge}
+      </div>
+      <p style="font-size:15px;color:var(--color-lead-soft);margin-top:3px;font-style:italic;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">"${spot.remark}"</p>
+      <div class="flex items-center justify-between" style="font-size:12px;color:var(--color-lead-soft);margin-top:4px;">
+        <span>${spot.author} · ${spot.timeAgo}</span>
+        <span style="color:var(--color-marker-red);font-weight:700;font-family:var(--font-heading);">▲ ${spot.reportsCount} verified</span>
+      </div>
+    </div>`;
+  }).join('');
+
+  lists.forEach(list => {
+    if (list) {
+      list.innerHTML = html;
+      list.querySelectorAll('.feed-spot-item').forEach(el => el.addEventListener('click', () => {
+        const s = communitySpots.find(sp => sp.id === el.getAttribute('data-spot-id'));
+        if (s) updateMapInspector(s);
+      }));
+    }
+  });
+
+  document.querySelectorAll('.statTotalPins').forEach(el => {
+    el.textContent = (1420 + communitySpots.length).toLocaleString();
+  });
+}
+
+// ============================================================================
+// SAFE HAVENS
+// ============================================================================
+function getSortedSafeHavens() {
+  return communitySpots.filter(s => s.severity === 'safe').map(h => {
+    const d = Math.max(45, Math.round(haversineMeters(h.lat, h.lng, state.travelerPos.lat, state.travelerPos.lng)));
+    return { ...h, distMeters: d, walkMins: Math.max(1, Math.round(d/75)) };
+  }).sort((a,b)=>a.distMeters-b.distMeters);
+}
+
+function renderSafeHavensList() {
+  const c = document.getElementById('safeHavensListContainer');
+  if (!c) return;
+  const sorted = getSortedSafeHavens();
+  c.innerHTML = sorted.map((h, i) => `
+    <div class="haven-item${i===0?' closest':''}">
+      <div class="flex items-center justify-between gap-6">
+        <div style="flex:1;min-width:0;">
+          <div class="flex items-center gap-4" style="flex-wrap:wrap;">
+            ${i===0?'<span class="chip chip-safe" style="font-size:10px;padding:1px 6px;font-weight:700;">CLOSEST</span>':''}
+            <span style="font-size:16px;font-weight:700;font-family:var(--font-heading);" class="truncate">${h.name}</span>
+          </div>
+          <div style="font-size:14px;color:var(--color-safe-green);margin-top:2px;">${h.havenType||'Safe Spot'}</div>
+        </div>
+        <div style="text-align:right;flex-shrink:0;">
+          <div class="mono" style="font-size:15px;font-weight:700;color:var(--color-lead);">${h.distMeters}m</div>
+          <div class="caption-1">~${h.walkMins} min</div>
+        </div>
+      </div>
+      <p style="font-size:14px;color:var(--color-lead-soft);margin-top:4px;font-style:italic;">"${h.remark.substring(0,90)}…"</p>
+      <div class="flex items-center justify-between mt-6">
+        ${h.phone?`<a href="tel:${h.phone}" style="font-size:13px;color:var(--color-safe-green);text-decoration:none;font-weight:700;" class="mono">📞 ${h.phone}</a>`:'<span class="mono caption-1">📞 112 Patrol</span>'}
+        <button data-haven-id="${h.id}" class="guide-to-haven-btn btn btn-green btn-sm">🛡️ Guide Me</button>
+      </div>
+    </div>`).join('');
+
+  c.querySelectorAll('.guide-to-haven-btn').forEach(btn => btn.addEventListener('click', () => {
+    const h = communitySpots.find(s=>s.id===btn.getAttribute('data-haven-id'));
+    if (h && state.map) {
+      if (state.nearestHavenLine) state.map.removeLayer(state.nearestHavenLine);
+      state.nearestHavenLine = L.polyline([[state.travelerPos.lat,state.travelerPos.lng],[h.lat,h.lng]],{
+        color: '#2d5da1', weight: 4, dashArray: '8,6', opacity: 0.95
+      }).addTo(state.map);
+      state.map.fitBounds(state.nearestHavenLine.getBounds().pad(0.3));
+      showToast('🛡️ Haven Guide', `Guiding directly to ${h.name} (${Math.round(haversineMeters(state.travelerPos.lat,state.travelerPos.lng,h.lat,h.lng))}m)`);
+      // Scroll map into view on mobile
+      document.querySelector('.map-section')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }));
+}
+
+// ============================================================================
+// TOAST & AUDIO SYNTHESIZERS
+// ============================================================================
+let toastTimeout = null;
+function showToast(title, message, icon = '✏️') {
+  const b = document.getElementById('toastBanner');
+  if (!b) return;
+  document.getElementById('toastTitle').textContent = title;
+  document.getElementById('toastMessage').textContent = message;
+  document.getElementById('toastIcon').textContent = icon;
+  b.classList.remove('hidden');
+  if (toastTimeout) clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => b.classList.add('hidden'), 4500);
+}
+
+function getAudioCtx() {
+  if (!state.audioCtx) {
+    state.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  if (state.audioCtx.state === 'suspended') state.audioCtx.resume();
+  return state.audioCtx;
+}
+
+function toggleSirenAudio() {
+  const btn = document.getElementById('toggleSirenBtn');
+  if (state.sirenActive) {
+    if (state.sirenInterval) clearInterval(state.sirenInterval);
+    if (state.sirenOsc) { try { state.sirenOsc.stop(); } catch(e){} state.sirenOsc = null; }
+    state.sirenActive = false;
+    if (btn) { btn.textContent = '🔊 Siren'; btn.className = 'btn btn-danger btn-sm'; }
+    return;
+  }
+  try {
+    const ctx = getAudioCtx(), osc = ctx.createOscillator(), gain = ctx.createGain();
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(880, ctx.currentTime);
+    gain.gain.setValueAtTime(0.15, ctx.currentTime);
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.start();
+    state.sirenOsc = osc; state.sirenActive = true;
+    let h = false;
+    state.sirenInterval = setInterval(() => {
+      if (!state.sirenOsc) return;
+      h = !h;
+      state.sirenOsc.frequency.setValueAtTime(h ? 1180 : 840, ctx.currentTime);
+    }, 320);
+    if (btn) { btn.textContent = '🔇 Stop'; btn.className = 'btn btn-sm btn-secondary'; }
+  } catch(e) {
+    showToast('Audio Notice', 'Tap screen to permit sound synthesis.', '🔊');
+  }
+}
+
+function startRingtone() {
+  if (state.ringtoneActive) return;
+  try {
+    const ctx = getAudioCtx(), osc = ctx.createOscillator(), osc2 = ctx.createOscillator(), gain = ctx.createGain();
+    osc.type = 'sine'; osc.frequency.value = 440;
+    osc2.type = 'sine'; osc2.frequency.value = 480;
+    gain.gain.value = 0;
+    osc.connect(gain); osc2.connect(gain); gain.connect(ctx.destination);
+    osc.start(); osc2.start();
+    state.ringtoneOsc = osc; state._ringtoneOsc2 = osc2; state._ringtoneGain = gain;
+    state.ringtoneActive = true;
+    let on = true;
+    function tog() {
+      if (!state.ringtoneActive) return;
+      on = !on;
+      gain.gain.setValueAtTime(on ? 0.08 : 0, ctx.currentTime);
+    }
+    gain.gain.setValueAtTime(0.08, ctx.currentTime);
+    state.ringtoneInterval = setInterval(tog, 1000);
+    if (navigator.vibrate) state._vibrateInterval = setInterval(() => { if (state.ringtoneActive) navigator.vibrate([400,200,400]); }, 2000);
+  } catch(e){}
+}
+
+function stopRingtone() {
+  state.ringtoneActive = false;
+  if (state.ringtoneInterval) clearInterval(state.ringtoneInterval);
+  if (state._vibrateInterval) clearInterval(state._vibrateInterval);
+  try {
+    if (state.ringtoneOsc) state.ringtoneOsc.stop();
+    if (state._ringtoneOsc2) state._ringtoneOsc2.stop();
+  } catch(e){}
+  state.ringtoneOsc = null; state._ringtoneOsc2 = null;
+  if (navigator.vibrate) navigator.vibrate(0);
+}
+
+// ============================================================================
+// REGION, GEOLOCATION & CITY PICKER
+// ============================================================================
+function setRegion(lat, lng, cityName, zoom = 14) {
+  state.userLatLng = { lat, lng }; state.travelerPos = { lat, lng };
+  const lbl = document.getElementById('currentRegionLabel');
+  if (lbl) lbl.textContent = `${cityName} (Zoomed)`;
+  if (state.map) {
+    state.map.flyTo([lat, lng], zoom, { duration: 1.2 });
+    setTimeout(() => { if (state.map) state.map.invalidateSize(); }, 300);
+  } else {
+    initLeafletMap(lat, lng, zoom);
+  }
+
+  const d = haversineMeters(lat, lng, 12.9716, 77.5946);
+  if (d > 40000) loadRegionData(lat, lng, cityName);
+  else restoreBengaluruData();
+
+  calculateAllRoutes(); renderSafeHavensList(); renderCommunityFeed(); drawAllMapLayers();
+  showToast('🗺️ Map Focused', `Region focused on ${cityName}.`);
+}
+
+function restoreBengaluruData() {
+  for (const k in CITY_NODES) delete CITY_NODES[k];
+  Object.assign(CITY_NODES, JSON.parse(JSON.stringify(ORIGINAL_CITY_NODES)));
+  CITY_EDGES.length = 0; ORIGINAL_CITY_EDGES.forEach(e => CITY_EDGES.push({...e}));
+  communitySpots = JSON.parse(JSON.stringify(ORIGINAL_COMMUNITY_SPOTS));
+  ACTIVE_SISTERS.length = 0; ORIGINAL_ACTIVE_SISTERS.forEach(s => ACTIVE_SISTERS.push({...s}));
+  state.originId = 'indiranagar'; state.destId = 'hsr';
+  updateSelectDropdowns();
+}
+
+function loadRegionData(lat, lng, name) {
+  for (const k in CITY_NODES) delete CITY_NODES[k];
+  CITY_NODES.node1 = { id:'node1', name:`${name} Metro Hub`, lat:lat+.0075, lng:lng-.0065, zone:'Central' };
+  CITY_NODES.node2 = { id:'node2', name:`${name} Commercial Blvd`, lat:lat+.004, lng:lng+.007, zone:'East' };
+  CITY_NODES.node3 = { id:'node3', name:`${name} West Promenade`, lat:lat-.0045, lng:lng-.006, zone:'West' };
+  CITY_NODES.node4 = { id:'node4', name:`${name} South Residential`, lat:lat-.0085, lng:lng+.0045, zone:'South' };
+  CITY_EDGES.length = 0;
+  CITY_EDGES.push(
+    { from:'node1', to:'node2', dist:4, lighting:.94, roadName:'Lit Commercial Ave' },
+    { from:'node2', to:'node4', dist:5, lighting:.91, roadName:'Main Lit Ave' },
+    { from:'node1', to:'node3', dist:4, lighting:.40, roadName:'Narrow Backlane' },
+    { from:'node3', to:'node4', dist:5, lighting:.35, roadName:'Unlit Alley' }
+  );
+  state.originId = 'node1'; state.destId = 'node4';
+  updateSelectDropdowns();
+  communitySpots = [
+    { id:'h1', name:`${name} Pink Police Kiosk`, lat:lat+.0025, lng:lng+.002, severity:'safe', havenType:'24/7 Police Desk', phone:'112', timeWindow:'all', radius:120, intensity:.98, reportsCount:48, author:'@LocalPatrol', timeAgo:'Live', tags:['🛡️ 24/7 Staff'], remark:'Floodlit kiosk with female officer 24/7.' },
+    { id:'h2', name:'Sisterhood Safe Café', lat:lat-.0028, lng:lng-.0018, severity:'safe', havenType:'24/7 Café', phone:'+91 800-SAFE', timeWindow:'all', radius:100, intensity:.94, reportsCount:35, author:'@SisterhoodHost', timeAgo:'Verified', tags:['🛡️ Female Staff'], remark:'Wait inside at any hour. Free phone charging.' },
+    { id:'s1', name:`${name} Dark Overpass Underpass`, lat:lat+.0012, lng:lng-.0035, severity:'high', timeWindow:'night', radius:140, intensity:.92, reportsCount:18, author:'@SisterGuard', timeAgo:'2h ago', tags:['💡 Broken Lights'], remark:'Unlit stretch. Use the lit Commercial Ave instead.' },
+    { id:'s2', name:`${name} Deserted Alley`, lat:lat-.004, lng:lng+.003, severity:'medium', timeWindow:'evening', radius:110, intensity:.70, reportsCount:12, author:'@SafeCommuter', timeAgo:'4h ago', tags:['📷 No CCTV'], remark:'Blind turn behind closed shutter shops after 8 PM.' }
+  ];
+  ACTIVE_SISTERS.length = 0;
+  ACTIVE_SISTERS.push(
+    { name:'Sarah M.', lat:lat+.0015, lng:lng+.0018, status:'Walking with Sister' },
+    { name:'Pooja T.', lat:lat-.002, lng:lng+.0025, status:'In Verified Cab' },
+    { name:'Maya R.', lat:lat+.0035, lng:lng-.002, status:'Waiting at Haven' }
+  );
+}
+
+function updateSelectDropdowns() {
+  const o = document.getElementById('originSelect'), d = document.getElementById('destSelect');
+  if (!o || !d) return;
+  o.innerHTML = Object.values(CITY_NODES).map(n => `<option value="${n.id}" ${n.id===state.originId?'selected':''}>${n.name}</option>`).join('');
+  d.innerHTML = Object.values(CITY_NODES).map(n => `<option value="${n.id}" ${n.id===state.destId?'selected':''}>${n.name}</option>`).join('');
+}
+
+function performMapSearch(q) {
+  if (!q?.trim()) return;
+  const s = q.trim().toLowerCase();
+  const match = CITY_OPTIONS.find(c => c.name.toLowerCase().includes(s) || c.desc.toLowerCase().includes(s));
+  if (match) {
+    document.getElementById('cityPickerModal').classList.add('hidden');
+    setRegion(match.lat, match.lng, match.name, match.zoom);
+    return;
+  }
+  showToast('Searching…', `Looking up "${q}"`, '🔍');
+  fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(q)}&limit=1`, { headers: { 'Accept': 'application/json' } })
+    .then(r => r.json()).then(data => {
+      if (data?.length) {
+        const i = data[0];
+        document.getElementById('cityPickerModal').classList.add('hidden');
+        setRegion(parseFloat(i.lat), parseFloat(i.lon), i.display_name.split(',')[0], 14);
+      } else showToast('Not Found', 'Try another city or district.', '⚠️');
+    }).catch(() => showToast('Network Notice', 'Select a preset city below.', '⚠️'));
+}
+
+function tryGeolocation() {
+  if (!navigator.geolocation) { showCityPicker(); return; }
+  navigator.geolocation.getCurrentPosition(pos => {
+    const { latitude: lat, longitude: lng } = pos.coords;
+    document.getElementById('cityPickerModal')?.classList.add('hidden');
+    fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=14`, { headers: { 'Accept': 'application/json' } })
+      .then(r => r.json()).then(d => {
+        const loc = d.address?.suburb || d.address?.city || d.address?.town || 'Local Area';
+        setRegion(lat, lng, loc, 15);
+      }).catch(() => setRegion(lat, lng, 'Your Area', 15));
+  }, () => showCityPicker(), { enableHighAccuracy: true, timeout: 6000 });
+}
+
+function showCityPicker(filterCat = 'all') {
+  const modal = document.getElementById('cityPickerModal');
+  if (!modal) return;
+  modal.classList.remove('hidden');
+  const list = document.getElementById('cityOptionsList');
+  const filtered = filterCat === 'all' ? CITY_OPTIONS : CITY_OPTIONS.filter(c => c.category === filterCat);
+  list.innerHTML = filtered.map(c => `
+    <div data-lat="${c.lat}" data-lng="${c.lng}" data-zoom="${c.zoom}" data-name="${c.name}" class="grouped-row" style="cursor:pointer;padding:10px 12px;">
+      <div class="flex items-center gap-8">
+        <span style="font-size:24px;">${c.emoji}</span>
+        <div>
+          <div style="font-family:var(--font-heading);font-size:16px;font-weight:700;color:var(--color-lead);">${c.name}</div>
+          <div class="caption-1" style="font-size:13px;">${c.desc}</div>
+        </div>
+      </div>
+      <span class="btn btn-ghost btn-sm" style="min-height:28px;font-size:11px;">Zoom →</span>
+    </div>`).join('');
+
+  list.querySelectorAll('.grouped-row').forEach(opt => opt.addEventListener('click', () => {
+    modal.classList.add('hidden');
+    setRegion(parseFloat(opt.dataset.lat), parseFloat(opt.dataset.lng), opt.dataset.name, parseInt(opt.dataset.zoom));
+  }));
+}
+
+// ============================================================================
+// TAB SWITCHING (Seamless Desktop & Mobile Sync)
+// ============================================================================
+function switchTab(tabName) {
+  state.activeTab = tabName;
+
+  // Update desktop tabs
+  document.querySelectorAll('.left-tab-btn[data-tab]').forEach(btn => {
+    const active = btn.getAttribute('data-tab') === tabName;
+    btn.classList.toggle('seg-active', active);
+    btn.setAttribute('aria-selected', active);
+  });
+  
+  // Update mobile tab bar
+  document.querySelectorAll('.mobile-nav-btn[data-mobile-tab]').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-mobile-tab') === tabName);
+  });
+
+  // Switch panels
+  document.querySelectorAll('.left-tab-panel').forEach(p => {
+    p.classList.toggle('hidden', p.id !== `tab-${tabName}`);
+  });
+
+  // Update mobile panel title
+  const titleEl = document.getElementById('mobileActivePanelTitle');
+  if (titleEl) {
+    const titles = {
+      router: '🧭 Route Planner',
+      pin: '📍 Report Hazard',
+      havens: '🛡️ Verified Safe Havens',
+      toolkit: '⚡ Emergency Tools',
+      community: '💬 Live Feed & Sisterhood'
+    };
+    titleEl.textContent = titles[tabName] || 'Controls';
+  }
+
+  // Smooth scroll to panel on mobile
+  if (window.innerWidth <= 1023) {
+    const target = document.getElementById('leftPanelSection');
+    if (target) {
+      const headerOffset = 52;
+      const elementPosition = target.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+        top: Math.max(0, offsetPosition),
+        behavior: 'smooth'
+      });
+    }
+  }
+
+  // Invalidate map size so it fills container properly
+  setTimeout(() => {
+    if (state.map) state.map.invalidateSize();
+  }, 150);
+}
+
+// ============================================================================
+// INITIALIZATION & EVENT BINDINGS
+// ============================================================================
+function initApp() {
+  // Desktop tab switching
+  document.querySelectorAll('.left-tab-btn[data-tab]').forEach(btn => {
+    btn.addEventListener('click', () => switchTab(btn.getAttribute('data-tab')));
+  });
+
+  // Mobile tab switching
+  document.querySelectorAll('.mobile-nav-btn[data-mobile-tab]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.getAttribute('data-mobile-tab');
+      switchTab(tab);
+    });
+  });
+
+  // Map size expand toggle
+  document.getElementById('toggleMapSizeBtn')?.addEventListener('click', e => {
+    const mapEl = document.getElementById('leafletMap');
+    const isExpanded = mapEl.classList.toggle('map-expanded');
+    e.currentTarget.textContent = isExpanded ? '⤡ Small' : '⤢ Map';
+    setTimeout(() => { if (state.map) state.map.invalidateSize(); }, 260);
+  });
+
+  // Scroll back to map
+  document.getElementById('scrollToMapBtn')?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Mobile SOS button
+  document.getElementById('mobileSOSBtn')?.addEventListener('click', () => {
+    document.getElementById('sosModal').classList.remove('hidden');
+    startSosCountdown();
+  });
+
+  // Time filters
+  document.querySelectorAll('.time-filter-btn').forEach(btn => btn.addEventListener('click', () => {
+    state.timeOfDay = btn.getAttribute('data-time');
+    document.querySelectorAll('.time-filter-btn').forEach(b => b.classList.toggle('seg-active', b.getAttribute('data-time') === state.timeOfDay));
+    const badge = document.getElementById('activeTimeBadge'), alpha = document.getElementById('rAlgoDynamicPenalty');
+    if (state.timeOfDay === 'night') { if (badge) badge.textContent = 'Late Night'; if (alpha) alpha.textContent = 'α=3.8 (Night)'; }
+    else if (state.timeOfDay === 'evening') { if (badge) badge.textContent = 'Evening'; if (alpha) alpha.textContent = 'α=2.6 (Eve)'; }
+    else { if (badge) badge.textContent = 'Daylight'; if (alpha) alpha.textContent = 'α=1.2 (Day)'; }
+    calculateAllRoutes();
+    showToast('Time Updated', `Hazard weights recalculated for ${state.timeOfDay}.`, '🕒');
+  }));
+
+  // Origin & Destination
+  document.getElementById('originSelect')?.addEventListener('change', e => {
+    state.originId = e.target.value;
+    if (state.nearestHavenLine && state.map) { state.map.removeLayer(state.nearestHavenLine); state.nearestHavenLine = null; }
+    calculateAllRoutes();
+  });
+  document.getElementById('destSelect')?.addEventListener('change', e => {
+    state.destId = e.target.value;
+    if (state.nearestHavenLine && state.map) { state.map.removeLayer(state.nearestHavenLine); state.nearestHavenLine = null; }
+    calculateAllRoutes();
+  });
+  ['prefAvoidUnlit', 'prefPassHavens', 'prefCrowdDensity', 'prefPatrolZones'].forEach(id => {
+    document.getElementById(id)?.addEventListener('change', () => calculateAllRoutes());
+  });
+
+  // Map layer toggles
+  document.getElementById('toggleHeatmapLayerBtn')?.addEventListener('click', e => {
+    state.showHeatmap = !state.showHeatmap;
+    e.currentTarget.querySelector('span:last-child').textContent = `Heatmap: ${state.showHeatmap ? 'ON' : 'OFF'}`;
+    e.currentTarget.classList.toggle('opacity-50', !state.showHeatmap);
+    drawAllMapLayers();
+  });
+  document.getElementById('toggleHavensLayerBtn')?.addEventListener('click', e => {
+    state.showHavens = !state.showHavens;
+    e.currentTarget.querySelector('span:last-child').textContent = `Havens: ${state.showHavens ? 'ON' : 'OFF'}`;
+    e.currentTarget.classList.toggle('opacity-50', !state.showHavens);
+    drawAllMapLayers();
+  });
+  document.getElementById('toggleSistersLayerBtn')?.addEventListener('click', e => {
+    state.showSisters = !state.showSisters;
+    e.currentTarget.querySelector('span:last-child').textContent = `Sisters: ${state.showSisters ? 'ON' : 'OFF'}`;
+    e.currentTarget.classList.toggle('opacity-50', !state.showSisters);
+    drawAllMapLayers();
+  });
+
+  // Locate me & Crosshair
+  document.getElementById('locateMeBtn')?.addEventListener('click', () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(p => {
+        const { latitude: lat, longitude: lng } = p.coords;
+        state.userLatLng = { lat, lng }; state.travelerPos = { lat, lng };
+        if (state.map) {
+          state.map.setView([lat, lng], 15);
+          state.map.invalidateSize();
+        }
+        drawAllMapLayers(); renderSafeHavensList();
+        showToast('📍 Located', 'Map centered at your current GPS.');
+      }, () => showToast('GPS Notice', 'Location permission denied.', '⚠️'), { enableHighAccuracy: true, timeout: 5000 });
+    }
+  });
+  document.getElementById('mapClickModeBtn')?.addEventListener('click', () => {
+    state.isPickingOnMap = true; switchTab('pin');
+    showToast('🎯 Tap Map', 'Click anywhere on the map to place your hazard pin.');
+  });
+  document.getElementById('activateMapCrosshairBtn')?.addEventListener('click', () => {
+    state.isPickingOnMap = true;
+    showToast('🎯 Tap Map', 'Click map to place hazard pin.');
+    document.querySelector('.map-section')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+  document.getElementById('openChangeRegionBtn')?.addEventListener('click', () => showCityPicker());
+
+  // Search
+  const searchGo = () => performMapSearch(document.getElementById('citySearchInput')?.value);
+  document.getElementById('citySearchBtn')?.addEventListener('click', searchGo);
+  document.getElementById('citySearchInput')?.addEventListener('keydown', e => { if (e.key === 'Enter') searchGo(); });
+
+  // City Picker filters
+  document.getElementById('filterAllCitiesBtn')?.addEventListener('click', () => showCityPicker('all'));
+  document.getElementById('filterIndiaCitiesBtn')?.addEventListener('click', () => showCityPicker('india'));
+  document.getElementById('filterWorldCitiesBtn')?.addEventListener('click', () => showCityPicker('world'));
+  document.getElementById('closeCityPickerBtn')?.addEventListener('click', () => document.getElementById('cityPickerModal')?.classList.add('hidden'));
+  document.getElementById('closeCityPickerAltBtn')?.addEventListener('click', () => document.getElementById('cityPickerModal')?.classList.add('hidden'));
+
+  // Hazard tags
+  document.querySelectorAll('.hazard-tag-btn').forEach(btn => btn.addEventListener('click', () => {
+    const tag = btn.getAttribute('data-tag');
+    if (state.selectedTags.has(tag)) {
+      state.selectedTags.delete(tag);
+      btn.classList.remove('chip-active');
+    } else {
+      state.selectedTags.add(tag);
+      btn.classList.add('chip-active');
+    }
+  }));
+
+  // Publish hazard pin
+  document.getElementById('addSpotForm')?.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('pinSpotName').value.trim();
+    const sev = document.getElementById('pinSeveritySelect').value;
+    const tw = document.getElementById('pinTimeWindow').value;
+    const rem = document.getElementById('pinRemarkInput').value.trim();
+    if (!name || !rem) return;
+    let lat, lng;
+    if (state.pendingPinLatLng) { lat = state.pendingPinLatLng.lat; lng = state.pendingPinLatLng.lng; }
+    else if (state.map) { const c = state.map.getCenter(); lat = c.lat; lng = c.lng; }
+    else { lat = 12.9716; lng = 77.5946; }
+
+    communitySpots.unshift({
+      id: 'spot-' + Date.now(), name, lat, lng, severity: sev, timeWindow: tw,
+      radius: sev === 'high' ? 150 : 100, intensity: sev === 'high' ? 0.95 : 0.78,
+      reportsCount: 1, author: '@You (Verified)', timeAgo: 'Just now',
+      tags: Array.from(state.selectedTags).length ? Array.from(state.selectedTags) : ['📍 Community Pin'],
+      remark: rem
+    });
+
+    document.getElementById('pinSpotName').value = '';
+    document.getElementById('pinRemarkInput').value = '';
+    if (state._tempPinMarker && state.map) { state.map.removeLayer(state._tempPinMarker); state._tempPinMarker = null; }
+    state.pendingPinLatLng = null;
+    renderCommunityFeed(); calculateAllRoutes(); switchTab('router');
+    showToast('🔥 Spot Published', `"${name}" added to community safety map.`);
+  });
+
+  // Safe Havens Actions
+  document.getElementById('findNearestHavenBtn')?.addEventListener('click', () => {
+    const s = getSortedSafeHavens();
+    if (s.length) {
+      const c = s[0];
+      if (state.nearestHavenLine && state.map) state.map.removeLayer(state.nearestHavenLine);
+      state.nearestHavenLine = L.polyline([[state.travelerPos.lat,state.travelerPos.lng],[c.lat,c.lng]],{
+        color: '#2d5da1', weight: 4, dashArray: '8,6', opacity: 0.95
+      }).addTo(state.map);
+      state.map.fitBounds(state.nearestHavenLine.getBounds().pad(0.3));
+      switchTab('havens'); renderSafeHavensList();
+      showToast('🛡️ Nearest Haven', `${c.name} — ${c.distMeters}m (~${c.walkMins} min)`);
+    }
+  });
+  document.getElementById('recalcHavensBtn')?.addEventListener('click', () => {
+    renderSafeHavensList();
+    showToast('Sorted Havens', 'Sorted by current proximity.');
+  });
+  document.getElementById('feedFilterSelect')?.addEventListener('change', renderCommunityFeed);
+  document.getElementById('feedFilterSelectDesktop')?.addEventListener('change', renderCommunityFeed);
+
+  // Toast close
+  document.getElementById('toastCloseBtn')?.addEventListener('click', () => {
+    document.getElementById('toastBanner')?.classList.add('hidden');
+    if (toastTimeout) clearTimeout(toastTimeout);
+  });
+
+  // Walk Simulator
+  document.getElementById('toggleWalkSimBtn')?.addEventListener('click', () => {
+    const btn = document.getElementById('toggleWalkSimBtn'), statusEl = document.getElementById('walkSimStatus'), bar = document.getElementById('walkProgressBar');
+    if (state.walkSimInterval) {
+      clearInterval(state.walkSimInterval); state.walkSimInterval = null;
+      btn.textContent = '▶ Walk'; statusEl.textContent = 'Walk paused.'; return;
+    }
+    const route = state.calculatedRoutes[state.selectedRouteKey] || state.calculatedRoutes.safest;
+    if (!route || route.nodes.length < 2) return;
+    const wps = [];
+    for (let i = 0; i < route.nodes.length - 1; i++) {
+      const a = CITY_NODES[route.nodes[i]], b = CITY_NODES[route.nodes[i+1]];
+      if (!a || !b) continue;
+      for (let s = 0; s <= 12; s++) {
+        const t = s/12;
+        wps.push({ lat: a.lat + (b.lat-a.lat)*t, lng: a.lng + (b.lng-a.lng)*t, segmentName: b.name });
+      }
+    }
+    let idx = 0; btn.textContent = '⏹ Stop';
+    state.walkSimInterval = setInterval(() => {
+      if (idx >= wps.length) {
+        clearInterval(state.walkSimInterval); state.walkSimInterval = null;
+        btn.textContent = '▶ Walk'; bar.style.width = '100%';
+        statusEl.textContent = '✓ Safely Arrived!';
+        showToast('🎉 Safe Arrival', 'You completed the safe corridor walk.');
+        return;
+      }
+      const pt = wps[idx];
+      state.travelerPos = { lat: pt.lat, lng: pt.lng };
+      const pct = Math.round(idx / (wps.length - 1) * 100);
+      bar.style.width = pct + '%';
+      const dist = Math.round(haversineMeters(pt.lat, pt.lng, wps[wps.length-1].lat, wps[wps.length-1].lng));
+      statusEl.textContent = `→ ${pt.segmentName} (${pct}%) · ${dist}m left`;
+      renderSafeHavensList();
+      if (state.travelerMarker) state.travelerMarker.setLatLng([pt.lat, pt.lng]);
+      if (state.map && idx % 5 === 0) state.map.panTo([pt.lat, pt.lng], { animate: true, duration: 0.3 });
+      idx++;
+    }, 260);
+  });
+
+  // ================================================================
+  // REALISTIC NATIVE PHONE CALL LOGIC
+  // ================================================================
+  const fcm = document.getElementById('fakeCallModal');
+  const inCallControls = document.getElementById('nativeInCallControls');
+  const ringingAvatar = document.getElementById('nativeRingingAvatar');
+  const ringingActions = document.getElementById('nativeRingingActions');
+  const connectedActions = document.getElementById('nativeConnectedActions');
+  const callTimerText = document.getElementById('fakeCallTimerText');
+
+  function openFakeCall() {
+    fcm.classList.remove('hidden');
+    inCallControls.classList.add('hidden');
+    connectedActions.classList.add('hidden');
+    ringingAvatar.classList.remove('hidden');
+    ringingActions.classList.remove('hidden');
+    callTimerText.textContent = 'Ringing…';
+    callTimerText.classList.remove('connected');
+    state.fakeCallSeconds = 0;
+    startRingtone();
+  }
+
+  function answerFakeCall() {
+    stopRingtone();
+    ringingAvatar.classList.add('hidden');
+    ringingActions.classList.add('hidden');
+    inCallControls.classList.remove('hidden');
+    connectedActions.classList.remove('hidden');
+    callTimerText.classList.add('connected');
+    callTimerText.textContent = '00:01';
+    state.fakeCallSeconds = 1;
+
+    if (state.fakeCallTimerInterval) clearInterval(state.fakeCallTimerInterval);
+    state.fakeCallTimerInterval = setInterval(() => {
+      state.fakeCallSeconds++;
+      const m = String(Math.floor(state.fakeCallSeconds / 60)).padStart(2, '0');
+      const s = String(state.fakeCallSeconds % 60).padStart(2, '0');
+      callTimerText.textContent = `${m}:${s}`;
+    }, 1000);
+  }
+
+  function endFakeCall() {
+    fcm.classList.add('hidden');
+    stopRingtone();
+    if (state.fakeCallTimerInterval) clearInterval(state.fakeCallTimerInterval);
+  }
+
+  document.getElementById('openFakeCallBtn')?.addEventListener('click', openFakeCall);
+  document.getElementById('toolsFakeCallBtn')?.addEventListener('click', openFakeCall);
+  document.getElementById('endFakeCallBtn')?.addEventListener('click', endFakeCall);
+  document.getElementById('hangupInCallBtn')?.addEventListener('click', endFakeCall);
+  document.getElementById('answerFakeCallBtn')?.addEventListener('click', answerFakeCall);
+
+  // Preset caller selection
+  document.querySelectorAll('.caller-preset-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.caller-preset-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const caller = btn.getAttribute('data-caller');
+      document.getElementById('fakeCallerTitle').textContent = caller;
+      if (caller.includes('Police')) {
+        document.getElementById('fakeCallerSubtitle').textContent = 'Emergency Control Room • 112';
+        document.getElementById('fakeCallVoicePrompt').textContent = '"Control Room operator speaking, Pink Hoysala #14 has your live GPS location on AURA. Stay on lit avenue, car arriving in 90 seconds."';
+      } else if (caller.includes('Priya')) {
+        document.getElementById('fakeCallerSubtitle').textContent = '+91 98450 ••••99 • Mobile';
+        document.getElementById('fakeCallVoicePrompt').textContent = '"Hey, I am watching your AURA live dot on my phone right now! Keep walking past the café, I have the front door unlocked for you."';
+      } else {
+        document.getElementById('fakeCallerSubtitle').textContent = '+91 98450 ••••21 • Mobile';
+        document.getElementById('fakeCallVoicePrompt').textContent = '"Hey beta, I can see your live GPS dot right now on AURA. I am standing outside the main gate with security. Just stay on the phone."';
+      }
+    });
+  });
+
+  // Stealth Decoy
+  const sm = document.getElementById('stealthDecoyModal'); let stc = 0, stt = null;
+  document.getElementById('openStealthBtn')?.addEventListener('click', () => sm.classList.remove('hidden'));
+  document.getElementById('exitStealthBtn')?.addEventListener('click', () => sm.classList.add('hidden'));
+  document.getElementById('stealthSilentSOSBtn')?.addEventListener('click', () => {
+    sm.classList.add('hidden'); document.getElementById('sosModal').classList.remove('hidden');
+    startSosCountdown();
+  });
+  sm?.addEventListener('click', () => {
+    stc++; if (stt) clearTimeout(stt);
+    stt = setTimeout(() => { stc = 0; }, 600);
+    if (stc >= 3) { sm.classList.add('hidden'); stc = 0; }
+  });
+
+  // SOS Countdown & Modal
+  function startSosCountdown() {
+    const box = document.getElementById('sosCountdownBox'), num = document.getElementById('sosCountdownNumber');
+    if (!box || !num) return;
+    box.classList.remove('hidden'); let c = 3; num.textContent = c;
+    if (state.sosCountdown) clearInterval(state.sosCountdown);
+    state.sosCountdown = setInterval(() => {
+      c--;
+      if (c <= 0) {
+        clearInterval(state.sosCountdown); box.classList.add('hidden');
+        if (navigator.vibrate) navigator.vibrate([500,200,500,200,500]);
+        showToast('🚨 EMERGENCY DISPATCHED', 'Contacts alerted with your live GPS corridor.');
+        if (state.userLatLng) document.getElementById('sosCoordDisplay').textContent = `${state.userLatLng.lat.toFixed(4)}°N`;
+      } else {
+        num.textContent = c;
+      }
+    }, 1000);
+  }
+  document.getElementById('openSosBtn')?.addEventListener('click', () => {
+    const s = getSortedSafeHavens();
+    if (s[0]) {
+      document.getElementById('sosNearestHavenDist').textContent = s[0].distMeters + 'm';
+      document.getElementById('sosNearestHavenName').textContent = s[0].name;
+    }
+    document.getElementById('sosModal').classList.remove('hidden');
+    startSosCountdown();
+  });
+  document.getElementById('closeSosModalBtn')?.addEventListener('click', () => {
+    if (state.sirenActive) toggleSirenAudio();
+    if (state.sosCountdown) clearInterval(state.sosCountdown);
+    document.getElementById('sosCountdownBox')?.classList.add('hidden');
+    document.getElementById('sosModal')?.classList.add('hidden');
+  });
+  document.getElementById('cancelSosDispatchBtn')?.addEventListener('click', () => {
+    if (state.sosCountdown) clearInterval(state.sosCountdown);
+    document.getElementById('sosCountdownBox')?.classList.add('hidden');
+    showToast('✓ False Alarm Cancelled', 'You marked yourself as safe.');
+  });
+  document.getElementById('toggleSirenBtn')?.addEventListener('click', toggleSirenAudio);
+  document.getElementById('copyVoucherBtn')?.addEventListener('click', () => {
+    try { navigator.clipboard.writeText('SISTER-SAFE-100'); } catch(e){}
+    showToast('✂️ Code Copied', 'Voucher SISTER-SAFE-100 copied to clipboard!');
+  });
+
+  // Toolkit features
+  document.getElementById('activateCabLockBtn')?.addEventListener('click', () => {
+    const plate = document.getElementById('cabPlateInput').value.trim() || 'KA-01-AM-7492';
+    const badge = document.getElementById('cabLockStatusBadge');
+    badge.textContent = 'LOCKED'; badge.className = 'chip chip-danger';
+    if (navigator.vibrate) navigator.vibrate(200);
+    showToast('🚕 Cab Locked', `${plate} corridor tracking armed.`);
+  });
+
+  const slider = document.getElementById('timerDurationSlider'), durLabel = document.getElementById('timerDurationLabel');
+  slider?.addEventListener('input', () => {
+    const s = parseInt(slider.value); state.checkInSeconds = s;
+    const m = String(Math.floor(s/60)).padStart(2,'0'), sec = String(s%60).padStart(2,'0');
+    durLabel.textContent = `${m}:${sec}`;
+    document.getElementById('checkInCountdownDisplay').textContent = `${m}:${sec}`;
+  });
+  document.getElementById('toggleCheckInTimerBtn')?.addEventListener('click', e => {
+    const btn = e.currentTarget;
+    if (state.checkInInterval) {
+      clearInterval(state.checkInInterval); state.checkInInterval = null;
+      btn.textContent = 'Start Watch'; return;
+    }
+    btn.textContent = 'Pause Watch';
+    state.checkInInterval = setInterval(() => {
+      state.checkInSeconds = Math.max(0, state.checkInSeconds - 1);
+      const m = String(Math.floor(state.checkInSeconds/60)).padStart(2,'0'), s = String(state.checkInSeconds%60).padStart(2,'0');
+      document.getElementById('checkInCountdownDisplay').textContent = `${m}:${s}`;
+      if (state.checkInSeconds === 0) {
+        clearInterval(state.checkInInterval); state.checkInInterval = null;
+        btn.textContent = 'Start Watch';
+        document.getElementById('sosModal').classList.remove('hidden');
+        if (navigator.vibrate) navigator.vibrate([500,200,500,200,500]);
+      }
+    }, 1000);
+    showToast('⏱️ Timer Armed', `Tap "I'm Safe" before timer expires.`);
+  });
+  document.getElementById('imSafeResetBtn')?.addEventListener('click', () => {
+    if (state.checkInInterval) { clearInterval(state.checkInInterval); state.checkInInterval = null; }
+    const dur = parseInt(slider?.value) || 300;
+    state.checkInSeconds = dur;
+    const m = String(Math.floor(dur/60)).padStart(2,'0'), s = String(dur%60).padStart(2,'0');
+    document.getElementById('checkInCountdownDisplay').textContent = `${m}:${s}`;
+    document.getElementById('toggleCheckInTimerBtn').textContent = 'Start Watch';
+    showToast('✓ Confirmed Safe', 'Escalation watch reset.');
+  });
+
+  document.querySelectorAll('.pingBuddyBtn').forEach(btn => btn.addEventListener('click', e => {
+    e.currentTarget.textContent = '✓ Paired';
+    e.currentTarget.className = 'btn btn-green btn-sm';
+    if (navigator.vibrate) navigator.vibrate(100);
+    showToast('👭 Buddy Paired', 'Walking sister notified.');
+  }));
+  document.querySelectorAll('.pledgeSponsorBtn').forEach(btn => btn.addEventListener('click', () => {
+    showToast('♀ Thank You Sister!', 'Fund a solar streetlight or night cab vouchers.');
+  }));
+  document.getElementById('retryGeoBtn')?.addEventListener('click', tryGeolocation);
+
+  // Window Resize
+  window.addEventListener('resize', () => {
+    if (_resizeDebounce) clearTimeout(_resizeDebounce);
+    _resizeDebounce = setTimeout(() => {
+      if (state.map) state.map.invalidateSize();
+    }, 250);
+  });
+
+  // Escape key handler
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      endFakeCall();
+      document.getElementById('sosModal')?.classList.add('hidden');
+      document.getElementById('stealthDecoyModal')?.classList.add('hidden');
+      document.getElementById('cityPickerModal')?.classList.add('hidden');
+      stopRingtone();
+      if (state.sosCountdown) clearInterval(state.sosCountdown);
+    }
+  });
+
+  // BOOT APPLICATION
+  initLeafletMap(12.9516, 77.6246, 13);
+  calculateAllRoutes();
+  renderCommunityFeed();
+  renderSafeHavensList();
+  tryGeolocation();
+}
+
+window.addEventListener('DOMContentLoaded', initApp);
+</script>
 </body>
 </html>
